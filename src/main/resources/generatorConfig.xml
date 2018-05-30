@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <properties resource="application.properties" />
+    <context id="testTables" targetRuntime="MyBatis3">
+        <!-- 实现自定义的代码生成器plugin -->
+        <plugin type="com.generator.codegen.PaginationPlugin" />
+        <!--生成的实体中 toString 方法-->
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
+        <!--传参数的方式 使用plugin-->
+        <!--<plugin type="org.mybatis.generator.plugins.MapperConfigPlugin">
+            <property name="targetPackage" value="com.generator.codegen.mapper"/>
+            <property name="targetProject" value="src/main/java"/>
+        </plugin>-->
+
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin">
+            <property name="suppressJavaInterface" value="false"/>
+        </plugin>
+        <commentGenerator>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+        <!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
+        <jdbcConnection driverClass="${spring.datasource.driver-class-name}"
+                        connectionURL="${spring.datasource.url}"
+                        userId="${spring.datasource.username}"
+                        password="${spring.datasource.password}">
+        </jdbcConnection>
+        <!-- 数据库连接配置 sqlserver-->
+        <!--<jdbcConnection driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+            connectionURL="jdbc:sqlserver://gsdy.eicp.net:8633;databasename=qkmls"
+            userId="sa"
+            password="sa@20170410" />-->
+
+        <!--<jdbcConnection driverClass="oracle.jdbc.OracleDriver"
+            connectionURL="jdbc:oracle:thin:@127.0.0.1:1521:yycg"
+            userId="yycg"
+            password="yycg">
+            </jdbcConnection> -->
+
+        <!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 和
+            NUMERIC 类型解析为java.math.BigDecimal -->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <!-- targetProject:生成PO类的位置 -->
+        <javaModelGenerator targetPackage="${target.package.model}"
+                            targetProject="${target.project.src}">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false" />
+            <!-- 从数据库返回的值被清理前后的空格 -->
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+        <!-- targetProject:mapper映射文件生成的位置 -->
+        <sqlMapGenerator targetPackage="${target.package.mapping}"
+                         targetProject="${target.project.src}">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false" />
+        </sqlMapGenerator>
+        <!-- targetPackage：mapper接口生成的位置 -->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="${target.package.dao}"
+                             targetProject="${target.project.src}">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+        <!-- 指定数据库表 -->
+        <table tableName="city" enableSelectByExample="false" enableDeleteByExample="false"
+               enableCountByExample="false" enableUpdateByExample="false"
+               selectByExampleQueryId="false">
+            <property name="rootClass" value="com.generator.codegen.common.BaseEntity" />
+        </table>
+        <!-- <table schema="" tableName="T_Qk_Orders"></table>
+        <table schema="" tableName="T_Qk_Orderitem"></table>
+        <table schema="" tableName="T_Qk_Amount"></table> -->
+        <!--<table schema="" tableName="tb_content"></table>
+            <table schema="" tableName="tb_content_category"></table>
+            <table schema="" tableName="tb_item"></table>
+            <table schema="" tableName="tb_item_cat"></table>
+            <table schema="" tableName="tb_item_desc"></table>
+            <table schema="" tableName="tb_item_param"></table>
+            <table schema="" tableName="tb_item_param_item"></table>
+            <table schema="" tableName="tb_order"></table>
+            <table schema="" tableName="tb_order_item"></table>
+            <table schema="" tableName="tb_order_shipping"></table>
+            <table schema="" tableName="tb_user"></table> -->
+
+    </context>
+</generatorConfiguration>
