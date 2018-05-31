@@ -14,7 +14,7 @@ import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
  * @create 2018-04-19 9:51
  **/
 @Configuration
-public class WebMvcConfig extends FreeMarkerAutoConfiguration  {
+public class FreeMarkerConfig extends FreeMarkerAutoConfiguration {
     @Value("${spring.freemarker.template-loader-path}")
     private String templateLoaderPath;
     @Value("${spring.freemarker.prefer-file-system-access}")
@@ -22,8 +22,8 @@ public class WebMvcConfig extends FreeMarkerAutoConfiguration  {
     @Value("${spring.freemarker.charset}")
     private String charset;
 
-    public WebMvcConfig(ApplicationContext applicationContext,
-                        FreeMarkerProperties properties) {
+    public FreeMarkerConfig(ApplicationContext applicationContext,
+                            FreeMarkerProperties properties) {
         super(applicationContext, properties);
     }
 
