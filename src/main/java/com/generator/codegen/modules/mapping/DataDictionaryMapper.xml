@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="manageSystem.modules.dao.DataDictionaryDao">
+    <resultMap id="BaseResultMap" type="manageSystem.modules.model.DataDictionary">
+        <id column="ID" property="id" jdbcType="BIGINT"/>
+        <result column="CODE" property="code" jdbcType="VARCHAR" />
+        <result column="DESCPT" property="descpt" jdbcType="VARCHAR" />
+        <result column="SORT" property="sort" jdbcType="INTEGER" />
+        <result column="TYPE" property="type" jdbcType="VARCHAR" />
+        <result column="CREATE_USER_ID" property="createUserId" jdbcType="BIGINT" />
+        <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+        <result column="MODIFY_USER_ID" property="modifyUserId" jdbcType="BIGINT" />
+        <result column="MODIFY_DATE" property="modifyDate" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    T.ID,
+    T.CODE,
+    T.DESCPT,
+    T.SORT,
+    T.TYPE,
+    T.CREATE_USER_ID,
+    T.CREATE_DATE,
+    T.MODIFY_USER_ID,
+    T.MODIFY_DATE
+    </sql>
+
+    <sql id="whereSql">
+        <if test="code != null">
+            and CODE = #{code}
+        </if>
+        <if test="descpt != null">
+            and DESCPT = #{descpt}
+        </if>
+        <if test="type != null">
+            and TYPE = #{type}
+        </if>
+        <if test="idsMap != null">
+            <foreach collection="idsMap.keys" item="key" separator=",">
+                and ${key} in
+                <foreach item="item" collection="idsMap[key]" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </foreach>
+        </if>
+    </sql>
+
+    <sql id="orderSql">
+        <choose>
+            <when test="orderByMap != null">
+                order by
+                <foreach collection="orderByMap.keys" item="key" separator=",">
+                ${key} ${orderByMap[key]}
+                </foreach>
+            </when>
+        </choose>
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from BID_DATA_DICTIONARY T
+        where T.ID = #{id, jdbcType=BIGINT}
+    </select>
+
+    <select id="findList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from BID_DATA_DICTIONARY T
+        <where>
+            <include refid="whereSql"/>
+        </where>
+        <include refid="orderSql"/>
+    </select>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from BID_DATA_DICTIONARY T
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from BID_DATA_DICTIONARY
+        where ID = #{id, jdbcType=BIGINT}
+    </delete>
+
+    <insert id="insert" parameterType="manageSystem.modules.model.DataDictionary" useGeneratedKeys="true" keyProperty="id">
+
+
+        insert into BID_DATA_DICTIONARY (
+        CODE,
+        DESCPT,
+        SORT,
+        TYPE,
+        CREATE_USER_ID,
+        CREATE_DATE,
+        MODIFY_USER_ID,
+        MODIFY_DATE
+        )
+        values (
+        #{code, jdbcType=VARCHAR},
+        #{descpt, jdbcType=VARCHAR},
+        #{sort, jdbcType=INTEGER},
+        #{type, jdbcType=VARCHAR},
+        #{createUserId, jdbcType=VARCHAR},
+        #{createDate, jdbcType=TIMESTAMP},
+        #{modifyUserId, jdbcType=VARCHAR},
+        #{modifyDate, jdbcType=TIMESTAMP}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="manageSystem.modules.model.DataDictionary" useGeneratedKeys="true" keyProperty="id">
+
+        insert into BID_DATA_DICTIONARY
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+            ID,
+            </if>
+            <if test="code != null">
+            CODE,
+            </if>
+            <if test="descpt != null">
+            DESCPT,
+            </if>
+            <if test="sort != null">
+            SORT,
+            </if>
+            <if test="type != null">
+            TYPE,
+            </if>
+            <if test="createUserId != null">
+            CREATE_USER_ID,
+            </if>
+            <if test="createDate != null">
+            CREATE_DATE,
+            </if>
+            <if test="modifyUserId != null">
+            MODIFY_USER_ID,
+            </if>
+            <if test="modifyDate != null">
+            MODIFY_DATE,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+            #{id, jdbcType=VARCHAR},
+            </if>
+            <if test="code != null">
+            #{code, jdbcType=VARCHAR},
+            </if>
+            <if test="descpt != null">
+            #{descpt, jdbcType=VARCHAR},
+            </if>
+            <if test="sort != null">
+            #{sort, jdbcType=INTEGER},
+            </if>
+            <if test="type != null">
+            #{type, jdbcType=VARCHAR},
+            </if>
+            <if test="createUserId != null">
+            #{createUserId, jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null">
+            #{createDate, jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifyUserId != null">
+            #{modifyUserId, jdbcType=VARCHAR},
+            </if>
+            <if test="modifyDate != null">
+            #{modifyDate, jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="manageSystem.modules.model.DataDictionary">
+        update BID_DATA_DICTIONARY
+        <set>
+            <if test="code != null">
+            CODE= #{code, jdbcType=VARCHAR},
+            </if>
+            <if test="descpt != null">
+            DESCPT= #{descpt, jdbcType=VARCHAR},
+            </if>
+            <if test="sort != null">
+            SORT= #{sort, jdbcType=INTEGER},
+            </if>
+            <if test="type != null">
+            TYPE= #{type, jdbcType=VARCHAR},
+            </if>
+            <if test="createUserId != null">
+            CREATE_USER_ID= #{createUserId, jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null">
+            CREATE_DATE= #{createDate, jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifyUserId != null">
+            MODIFY_USER_ID= #{modifyUserId, jdbcType=VARCHAR},
+            </if>
+            <if test="modifyDate != null">
+            MODIFY_DATE= #{modifyDate, jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where ID = #{id, jdbcType=BIGINT}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="manageSystem.modules.model.DataDictionary">
+        update BID_DATA_DICTIONARY
+        set
+        CODE= #{code, jdbcType=VARCHAR},
+        DESCPT= #{descpt, jdbcType=VARCHAR},
+        SORT= #{sort, jdbcType=INTEGER},
+        TYPE= #{type, jdbcType=VARCHAR},
+        CREATE_USER_ID= #{createUserId, jdbcType=VARCHAR},
+        CREATE_DATE= #{createDate, jdbcType=TIMESTAMP},
+        MODIFY_USER_ID= #{modifyUserId, jdbcType=VARCHAR},
+        MODIFY_DATE= #{modifyDate, jdbcType=TIMESTAMP}
+        where ID = #{id, jdbcType=BIGINT}
+    </update>
+
+
+</mapper>

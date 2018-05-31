@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="manageSystem.modules.dao.CategoryDao">
+    <resultMap id="BaseResultMap" type="manageSystem.modules.model.Category">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="IMG" property="img" jdbcType="VARCHAR" />
+        <result column="NAME" property="name" jdbcType="VARCHAR" />
+        <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+        <result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    T.ID,
+    T.IMG,
+    T.NAME,
+    T.CREATE_DATE,
+    T.UPDATE_DATE
+    </sql>
+
+    <sql id="whereSql">
+        <if test="name != null">
+            and NAME = #{name}
+        </if>
+        <if test="idsMap != null">
+            <foreach collection="idsMap.keys" item="key" separator=",">
+                and ${key} in
+                <foreach item="item" collection="idsMap[key]" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </foreach>
+        </if>
+    </sql>
+
+
+    <sql id="orderSql">
+        <choose>
+            <when test="orderByMap != null">
+                order by
+                <foreach collection="orderByMap.keys" item="key" separator=",">
+                ${key} ${orderByMap[key]}
+                </foreach>
+            </when>
+        </choose>
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from TBD_PRICE_COMPARE_TYPE T
+        where T.ID = #{id,jdbcType=VARCHAR}
+    </select>
+
+    <select id="findList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from TBD_PRICE_COMPARE_TYPE T
+        <where>
+            <include refid="whereSql"/>
+        </where>
+        <include refid="orderSql"/>
+    </select>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from TBD_PRICE_COMPARE_TYPE T
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete from TBD_PRICE_COMPARE_TYPE
+        where ID = #{id,jdbcType=VARCHAR}
+    </delete>
+
+    <insert id="insert" parameterType="manageSystem.modules.model.Category">
+        <!--<selectKey resultType="java.lang.String" keyProperty="id" order="BEFORE">
+            select sys_guid() as id from dual
+        </selectKey>-->
+
+        insert into TBD_PRICE_COMPARE_TYPE (
+        ID,
+        IMG,
+        NAME,
+        CREATE_DATE,
+        UPDATE_DATE
+        )
+        values (
+        #{id, jdbcType=VARCHAR},
+        #{img, jdbcType=VARCHAR},
+        #{name, jdbcType=VARCHAR},
+        #{createDate, jdbcType=TIMESTAMP},
+        #{updateDate, jdbcType=TIMESTAMP}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="manageSystem.modules.model.Category">
+
+        insert into TBD_PRICE_COMPARE_TYPE
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+            ID,
+            </if>
+            <if test="img != null">
+            IMG,
+            </if>
+            <if test="name != null">
+            NAME,
+            </if>
+            <if test="createDate != null">
+            CREATE_DATE,
+            </if>
+            <if test="updateDate != null">
+            UPDATE_DATE,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+            #{id, jdbcType=VARCHAR},
+            </if>
+            <if test="img != null">
+            #{img, jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+            #{name, jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null">
+            #{createDate, jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateDate != null">
+            #{updateDate, jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="manageSystem.modules.model.Category">
+        update TBD_PRICE_COMPARE_TYPE
+        <set>
+            <if test="img != null">
+            IMG= #{img, jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+            NAME= #{name, jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null">
+            CREATE_DATE= #{createDate, jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateDate != null">
+            UPDATE_DATE= #{updateDate, jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=VARCHAR}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="manageSystem.modules.model.Category">
+        update TBD_PRICE_COMPARE_TYPE
+        set
+        IMG= #{img, jdbcType=VARCHAR},
+        NAME= #{name, jdbcType=VARCHAR},
+        CREATE_DATE= #{createDate, jdbcType=TIMESTAMP},
+        UPDATE_DATE= #{updateDate, jdbcType=TIMESTAMP}
+        where ID = #{id,jdbcType=VARCHAR}
+    </update>
+
+
+</mapper>

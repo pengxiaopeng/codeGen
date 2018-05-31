@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="manageSystem.modules.dao.UserRoleDao">
+    <resultMap id="BaseResultMap" type="manageSystem.modules.model.UserRole">
+        <id column="ID" property="id" jdbcType="BIGINT"/>
+        <result column="USER_ID" property="userId" jdbcType="BIGINT" />
+        <result column="ROLE_ID" property="roleId" jdbcType="BIGINT" />
+        <result column="CREATETIME" property="createtime" jdbcType="TIMESTAMP" />
+        <result column="UPDATETIME" property="updatetime" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    T.ID,
+    T.USER_ID,
+    T.ROLE_ID,
+    T.CREATETIME,
+    T.UPDATETIME
+    </sql>
+
+    <sql id="whereSql">
+        <if test="id != null">
+            and ID = #{id}
+        </if>
+        <if test="userId != null">
+            and USER_ID = #{userId}
+        </if>
+        <if test="roleId != null">
+            and ROLE_ID = #{roleId}
+        </if>
+        <if test="idsMap != null">
+            <foreach collection="idsMap.keys" item="key" separator=",">
+                and ${key} in
+                <foreach item="item" collection="idsMap[key]" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </foreach>
+        </if>
+    </sql>
+
+    <sql id="orderSql">
+        <choose>
+            <when test="orderByMap != null">
+                order by
+                <foreach collection="orderByMap.keys" item="key" separator=",">
+                ${key} ${orderByMap[key]}
+                </foreach>
+            </when>
+        </choose>
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from MS_USER_ROLE T
+        where T.ID = #{id,jdbcType=VARCHAR}
+    </select>
+
+    <select id="findList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from MS_USER_ROLE T
+        <where>
+            <include refid="whereSql"/>
+        </where>
+        <include refid="orderSql"/>
+    </select>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from MS_USER_ROLE T
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from MS_USER_ROLE
+        where ID = #{id,jdbcType=VARCHAR}
+    </delete>
+
+    <insert id="insert" parameterType="manageSystem.modules.model.UserRole">
+        <!--<selectKey resultType="java.lang.String" keyProperty="id" order="BEFORE">
+            select sys_guid() as id from dual
+        </selectKey>-->
+
+        insert into MS_USER_ROLE (
+        ID,
+        USER_ID,
+        ROLE_ID,
+        CREATETIME,
+        UPDATETIME
+        )
+        values (
+        #{id, jdbcType=VARCHAR},
+        #{userId, jdbcType=VARCHAR},
+        #{roleId, jdbcType=VARCHAR},
+        #{createtime, jdbcType=TIMESTAMP},
+        #{updatetime, jdbcType=TIMESTAMP}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="manageSystem.modules.model.UserRole">
+        <!--<selectKey resultType="java.lang.String" keyProperty="id" order="BEFORE">
+            select sys_guid() as id from dual
+        </selectKey>-->
+        insert into MS_USER_ROLE
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+            ID,
+            </if>
+            <if test="userId != null">
+            USER_ID,
+            </if>
+            <if test="roleId != null">
+            ROLE_ID,
+            </if>
+            <if test="createtime != null">
+            CREATETIME,
+            </if>
+            <if test="updatetime != null">
+            UPDATETIME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+            #{id, jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null">
+            #{userId, jdbcType=VARCHAR},
+            </if>
+            <if test="roleId != null">
+            #{roleId, jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+            #{createtime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatetime != null">
+            #{updatetime, jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="manageSystem.modules.model.UserRole">
+        update MS_USER_ROLE
+        <set>
+            <if test="userId != null">
+            USER_ID= #{userId, jdbcType=VARCHAR},
+            </if>
+            <if test="roleId != null">
+            ROLE_ID= #{roleId, jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+            CREATETIME= #{createtime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatetime != null">
+            UPDATETIME= #{updatetime, jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=VARCHAR}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="manageSystem.modules.model.UserRole">
+        update MS_USER_ROLE
+        set
+        USER_ID= #{userId, jdbcType=VARCHAR},
+        ROLE_ID= #{roleId, jdbcType=VARCHAR},
+        CREATETIME= #{createtime, jdbcType=TIMESTAMP},
+        UPDATETIME= #{updatetime, jdbcType=TIMESTAMP}
+        where ID = #{id,jdbcType=VARCHAR}
+    </update>
+
+
+</mapper>

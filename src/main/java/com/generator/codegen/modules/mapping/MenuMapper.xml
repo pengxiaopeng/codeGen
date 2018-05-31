@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="manageSystem.modules.dao.MenuDao">
+    <resultMap id="BaseResultMap" type="manageSystem.modules.model.Menu">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="IS_ROOT" property="isRoot" jdbcType="VARCHAR" />
+        <result column="IS_LEAF" property="isLeaf" jdbcType="VARCHAR" />
+        <result column="NAME" property="name" jdbcType="VARCHAR" />
+        <result column="URL" property="url" jdbcType="VARCHAR" />
+        <result column="PARENT_ID" property="parentId" jdbcType="VARCHAR" />
+        <result column="MENU_TYPE" property="menuType" jdbcType="VARCHAR" />
+        <result column="SORT" property="sort" jdbcType="VARCHAR" />
+        <result column="IS_DELETEABLE" property="isDeleteable" jdbcType="VARCHAR" />
+        <result column="IS_SHOW" property="isShow" jdbcType="VARCHAR" />
+        <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    T.ID,
+    T.IS_ROOT,
+    T.IS_LEAF,
+    T.NAME,
+    T.URL,
+    T.PARENT_ID,
+    T.MENU_TYPE,
+    T.SORT,
+    T.IS_DELETEABLE,
+    T.IS_SHOW,
+    T.CREATE_TIME,
+    T.UPDATE_TIME
+    </sql>
+
+    <sql id="whereSql">
+        <if test="id != null">
+            and ID = #{id}
+        </if>
+        <if test="isRoot != null">
+            and IS_ROOT = #{isRoot}
+        </if>
+        <if test="isLeaf != null">
+            and IS_LEAF = #{isLeaf}
+        </if>
+        <if test="name != null">
+            and NAME = #{name}
+        </if>
+        <if test="parentId != null">
+            and PARENT_ID = #{parentId}
+        </if>
+        <if test="menuType != null">
+            and MENU_TYPE = #{menuType}
+        </if>
+        <if test="isDeleteable != null">
+            and IS_DELETEABLE = #{isDeleteable}
+        </if>
+        <if test="isShow != null">
+            and IS_SHOW = #{isShow}
+        </if>
+        <if test="idsMap != null">
+            <foreach collection="idsMap.keys" item="key" separator=",">
+                and ${key} in
+                <foreach item="item" collection="idsMap[key]" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </foreach>
+        </if>
+    </sql>
+
+    <sql id="orderSql">
+        <choose>
+            <when test="orderByMap != null">
+                order by
+                <foreach collection="orderByMap.keys" item="key" separator=",">
+                ${key} ${orderByMap[key]}
+                </foreach>
+            </when>
+        </choose>
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from MS_MENU T
+        where T.ID = #{id,jdbcType=VARCHAR}
+    </select>
+
+    <select id="findList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from MS_MENU T
+        <where>
+            <include refid="whereSql"/>
+        </where>
+        <include refid="orderSql"/>
+    </select>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from MS_MENU T
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete from MS_MENU
+        where ID = #{id,jdbcType=VARCHAR}
+    </delete>
+
+    <insert id="insert" parameterType="manageSystem.modules.model.Menu">
+       <!-- <selectKey resultType="java.lang.String" keyProperty="id" order="BEFORE">
+            select sys_guid() as id from dual
+        </selectKey>-->
+
+        insert into MS_MENU (
+        ID,
+        IS_ROOT,
+        IS_LEAF,
+        NAME,
+        URL,
+        PARENT_ID,
+        MENU_TYPE,
+        SORT,
+        IS_DELETEABLE,
+        IS_SHOW,
+        CREATE_TIME,
+        UPDATE_TIME
+        )
+        values (
+        #{id, jdbcType=VARCHAR},
+        #{isRoot, jdbcType=VARCHAR},
+        #{isLeaf, jdbcType=VARCHAR},
+        #{name, jdbcType=VARCHAR},
+        #{url, jdbcType=VARCHAR},
+        #{parentId, jdbcType=VARCHAR},
+        #{menuType, jdbcType=VARCHAR},
+        #{sort, jdbcType=VARCHAR},
+        #{isDeleteable, jdbcType=VARCHAR},
+        #{isShow, jdbcType=VARCHAR},
+        #{createTime, jdbcType=TIMESTAMP},
+        #{updateTime, jdbcType=TIMESTAMP}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="manageSystem.modules.model.Menu">
+        <!--<selectKey resultType="java.lang.String" keyProperty="id" order="BEFORE">
+            select sys_guid() as id from dual
+        </selectKey>-->
+        insert into MS_MENU
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+            ID,
+            </if>
+            <if test="isRoot != null">
+            IS_ROOT,
+            </if>
+            <if test="isLeaf != null">
+            IS_LEAF,
+            </if>
+            <if test="name != null">
+            NAME,
+            </if>
+            <if test="url != null">
+            URL,
+            </if>
+            <if test="parentId != null">
+            PARENT_ID,
+            </if>
+            <if test="menuType != null">
+            MENU_TYPE,
+            </if>
+            <if test="sort != null">
+            SORT,
+            </if>
+            <if test="isDeleteable != null">
+            IS_DELETEABLE,
+            </if>
+            <if test="isShow != null">
+            IS_SHOW,
+            </if>
+            <if test="createTime != null">
+            CREATE_TIME,
+            </if>
+            <if test="updateTime != null">
+            UPDATE_TIME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+            #{id, jdbcType=VARCHAR},
+            </if>
+            <if test="isRoot != null">
+            #{isRoot, jdbcType=VARCHAR},
+            </if>
+            <if test="isLeaf != null">
+            #{isLeaf, jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+            #{name, jdbcType=VARCHAR},
+            </if>
+            <if test="url != null">
+            #{url, jdbcType=VARCHAR},
+            </if>
+            <if test="parentId != null">
+            #{parentId, jdbcType=VARCHAR},
+            </if>
+            <if test="menuType != null">
+            #{menuType, jdbcType=VARCHAR},
+            </if>
+            <if test="sort != null">
+            #{sort, jdbcType=VARCHAR},
+            </if>
+            <if test="isDeleteable != null">
+            #{isDeleteable, jdbcType=VARCHAR},
+            </if>
+            <if test="isShow != null">
+            #{isShow, jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+            #{createTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+            #{updateTime, jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="manageSystem.modules.model.Menu">
+        update MS_MENU
+        <set>
+            <if test="isRoot != null">
+            IS_ROOT= #{isRoot, jdbcType=VARCHAR},
+            </if>
+            <if test="isLeaf != null">
+            IS_LEAF= #{isLeaf, jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+            NAME= #{name, jdbcType=VARCHAR},
+            </if>
+            <if test="url != null">
+            URL= #{url, jdbcType=VARCHAR},
+            </if>
+            <if test="parentId != null">
+            PARENT_ID= #{parentId, jdbcType=VARCHAR},
+            </if>
+            <if test="menuType != null">
+            MENU_TYPE= #{menuType, jdbcType=VARCHAR},
+            </if>
+            <if test="sort != null">
+            SORT= #{sort, jdbcType=VARCHAR},
+            </if>
+            <if test="isDeleteable != null">
+            IS_DELETEABLE= #{isDeleteable, jdbcType=VARCHAR},
+            </if>
+            <if test="isShow != null">
+            IS_SHOW= #{isShow, jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+            CREATE_TIME= #{createTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+            UPDATE_TIME= #{updateTime, jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=VARCHAR}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="manageSystem.modules.model.Menu">
+        update MS_MENU
+        set
+        IS_ROOT= #{isRoot, jdbcType=VARCHAR},
+        IS_LEAF= #{isLeaf, jdbcType=VARCHAR},
+        NAME= #{name, jdbcType=VARCHAR},
+        URL= #{url, jdbcType=VARCHAR},
+        PARENT_ID= #{parentId, jdbcType=VARCHAR},
+        MENU_TYPE= #{menuType, jdbcType=VARCHAR},
+        SORT= #{sort, jdbcType=VARCHAR},
+        IS_DELETEABLE= #{isDeleteable, jdbcType=VARCHAR},
+        IS_SHOW= #{isShow, jdbcType=VARCHAR},
+        CREATE_TIME= #{createTime, jdbcType=TIMESTAMP},
+        UPDATE_TIME= #{updateTime, jdbcType=TIMESTAMP}
+        where ID = #{id,jdbcType=VARCHAR}
+    </update>
+
+
+</mapper>

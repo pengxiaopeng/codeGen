@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="manageSystem.modules.dao.CodeItemDao">
+    <resultMap id="BaseResultMap" type="manageSystem.modules.model.CodeItem">
+        <id column="ID" property="id" jdbcType="BIGINT"/>
+        <result column="CODE_ID" property="codeId" jdbcType="BIGINT" />
+        <result column="VALUE_NAME" property="valueName" jdbcType="VARCHAR" />
+        <result column="CODE_VALUE" property="codeValue" jdbcType="VARCHAR" />
+        <result column="ORDER_NUM" property="orderNum" jdbcType="INTEGER" />
+        <result column="REMARK" property="REMARK" jdbcType="VARCHAR" />
+        <result column="CREATE_USER_ID" property="createUserId" jdbcType="BIGINT" />
+        <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+        <result column="MODIFY_USER_ID" property="modifyUserId" jdbcType="BIGINT" />
+        <result column="MODIFY_DATE" property="modifyDate" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    T.ID,
+    T.CODE_ID,
+    T.VALUE_NAME,
+    T.CODE_VALUE,
+    T.ORDER_NUM,
+    T.REMARK,
+    T.CREATE_USER_ID,
+    T.CREATE_DATE,
+    T.MODIFY_USER_ID,
+    T.MODIFY_DATE
+    </sql>
+
+    <sql id="whereSql">
+        <if test="codeId != null">
+            and CODE_ID = #{codeId}
+        </if>
+        <if test="valueName != null">
+            and VALUE_NAME = #{valueName}
+        </if>
+        <if test="orderNum != null">
+            and CODE_VALUE = #{orderNum}
+        </if>
+        <if test="idsMap != null">
+            <foreach collection="idsMap.keys" item="key" separator=",">
+                and ${key} in
+                <foreach item="item" collection="idsMap[key]" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </foreach>
+        </if>
+    </sql>
+
+    <sql id="orderSql">
+        <choose>
+            <when test="orderByMap != null">
+                order by
+                <foreach collection="orderByMap.keys" item="key" separator=",">
+                ${key} ${orderByMap[key]}
+                </foreach>
+            </when>
+        </choose>
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from BID_CODE_ITEM T
+        where T.ID = #{id, jdbcType=BIGINT}
+    </select>
+
+    <select id="findList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from BID_CODE_ITEM T
+        <where>
+            <include refid="whereSql"/>
+        </where>
+        <include refid="orderSql"/>
+    </select>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from BID_CODE_ITEM T
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from BID_CODE_ITEM
+        where ID = #{id, jdbcType=BIGINT}
+    </delete>
+
+    <insert id="insert" parameterType="manageSystem.modules.model.CodeItem" useGeneratedKeys="true" keyProperty="id">
+
+
+        insert into BID_CODE_ITEM (
+        CODE_ID,
+        VALUE_NAME,
+        CODE_VALUE,
+        ORDER_NUM,
+        REMARK,
+        CREATE_USER_ID,
+        CREATE_DATE,
+        MODIFY_USER_ID,
+        MODIFY_DATE
+        )
+        values (
+        #{codeId, jdbcType=BIGINT},
+        #{valueName, jdbcType=VARCHAR},
+        #{codeValue, jdbcType=VARCHAR},
+        #{orderNum, jdbcType=INTEGER},
+        #{REMARK, jdbcType=VARCHAR},
+        #{createUserId, jdbcType=BIGINT},
+        #{createDate, jdbcType=TIMESTAMP},
+        #{modifyUserId, jdbcType=BIGINT},
+        #{modifyDate, jdbcType=TIMESTAMP}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="manageSystem.modules.model.CodeItem" useGeneratedKeys="true" keyProperty="id">
+
+        insert into BID_CODE_ITEM
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+            ID,
+            </if>
+            <if test="codeId != null">
+            CODE_ID,
+            </if>
+            <if test="valueName != null">
+            VALUE_NAME,
+            </if>
+            <if test="codeValue != null">
+            CODE_VALUE,
+            </if>
+            <if test="orderNum != null">
+            ORDER_NUM,
+            </if>
+            <if test="REMARK != null">
+            REMARK,
+            </if>
+            <if test="createUserId != null">
+            CREATE_USER_ID,
+            </if>
+            <if test="createDate != null">
+            CREATE_DATE,
+            </if>
+            <if test="modifyUserId != null">
+            MODIFY_USER_ID,
+            </if>
+            <if test="modifyDate != null">
+            MODIFY_DATE,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+            #{Id, jdbcType=BIGINT},
+            </if>
+            <if test="codeId != null">
+            #{codeId, jdbcType=BIGINT},
+            </if>
+            <if test="valueName != null">
+            #{valueName, jdbcType=VARCHAR},
+            </if>
+            <if test="codeValue != null">
+            #{codeValue, jdbcType=VARCHAR},
+            </if>
+            <if test="orderNum != null">
+            #{orderNum, jdbcType=INTEGER},
+            </if>
+            <if test="REMARK != null">
+            #{REMARK, jdbcType=VARCHAR},
+            </if>
+            <if test="createUserId != null">
+            #{createUserId, jdbcType=BIGINT},
+            </if>
+            <if test="createDate != null">
+            #{createDate, jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifyUserId != null">
+            #{modifyUserId, jdbcType=BIGINT},
+            </if>
+            <if test="modifyDate != null">
+            #{modifyDate, jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="manageSystem.modules.model.CodeItem">
+        update BID_CODE_ITEM
+        <set>
+            <if test="codeId != null">
+            CODE_ID= #{codeId, jdbcType=BIGINT},
+            </if>
+            <if test="valueName != null">
+            VALUE_NAME= #{valueName, jdbcType=VARCHAR},
+            </if>
+            <if test="codeValue != null">
+            CODE_VALUE= #{codeValue, jdbcType=VARCHAR},
+            </if>
+            <if test="orderNum != null">
+            ORDER_NUM= #{orderNum, jdbcType=INTEGER},
+            </if>
+            <if test="REMARK != null">
+            REMARK= #{REMARK, jdbcType=VARCHAR},
+            </if>
+            <if test="createUserId != null">
+            CREATE_USER_ID= #{createUserId, jdbcType=BIGINT},
+            </if>
+            <if test="createDate != null">
+            CREATE_DATE= #{createDate, jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifyUserId != null">
+            MODIFY_USER_ID= #{modifyUserId, jdbcType=BIGINT},
+            </if>
+            <if test="modifyDate != null">
+            MODIFY_DATE= #{modifyDate, jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where ID = #{id, jdbcType=BIGINT}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="manageSystem.modules.model.CodeItem">
+        update BID_CODE_ITEM
+        set
+        CODE_ID= #{codeId, jdbcType=BIGINT},
+        VALUE_NAME= #{valueName, jdbcType=VARCHAR},
+        CODE_VALUE= #{codeValue, jdbcType=VARCHAR},
+        ORDER_NUM= #{orderNum, jdbcType=INTEGER},
+        REMARK= #{REMARK, jdbcType=VARCHAR},
+        CREATE_USER_ID= #{createUserId, jdbcType=BIGINT},
+        CREATE_DATE= #{createDate, jdbcType=TIMESTAMP},
+        MODIFY_USER_ID= #{modifyUserId, jdbcType=BIGINT},
+        MODIFY_DATE= #{modifyDate, jdbcType=TIMESTAMP}
+        where ID = #{id, jdbcType=BIGINT}
+    </update>
+
+
+</mapper>

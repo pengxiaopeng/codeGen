@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="manageSystem.modules.dao.EmailReceiversDao">
+    <resultMap id="BaseResultMap" type="manageSystem.modules.model.EmailReceivers">
+        <id column="BID_EMAIL" property="bidEmail" jdbcType="BIGINT"/>
+        <result column="RECEIVERS" property="receivers" jdbcType="VARCHAR" />
+        <result column="RECEIVERS_NAME" property="receiversName" jdbcType="VARCHAR" />
+        <result column="ID" property="id" jdbcType="BIGINT" />
+        <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+        <result column="CREATE_USER_ID" property="createUserId" jdbcType="BIGINT" />
+        <result column="MODIFY_DATE" property="modifyDate" jdbcType="TIMESTAMP" />
+        <result column="MODIFY_USER_ID" property="modifyUserId" jdbcType="BIGINT" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    T.BID_EMAIL,
+    T.RECEIVERS,
+    T.RECEIVERS_NAME,
+    T.ID,
+    T.CREATE_DATE,
+    T.CREATE_USER_ID,
+    T.MODIFY_DATE,
+    T.MODIFY_USER_ID
+    </sql>
+
+    <sql id="whereSql">
+        <if test="idsMap != null">
+            <foreach collection="idsMap.keys" item="key" separator=",">
+                and ${key} in
+                <foreach item="item" collection="idsMap[key]" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </foreach>
+        </if>
+    </sql>
+
+    <sql id="orderSql">
+        <choose>
+            <when test="orderByMap != null">
+                order by
+                <foreach collection="orderByMap.keys" item="key" separator=",">
+                ${key} ${orderByMap[key]}
+                </foreach>
+            </when>
+        </choose>
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from BID_EMAIL_RECEIVERS T
+        where T.BID_EMAIL = #{bidEmail,jdbcType=VARCHAR}
+    </select>
+
+    <select id="findList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from BID_EMAIL_RECEIVERS T
+        <where>
+            <include refid="whereSql"/>
+        </where>
+        <include refid="orderSql"/>
+    </select>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from BID_EMAIL_RECEIVERS T
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from BID_EMAIL_RECEIVERS
+        where BID_EMAIL = #{bidEmail,jdbcType=VARCHAR}
+    </delete>
+
+    <insert id="insert" parameterType="manageSystem.modules.model.EmailReceivers" useGeneratedKeys="true" keyProperty="id">
+
+        insert into BID_EMAIL_RECEIVERS (
+        BID_EMAIL,
+        RECEIVERS,
+        RECEIVERS_NAME,
+        CREATE_DATE,
+        CREATE_USER_ID,
+        MODIFY_DATE,
+        MODIFY_USER_ID
+        )
+        values (
+        #{bidEmail, jdbcType=BIGINT},
+        #{receivers, jdbcType=VARCHAR},
+        #{receiversName, jdbcType=VARCHAR},
+        #{createDate, jdbcType=TIMESTAMP},
+        #{createUserid, jdbcType=BIGINT},
+        #{modifyDate, jdbcType=TIMESTAMP},
+        #{modifyUserid, jdbcType=BIGINT}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="manageSystem.modules.model.EmailReceivers" useGeneratedKeys="true" keyProperty="id">
+
+        insert into BID_EMAIL_RECEIVERS
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="bidEmail != null">
+            BID_EMAIL,
+            </if>
+            <if test="receivers != null">
+            RECEIVERS,
+            </if>
+            <if test="receiversName != null">
+            RECEIVERS_NAME,
+            </if>
+            <if test="id != null">
+            ID,
+            </if>
+            <if test="createDate != null">
+            CREATE_DATE,
+            </if>
+            <if test="createUserId != null">
+            CREATE_USER_ID,
+            </if>
+            <if test="modifyDate != null">
+            MODIFY_DATE,
+            </if>
+            <if test="modifyUserId != null">
+            MODIFY_USER_ID,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="bidEmail != null">
+            #{bidEmail, jdbcType=BIGINT},
+            </if>
+            <if test="receivers != null">
+            #{receivers, jdbcType=VARCHAR},
+            </if>
+            <if test="receiversName != null">
+            #{receiversName, jdbcType=VARCHAR},
+            </if>
+            <if test="id != null">
+            #{id, jdbcType=BIGINT},
+            </if>
+            <if test="createDate != null">
+            #{createDate, jdbcType=TIMESTAMP},
+            </if>
+            <if test="createUserId != null">
+            #{createUserid, jdbcType=BIGINT},
+            </if>
+            <if test="modifyDate != null">
+            #{modifyDate, jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifyUserId != null">
+            #{modifyUserid, jdbcType=BIGINT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="manageSystem.modules.model.EmailReceivers">
+        update BID_EMAIL_RECEIVERS
+        <set>
+            <if test="receivers != null">
+            RECEIVERS= #{receivers, jdbcType=BIGINT},
+            </if>
+            <if test="receiversName != null">
+            RECEIVERS_NAME= #{receiversName, jdbcType=VARCHAR},
+            </if>
+            <if test="id != null">
+            ID= #{Id, jdbcType=BIGINT},
+            </if>
+            <if test="createDate != null">
+            CREATE_DATE= #{createDate, jdbcType=TIMESTAMP},
+            </if>
+            <if test="createUserId != null">
+            CREATE_USER_ID= #{createUserId, jdbcType=BIGINT},
+            </if>
+            <if test="modifyDate != null">
+            MODIFY_DATE= #{modifyDate, jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifyUserId != null">
+            MODIFY_USER_ID= #{modifyUserId, jdbcType=BIGINT},
+            </if>
+        </set>
+        where BID_EMAIL = #{bidEmail,jdbcType=VARCHAR}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="manageSystem.modules.model.EmailReceivers">
+        update BID_EMAIL_RECEIVERS
+        set
+        RECEIVERS= #{receivers, jdbcType=BIGINT},
+        RECEIVERS_NAME= #{receiversName, jdbcType=VARCHAR},
+        ID= #{Id, jdbcType=BIGINT},
+        CREATE_DATE= #{createDate, jdbcType=TIMESTAMP},
+        CREATE_USER_ID= #{createUserId, jdbcType=BIGINT},
+        MODIFY_DATE= #{modifyDate, jdbcType=TIMESTAMP},
+        MODIFY_USER_ID= #{modifyUserId, jdbcType=BIGINT}
+        where BID_EMAIL = #{bidEmail,jdbcType=VARCHAR}
+    </update>
+
+
+</mapper>

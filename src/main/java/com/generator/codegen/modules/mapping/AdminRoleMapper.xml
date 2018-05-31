@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="manageSystem.modules.dao.AdminRoleDao">
+    <resultMap id="BaseResultMap" type="manageSystem.modules.model.AdminRole">
+        <id column="ID" property="id" jdbcType="BIGINT"/>
+        <result column="ROLES" property="roles" jdbcType="BIGINT" />
+        <result column="ADMINS" property="admins" jdbcType="BIGINT" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    T.ID,
+    T.ROLES,
+    T.ADMINS
+    </sql>
+
+    <sql id="whereSql">
+        <if test="roles != null">
+            and ROLES = #{roles}
+        </if>
+        <if test="admins != null">
+            and ADMINS = #{admins}
+        </if>
+        <if test="idsMap != null">
+            <foreach collection="idsMap.keys" item="key" separator=",">
+                and ${key} in
+                <foreach item="item" collection="idsMap[key]" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </foreach>
+        </if>
+    </sql>
+
+    <sql id="orderSql">
+        <choose>
+            <when test="orderByMap != null">
+                order by
+                <foreach collection="orderByMap.keys" item="key" separator=",">
+                ${key} ${orderByMap[key]}
+                </foreach>
+            </when>
+        </choose>
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from BID_ADMIN_ROLE T
+        where T.ID = #{id, jdbcType=BIGINT}
+    </select>
+
+    <select id="findList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from BID_ADMIN_ROLE T
+        <where>
+            <include refid="whereSql"/>
+        </where>
+        <include refid="orderSql"/>
+    </select>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from BID_ADMIN_ROLE T
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from BID_ADMIN_ROLE
+        where ID = #{id, jdbcType=BIGINT}
+    </delete>
+
+    <insert id="insert" parameterType="manageSystem.modules.model.AdminRole" useGeneratedKeys="true" keyProperty="id">
+
+
+        insert into BID_ADMIN_ROLE (
+        ROLES,
+        ADMINS
+        )
+        values (
+        #{roles, jdbcType=BIGINT},
+        #{admins, jdbcType=BIGINT}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="manageSystem.modules.model.AdminRole" useGeneratedKeys="true" keyProperty="id">
+
+        insert into BID_ADMIN_ROLE
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+            ID,
+            </if>
+            <if test="roles != null">
+            ROLES,
+            </if>
+            <if test="admins != null">
+            ADMINS,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+            #{id, jdbcType=BIGINT},
+            </if>
+            <if test="roles != null">
+            #{roles, jdbcType=BIGINT},
+            </if>
+            <if test="admins != null">
+            #{admins, jdbcType=BIGINT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="manageSystem.modules.model.AdminRole">
+        update BID_ADMIN_ROLE
+        <set>
+            <if test="roles != null">
+            ROLES= #{roles, jdbcType=BIGINT},
+            </if>
+            <if test="admins != null">
+            ADMINS= #{admins, jdbcType=BIGINT},
+            </if>
+        </set>
+        where ID = #{id, jdbcType=BIGINT}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="manageSystem.modules.model.AdminRole">
+        update BID_ADMIN_ROLE
+        set
+        ROLES= #{roles, jdbcType=BIGINT},
+        ADMINS= #{admins, jdbcType=BIGINT}
+        where ID = #{id, jdbcType=BIGINT}
+    </update>
+
+
+</mapper>

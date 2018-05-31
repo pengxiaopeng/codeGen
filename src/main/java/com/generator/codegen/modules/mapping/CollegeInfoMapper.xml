@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="manageSystem.modules.dao.CollegeInfoDao">
+    <resultMap id="BaseResultMap" type="manageSystem.modules.model.CollegeInfo">
+        <id column="ID" property="id" jdbcType="BIGINT"/>
+        <result column="COLLEGE_ID" property="collegeId" jdbcType="BIGINT" />
+        <result column="COLLEGE_NAME" property="collegeName" jdbcType="VARCHAR" />
+        <result column="LOGO_PATH" property="logoPath" jdbcType="VARCHAR" />
+        <result column="IN_PROVINCE" property="inProvince" jdbcType="VARCHAR" />
+        <result column="IN_CITY" property="inCity" jdbcType="VARCHAR" />
+        <result column="REMARK" property="REMARK" jdbcType="VARCHAR" />
+        <result column="COLLEGE_ADD" property="collegeAdd" jdbcType="VARCHAR" />
+        <result column="JURIDICAL_PERSON" property="juridicalPerson" jdbcType="VARCHAR" />
+        <result column="BANK_NAME" property="bankName" jdbcType="VARCHAR" />
+        <result column="BANK_USER_NAME" property="bankUserName" jdbcType="VARCHAR" />
+        <result column="BANK_ACCOUNT" property="bankAccount" jdbcType="VARCHAR" />
+        <result column="PROJECT_URL" property="projectUrl" jdbcType="VARCHAR" />
+        <result column="DEPLOYMENT_TYPE" property="deploymentType" jdbcType="INTEGER" />
+        <result column="CREATE_USER_ID" property="createUserId" jdbcType="BIGINT" />
+        <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+        <result column="MODIFY_DATE" property="modifyDate" jdbcType="TIMESTAMP" />
+        <result column="MODIFY_USER_ID" property="modifyUserId" jdbcType="BIGINT" />
+        <result column="LOGO" property="logo" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    T.ID,
+    T.COLLEGE_ID,
+    T.COLLEGE_NAME,
+    T.LOGO_PATH,
+    T.IN_PROVINCE,
+    T.IN_CITY,
+    T.REMARK,
+    T.COLLEGE_ADD,
+    T.JURIDICAL_PERSON,
+    T.BANK_NAME,
+    T.BANK_USER_NAME,
+    T.BANK_ACCOUNT,
+    T.PROJECT_URL,
+    T.DEPLOYMENT_TYPE,
+    T.CREATE_USER_ID,
+    T.CREATE_DATE,
+    T.MODIFY_DATE,
+    T.MODIFY_USER_ID,
+    T.LOGO
+    </sql>
+
+    <sql id="whereSql">
+        <if test="collegeId != null">
+            and COLLEGE_ID = #{collegeId}
+        </if>
+        <if test="collegeName != null">
+            and COLLEGE_NAME = #{collegeName}
+        </if>
+        <if test="idsMap != null">
+            <foreach collection="idsMap.keys" item="key" separator=",">
+                and ${key} in
+                <foreach item="item" collection="idsMap[key]" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </foreach>
+        </if>
+    </sql>
+
+    <sql id="orderSql">
+        <choose>
+            <when test="orderByMap != null">
+                order by
+                <foreach collection="orderByMap.keys" item="key" separator=",">
+                ${key} ${orderByMap[key]}
+                </foreach>
+            </when>
+        </choose>
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from BID_COLLEGE_INFO T
+        where T.ID = #{id, jdbcType=BIGINT}
+    </select>
+
+    <select id="findList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from BID_COLLEGE_INFO T
+        <where>
+            <include refid="whereSql"/>
+        </where>
+        <include refid="orderSql"/>
+    </select>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from BID_COLLEGE_INFO T
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from BID_COLLEGE_INFO
+        where ID = #{id, jdbcType=BIGINT}
+    </delete>
+
+    <insert id="insert" parameterType="manageSystem.modules.model.CollegeInfo" useGeneratedKeys="true" keyProperty="id">
+
+
+        insert into BID_COLLEGE_INFO (
+        COLLEGE_ID,
+        COLLEGE_NAME,
+        LOGO_PATH,
+        IN_PROVINCE,
+        IN_CITY,
+        REMARK,
+        COLLEGE_ADD,
+        JURIDICAL_PERSON,
+        BANK_NAME,
+        BANK_USER_NAME,
+        BANK_ACCOUNT,
+        PROJECT_URL,
+        DEPLOYMENT_TYPE,
+        CREATE_USER_ID,
+        CREATE_DATE,
+        MODIFY_DATE,
+        MODIFY_USER_ID,
+        LOGO
+        )
+        values (
+        #{collegeId, jdbcType=BIGINT},
+        #{collegeName, jdbcType=VARCHAR},
+        #{logoPath, jdbcType=VARCHAR},
+        #{inProvince, jdbcType=VARCHAR},
+        #{inCity, jdbcType=VARCHAR},
+        #{REMARK, jdbcType=VARCHAR},
+        #{collegeAdd, jdbcType=VARCHAR},
+        #{juridicalPerson, jdbcType=VARCHAR},
+        #{bankName, jdbcType=VARCHAR},
+        #{bankUserName, jdbcType=VARCHAR},
+        #{bankAccount, jdbcType=VARCHAR},
+        #{projectUrl, jdbcType=VARCHAR},
+        #{deploymentType, jdbcType=INTEGER},
+        #{createUserId, jdbcType=BIGINT},
+        #{createDate, jdbcType=TIMESTAMP},
+        #{modifyDate, jdbcType=TIMESTAMP},
+        #{modifyUserId, jdbcType=BIGINT},
+        #{logo, jdbcType=VARCHAR}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="manageSystem.modules.model.CollegeInfo" useGeneratedKeys="true" keyProperty="id">
+
+        insert into BID_COLLEGE_INFO
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+            ID,
+            </if>
+            <if test="collegeId != null">
+            COLLEGE_ID,
+            </if>
+            <if test="collegeName != null">
+            COLLEGE_NAME,
+            </if>
+            <if test="logoPath != null">
+            LOGO_PATH,
+            </if>
+            <if test="inProvince != null">
+            IN_PROVINCE,
+            </if>
+            <if test="inCity != null">
+            IN_CITY,
+            </if>
+            <if test="REMARK != null">
+            REMARK,
+            </if>
+            <if test="collegeAdd != null">
+            COLLEGE_ADD,
+            </if>
+            <if test="juridicalPerson != null">
+            JURIDICAL_PERSON,
+            </if>
+            <if test="bankName != null">
+            BANK_NAME,
+            </if>
+            <if test="bankUserName != null">
+            BANK_USER_NAME,
+            </if>
+            <if test="bankAccount != null">
+            BANK_ACCOUNT,
+            </if>
+            <if test="projectUrl != null">
+            PROJECT_URL,
+            </if>
+            <if test="deploymentType != null">
+            DEPLOYMENT_TYPE,
+            </if>
+            <if test="createUserId != null">
+            CREATE_USER_ID,
+            </if>
+            <if test="createDate != null">
+            CREATE_DATE,
+            </if>
+            <if test="modifyDate != null">
+            MODIFY_DATE,
+            </if>
+            <if test="modifyUserId != null">
+            MODIFY_USER_ID,
+            </if>
+            <if test="logo != null">
+            LOGO,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+            #{Id, jdbcType=BIGINT},
+            </if>
+            <if test="collegeId != null">
+            #{collegeId, jdbcType=BIGINT},
+            </if>
+            <if test="collegeName != null">
+            #{collegeName, jdbcType=VARCHAR},
+            </if>
+            <if test="logoPath != null">
+            #{logoPath, jdbcType=VARCHAR},
+            </if>
+            <if test="inProvince != null">
+            #{inProvince, jdbcType=VARCHAR},
+            </if>
+            <if test="inCity != null">
+            #{inCity, jdbcType=VARCHAR},
+            </if>
+            <if test="REMARK != null">
+            #{REMARK, jdbcType=VARCHAR},
+            </if>
+            <if test="collegeAdd != null">
+            #{collegeAdd, jdbcType=VARCHAR},
+            </if>
+            <if test="juridicalPerson != null">
+            #{juridicalPerson, jdbcType=VARCHAR},
+            </if>
+            <if test="bankName != null">
+            #{bankName, jdbcType=VARCHAR},
+            </if>
+            <if test="bankUserName != null">
+            #{bankUserName, jdbcType=VARCHAR},
+            </if>
+            <if test="bankAccount != null">
+            #{bankAccount, jdbcType=VARCHAR},
+            </if>
+            <if test="projectUrl != null">
+            #{projectUrl, jdbcType=VARCHAR},
+            </if>
+            <if test="deploymentType != null">
+            #{deploymentType, jdbcType=INTEGER},
+            </if>
+            <if test="createUserId != null">
+            #{createUserId, jdbcType=BIGINT},
+            </if>
+            <if test="createDate != null">
+            #{createDate, jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifyDate != null">
+            #{modifyDate, jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifyUserId != null">
+            #{modifyUserId, jdbcType=BIGINT},
+            </if>
+            <if test="logo != null">
+            #{logo, jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="manageSystem.modules.model.CollegeInfo">
+        update BID_COLLEGE_INFO
+        <set>
+            <if test="collegeId != null">
+            COLLEGE_ID= #{collegeId, jdbcType=BIGINT},
+            </if>
+            <if test="collegeName != null">
+            COLLEGE_NAME= #{collegeName, jdbcType=VARCHAR},
+            </if>
+            <if test="logoPath != null">
+            LOGO_PATH= #{logoPath, jdbcType=VARCHAR},
+            </if>
+            <if test="inProvince != null">
+            IN_PROVINCE= #{inProvince, jdbcType=VARCHAR},
+            </if>
+            <if test="inCity != null">
+            IN_CITY= #{inCity, jdbcType=VARCHAR},
+            </if>
+            <if test="REMARK != null">
+            REMARK= #{REMARK, jdbcType=VARCHAR},
+            </if>
+            <if test="collegeAdd != null">
+            COLLEGE_ADD= #{collegeAdd, jdbcType=VARCHAR},
+            </if>
+            <if test="juridicalPerson != null">
+            JURIDICAL_PERSON= #{juridicalPerson, jdbcType=VARCHAR},
+            </if>
+            <if test="bankName != null">
+            BANK_NAME= #{bankName, jdbcType=VARCHAR},
+            </if>
+            <if test="bankUserName != null">
+            BANK_USER_NAME= #{bankUserName, jdbcType=VARCHAR},
+            </if>
+            <if test="bankAccount != null">
+            BANK_ACCOUNT= #{bankAccount, jdbcType=VARCHAR},
+            </if>
+            <if test="projectUrl != null">
+            PROJECT_URL= #{projectUrl, jdbcType=VARCHAR},
+            </if>
+            <if test="deploymentType != null">
+            DEPLOYMENT_TYPE= #{deploymentType, jdbcType=INTEGER},
+            </if>
+            <if test="createUserId != null">
+            CREATE_USER_ID= #{createUserId, jdbcType=BIGINT},
+            </if>
+            <if test="createDate != null">
+            CREATE_DATE= #{createDate, jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifyDate != null">
+            MODIFY_DATE= #{modifyDate, jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifyUserId != null">
+            MODIFY_USER_ID= #{modifyUserId, jdbcType=BIGINT},
+            </if>
+            <if test="logo != null">
+            LOGO= #{logo, jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ID = #{id, jdbcType=BIGINT}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="manageSystem.modules.model.CollegeInfo">
+        update BID_COLLEGE_INFO
+        set
+        COLLEGE_ID= #{collegeId, jdbcType=BIGINT},
+        COLLEGE_NAME= #{collegeName, jdbcType=VARCHAR},
+        LOGO_PATH= #{logoPath, jdbcType=VARCHAR},
+        IN_PROVINCE= #{inProvince, jdbcType=VARCHAR},
+        IN_CITY= #{inCity, jdbcType=VARCHAR},
+        REMARK= #{REMARK, jdbcType=VARCHAR},
+        COLLEGE_ADD= #{collegeAdd, jdbcType=VARCHAR},
+        JURIDICAL_PERSON= #{juridicalPerson, jdbcType=VARCHAR},
+        BANK_NAME= #{bankName, jdbcType=VARCHAR},
+        BANK_USER_NAME= #{bankUserName, jdbcType=VARCHAR},
+        BANK_ACCOUNT= #{bankAccount, jdbcType=VARCHAR},
+        PROJECT_URL= #{projectUrl, jdbcType=VARCHAR},
+        DEPLOYMENT_TYPE= #{deploymentType, jdbcType=INTEGER},
+        CREATE_USER_ID= #{createUserId, jdbcType=BIGINT},
+        CREATE_DATE= #{createDate, jdbcType=TIMESTAMP},
+        MODIFY_DATE= #{modifyDate, jdbcType=TIMESTAMP},
+        MODIFY_USER_ID= #{modifyUserId, jdbcType=BIGINT},
+        LOGO= #{logo, jdbcType=VARCHAR}
+        where ID = #{id, jdbcType=BIGINT}
+    </update>
+
+
+</mapper>

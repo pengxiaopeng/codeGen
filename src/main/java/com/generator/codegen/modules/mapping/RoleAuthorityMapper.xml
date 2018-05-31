@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="manageSystem.modules.dao.RoleAuthorityDao">
+    <resultMap id="BaseResultMap" type="manageSystem.modules.model.RoleAuthority">
+        <id column="ID" property="id" jdbcType="BIGINT"/>
+        <result column="ROLE" property="role" jdbcType="BIGINT" />
+        <result column="AUTHORITIES" property="authorities" jdbcType="BIGINT" />
+        <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+        <result column="MODIFY_DATE" property="modifyDate" jdbcType="TIMESTAMP" />
+        <result column="CREATE_USER_ID" property="createUserId" jdbcType="BIGINT" />
+        <result column="MODIFY_USER_ID" property="modifyUserId" jdbcType="BIGINT" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    T.ID,
+    T.ROLE,
+    T.AUTHORITIES,
+    T.CREATE_DATE,
+    T.MODIFY_DATE,
+    T.CREATE_USER_ID,
+    T.MODIFY_USER_ID
+    </sql>
+
+    <sql id="whereSql">
+        <if test="role != null">
+            and ROLE = #{role}
+        </if>
+        <if test="authorities != null">
+            and AUTHORITIES = #{authorities}
+        </if>
+        <if test="idsMap != null">
+            <foreach collection="idsMap.keys" item="key" separator=",">
+                and ${key} in
+                <foreach item="item" collection="idsMap[key]" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </foreach>
+        </if>
+    </sql>
+
+    <sql id="orderSql">
+        <choose>
+            <when test="orderByMap != null">
+                order by
+                <foreach collection="orderByMap.keys" item="key" separator=",">
+                ${key} ${orderByMap[key]}
+                </foreach>
+            </when>
+        </choose>
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from BID_ROLE_AUTHORITY T
+        where T.ID = #{id, jdbcType=BIGINT}
+    </select>
+
+    <select id="findList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from BID_ROLE_AUTHORITY T
+        <where>
+            <include refid="whereSql"/>
+        </where>
+        <include refid="orderSql"/>
+    </select>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from BID_ROLE_AUTHORITY T
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from BID_ROLE_AUTHORITY
+        where ID = #{id, jdbcType=BIGINT}
+    </delete>
+
+    <insert id="insert" parameterType="manageSystem.modules.model.RoleAuthority" useGeneratedKeys="true" keyProperty="id">
+
+
+        insert into BID_ROLE_AUTHORITY (
+        ROLE,
+        AUTHORITIES,
+        CREATE_DATE,
+        MODIFY_DATE,
+        CREATE_USER_ID,
+        MODIFY_USER_ID
+        )
+        values (
+        #{role, jdbcType=BIGINT},
+        #{authorities, jdbcType=BIGINT},
+        #{createDate, jdbcType=TIMESTAMP},
+        #{modifyDate, jdbcType=TIMESTAMP},
+        #{createUserid, jdbcType=BIGINT},
+        #{modifyUserid, jdbcType=BIGINT}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="manageSystem.modules.model.RoleAuthority" useGeneratedKeys="true" keyProperty="id">
+
+        insert into BID_ROLE_AUTHORITY
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+            ID,
+            </if>
+            <if test="role != null">
+            ROLE,
+            </if>
+            <if test="authorities != null">
+            AUTHORITIES,
+            </if>
+            <if test="createDate != null">
+            CREATE_DATE,
+            </if>
+            <if test="modifyDate != null">
+            MODIFY_DATE,
+            </if>
+            <if test="createUserId != null">
+            CREATE_USER_ID,
+            </if>
+            <if test="modifyUserId != null">
+            MODIFY_USER_ID,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+            #{id, jdbcType=BIGINT},
+            </if>
+            <if test="role != null">
+            #{role, jdbcType=BIGINT},
+            </if>
+            <if test="authorities != null">
+            #{authorities, jdbcType=BIGINT},
+            </if>
+            <if test="createDate != null">
+            #{createDate, jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifyDate != null">
+            #{modifyDate, jdbcType=TIMESTAMP},
+            </if>
+            <if test="createUserId != null">
+            #{createUserid, jdbcType=BIGINT},
+            </if>
+            <if test="modifyUserId != null">
+            #{modifyUserid, jdbcType=BIGINT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="manageSystem.modules.model.RoleAuthority">
+        update BID_ROLE_AUTHORITY
+        <set>
+            <if test="role != null">
+            ROLE= #{role, jdbcType=BIGINT},
+            </if>
+            <if test="authorities != null">
+            AUTHORITIES= #{authorities, jdbcType=BIGINT},
+            </if>
+            <if test="createDate != null">
+            CREATE_DATE= #{createDate, jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifyDate != null">
+            MODIFY_DATE= #{modifyDate, jdbcType=TIMESTAMP},
+            </if>
+            <if test="createUserId != null">
+            CREATE_USER_ID= #{createUserid, jdbcType=BIGINT},
+            </if>
+            <if test="modifyUserId != null">
+            MODIFY_USER_ID= #{modifyUserid, jdbcType=BIGINT},
+            </if>
+        </set>
+        where ID = #{id, jdbcType=BIGINT}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="manageSystem.modules.model.RoleAuthority">
+        update BID_ROLE_AUTHORITY
+        set
+        ROLE= #{role, jdbcType=BIGINT},
+        AUTHORITIES= #{authorities, jdbcType=BIGINT},
+        CREATE_DATE= #{createDate, jdbcType=TIMESTAMP},
+        MODIFY_DATE= #{modifyDate, jdbcType=TIMESTAMP},
+        CREATE_USER_ID= #{createUserid, jdbcType=BIGINT},
+        MODIFY_USER_ID= #{modifyUserid, jdbcType=BIGINT}
+        where ID = #{id, jdbcType=BIGINT}
+    </update>
+
+
+</mapper>

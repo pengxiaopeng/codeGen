@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="manageSystem.modules.dao.ActivitiTypeDao">
+    <resultMap id="BaseResultMap" type="manageSystem.modules.model.ActivitiType">
+        <id column="ID" property="Id" jdbcType="BIGINT"/>
+        <result column="NAME" property="name" jdbcType="VARCHAR" />
+        <result column="CODE" property="code" jdbcType="VARCHAR" />
+        <result column="BEAN_NAME" property="beanName" jdbcType="VARCHAR" />
+        <result column="DYN_ATTRIBUTE" property="dynAttribute" jdbcType="VARCHAR" />
+        <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+        <result column="MODIFY_DATE" property="modifyDate" jdbcType="TIMESTAMP" />
+        <result column="IS_ENABLED" property="isEnabled" jdbcType="VARCHAR" />
+        <result column="CREATE_USER_ID" property="createUserId" jdbcType="BIGINT" />
+        <result column="MODIFY_USER_ID" property="modifyUserId" jdbcType="BIGINT" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    T.ID,
+    T.NAME,
+    T.CODE,
+    T.BEAN_NAME,
+    T.DYN_ATTRIBUTE,
+    T.CREATE_DATE,
+    T.MODIFY_DATE,
+    T.IS_ENABLED,
+    T.CREATE_USER_ID,
+    T.MODIFY_USER_ID
+    </sql>
+
+    <sql id="whereSql">
+        <if test="name != null">
+            and NAME = #{name}
+        </if>
+        <if test="idsMap != null">
+            <foreach collection="idsMap.keys" item="key" separator=",">
+                and ${key} in
+                <foreach item="item" collection="idsMap[key]" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </foreach>
+        </if>
+    </sql>
+
+    <sql id="orderSql">
+        <choose>
+            <when test="orderByMap != null">
+                order by
+                <foreach collection="orderByMap.keys" item="key" separator=",">
+                ${key} ${orderByMap[key]}
+                </foreach>
+            </when>
+        </choose>
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from BID_ACTIVITI_TYPE T
+        where T.ID = #{id, jdbcType=BIGINT}
+    </select>
+
+    <select id="findList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from BID_ACTIVITI_TYPE T
+        <where>
+            <include refid="whereSql"/>
+        </where>
+        <include refid="orderSql"/>
+    </select>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from BID_ACTIVITI_TYPE T
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from BID_ACTIVITI_TYPE
+        where ID = #{id, jdbcType=BIGINT}
+    </delete>
+
+    <insert id="insert" parameterType="manageSystem.modules.model.ActivitiType" useGeneratedKeys="true" keyProperty="id">
+
+
+        insert into BID_ACTIVITI_TYPE (
+        NAME,
+        CODE,
+        BEAN_NAME,
+        DYN_ATTRIBUTE,
+        CREATE_DATE,
+        MODIFY_DATE,
+        IS_ENABLED,
+        CREATE_USER_ID,
+        MODIFY_USER_ID
+        )
+        values (
+        #{name, jdbcType=VARCHAR},
+        #{code, jdbcType=VARCHAR},
+        #{beanName, jdbcType=VARCHAR},
+        #{dynAttribute, jdbcType=VARCHAR},
+        #{createDate, jdbcType=TIMESTAMP},
+        #{modifyDate, jdbcType=TIMESTAMP},
+        #{isEnabled, jdbcType=BIT},
+        #{createUserid, jdbcType=BIGINT},
+        #{modifyUserid, jdbcType=BIGINT}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="manageSystem.modules.model.ActivitiType" useGeneratedKeys="true" keyProperty="id">
+
+        insert into BID_ACTIVITI_TYPE
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="Id != null">
+            ID,
+            </if>
+            <if test="name != null">
+            NAME,
+            </if>
+            <if test="code != null">
+            CODE,
+            </if>
+            <if test="beanName != null">
+            BEAN_NAME,
+            </if>
+            <if test="dynAttribute != null">
+            DYN_ATTRIBUTE,
+            </if>
+            <if test="createDate != null">
+            CREATE_DATE,
+            </if>
+            <if test="modifyDate != null">
+            MODIFY_DATE,
+            </if>
+            <if test="isEnabled != null">
+            IS_ENABLED,
+            </if>
+            <if test="createUserId != null">
+            CREATE_USER_ID,
+            </if>
+            <if test="modifyUserId != null">
+            MODIFY_USER_ID,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="Id != null">
+            #{id, jdbcType=BIGINT},
+            </if>
+            <if test="name != null">
+            #{name, jdbcType=VARCHAR},
+            </if>
+            <if test="code != null">
+            #{code, jdbcType=VARCHAR},
+            </if>
+            <if test="beanName != null">
+            #{beanName, jdbcType=VARCHAR},
+            </if>
+            <if test="dynAttribute != null">
+            #{dynAttribute, jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null">
+            #{createDate, jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifyDate != null">
+            #{modifyDate, jdbcType=TIMESTAMP},
+            </if>
+            <if test="isEnabled != null">
+            #{isEnabled, jdbcType=BIT},
+            </if>
+            <if test="createUserId != null">
+            #{createUserid, jdbcType=BIGINT},
+            </if>
+            <if test="modifyUserId != null">
+            #{modifyUserid, jdbcType=BIGINT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="manageSystem.modules.model.ActivitiType">
+        update BID_ACTIVITI_TYPE
+        <set>
+            <if test="name != null">
+            NAME= #{name, jdbcType=VARCHAR},
+            </if>
+            <if test="code != null">
+            CODE= #{code, jdbcType=VARCHAR},
+            </if>
+            <if test="beanName != null">
+            BEAN_NAME= #{beanName, jdbcType=VARCHAR},
+            </if>
+            <if test="dynAttribute != null">
+            DYN_ATTRIBUTE= #{dynAttribute, jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null">
+            CREATE_DATE= #{createDate, jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifyDate != null">
+            MODIFY_DATE= #{modifyDate, jdbcType=TIMESTAMP},
+            </if>
+            <if test="isEnabled != null">
+            IS_ENABLED= #{isEnabled, jdbcType=BIT},
+            </if>
+            <if test="createUserId != null">
+            CREATE_USER_ID= #{createUserid, jdbcType=BIGINT},
+            </if>
+            <if test="modifyUserId != null">
+            MODIFY_USER_ID= #{modifyUserid, jdbcType=BIGINT},
+            </if>
+        </set>
+        where ID = #{id, jdbcType=BIGINT}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="manageSystem.modules.model.ActivitiType">
+        update BID_ACTIVITI_TYPE
+        set
+        NAME= #{name, jdbcType=VARCHAR},
+        CODE= #{code, jdbcType=VARCHAR},
+        BEAN_NAME= #{beanName, jdbcType=VARCHAR},
+        DYN_ATTRIBUTE= #{dynAttribute, jdbcType=VARCHAR},
+        CREATE_DATE= #{createDate, jdbcType=TIMESTAMP},
+        MODIFY_DATE= #{modifyDate, jdbcType=TIMESTAMP},
+        IS_ENABLED= #{isEnabled, jdbcType=BIT},
+        CREATE_USER_ID= #{createUserid, jdbcType=BIGINT},
+        MODIFY_USER_ID= #{modifyUserid, jdbcType=BIGINT}
+        where ID = #{id, jdbcType=BIGINT}
+    </update>
+
+
+</mapper>

@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="manageSystem.modules.dao.LogDao">
+    <resultMap id="BaseResultMap" type="manageSystem.modules.model.Log">
+        <id column="ID" property="id" jdbcType="BIGINT"/>
+        <result column="CONTENT" property="content" jdbcType="VARCHAR" />
+        <result column="IP" property="ip" jdbcType="VARCHAR" />
+        <result column="OPERATION" property="operation" jdbcType="VARCHAR" />
+        <result column="OPERATOR" property="operator" jdbcType="VARCHAR" />
+        <result column="PARAMETER" property="parameter" jdbcType="VARCHAR" />
+        <result column="MODULE" property="module" jdbcType="VARCHAR" />
+        <result column="USER_TOP_ORG_NAME" property="userTopOrgName" jdbcType="VARCHAR" />
+        <result column="USER_ORG_NAME" property="userOrgName" jdbcType="VARCHAR" />
+        <result column="CREATE_USER_ID" property="createUserId" jdbcType="BIGINT" />
+        <result column="MODIFY_USER_ID" property="modifyUserId" jdbcType="BIGINT" />
+        <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+        <result column="MODIFY_DATE" property="modifyDate" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    T.ID,
+    T.CONTENT,
+    T.IP,
+    T.OPERATION,
+    T.OPERATOR,
+    T.PARAMETER,
+    T.MODULE,
+    T.USER_TOP_ORG_NAME,
+    T.USER_ORG_NAME,
+    T.CREATE_USER_ID,
+    T.MODIFY_USER_ID,
+    T.CREATE_DATE,
+    T.MODIFY_DATE
+    </sql>
+
+    <sql id="whereSql">
+
+        <if test="idsMap != null">
+            <foreach collection="idsMap.keys" item="key" separator=",">
+                and ${key} in
+                <foreach item="item" collection="idsMap[key]" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </foreach>
+        </if>
+    </sql>
+
+    <sql id="orderSql">
+        <choose>
+            <when test="orderByMap != null">
+                order by
+                <foreach collection="orderByMap.keys" item="key" separator=",">
+                ${key} ${orderByMap[key]}
+                </foreach>
+            </when>
+        </choose>
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from BID_LOG T
+        where T.ID = #{id, jdbcType=BIGINT}
+    </select>
+
+    <select id="findList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from BID_LOG T
+        <where>
+            <include refid="whereSql"/>
+        </where>
+        <include refid="orderSql"/>
+    </select>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from BID_LOG T
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from BID_LOG
+        where ID = #{id, jdbcType=BIGINT}
+    </delete>
+
+    <insert id="insert" parameterType="manageSystem.modules.model.Log" useGeneratedKeys="true" keyProperty="id">
+
+
+        insert into BID_LOG (
+
+        CONTENT,
+        IP,
+        OPERATION,
+        OPERATOR,
+        PARAMETER,
+        MODULE,
+        USER_TOP_ORG_NAME,
+        USER_ORG_NAME,
+        CREATE_USER_ID,
+        MODIFY_USER_ID,
+        CREATE_DATE,
+        MODIFY_DATE
+        )
+        values (
+
+        #{content, jdbcType=VARCHAR},
+        #{ip, jdbcType=VARCHAR},
+        #{operation, jdbcType=VARCHAR},
+        #{operator, jdbcType=VARCHAR},
+        #{parameter, jdbcType=VARCHAR},
+        #{module, jdbcType=VARCHAR},
+        #{userTopOrgName, jdbcType=VARCHAR},
+        #{userOrgName, jdbcType=VARCHAR},
+        #{createUserId, jdbcType=BIGINT},
+        #{modifyUserId, jdbcType=BIGINT},
+        #{createDate, jdbcType=TIMESTAMP},
+        #{modifyDate, jdbcType=TIMESTAMP}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="manageSystem.modules.model.Log" useGeneratedKeys="true" keyProperty="id">
+
+        insert into BID_LOG
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+            ID,
+            </if>
+            <if test="content != null">
+            CONTENT,
+            </if>
+            <if test="ip != null">
+            IP,
+            </if>
+            <if test="operation != null">
+            OPERATION,
+            </if>
+            <if test="operator != null">
+            OPERATOR,
+            </if>
+            <if test="parameter != null">
+            PARAMETER,
+            </if>
+            <if test="module != null">
+            MODULE,
+            </if>
+            <if test="userTopOrgName != null">
+            USER_TOP_ORG_NAME,
+            </if>
+            <if test="userOrgName != null">
+            USER_ORG_NAME,
+            </if>
+            <if test="createUserId != null">
+            CREATE_USER_ID,
+            </if>
+            <if test="modifyUserId != null">
+            MODIFY_USER_ID,
+            </if>
+            <if test="createDate != null">
+            CREATE_DATE,
+            </if>
+            <if test="modifyDate != null">
+            MODIFY_DATE,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+            #{Id, jdbcType=BIGINT},
+            </if>
+            <if test="content != null">
+            #{content, jdbcType=VARCHAR},
+            </if>
+            <if test="ip != null">
+            #{ip, jdbcType=VARCHAR},
+            </if>
+            <if test="operation != null">
+            #{operation, jdbcType=VARCHAR},
+            </if>
+            <if test="operator != null">
+            #{operator, jdbcType=VARCHAR},
+            </if>
+            <if test="parameter != null">
+            #{parameter, jdbcType=VARCHAR},
+            </if>
+            <if test="module != null">
+            #{module, jdbcType=VARCHAR},
+            </if>
+            <if test="userTopOrgName != null">
+            #{userTopOrgName, jdbcType=VARCHAR},
+            </if>
+            <if test="userOrgName != null">
+            #{userOrgName, jdbcType=VARCHAR},
+            </if>
+            <if test="createUserId != null">
+            #{createUserId, jdbcType=BIGINT},
+            </if>
+            <if test="modifyUserId != null">
+            #{modifyUserId, jdbcType=BIGINT},
+            </if>
+            <if test="createDate != null">
+            #{createDate, jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifyDate != null">
+            #{modifyDate, jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="manageSystem.modules.model.Log">
+        update BID_LOG
+        <set>
+            <if test="content != null">
+            CONTENT= #{content, jdbcType=VARCHAR},
+            </if>
+            <if test="ip != null">
+            IP= #{ip, jdbcType=VARCHAR},
+            </if>
+            <if test="operation != null">
+            OPERATION= #{operation, jdbcType=VARCHAR},
+            </if>
+            <if test="operator != null">
+            OPERATOR= #{operator, jdbcType=VARCHAR},
+            </if>
+            <if test="parameter != null">
+            PARAMETER= #{parameter, jdbcType=VARCHAR},
+            </if>
+            <if test="module != null">
+            MODULE= #{module, jdbcType=VARCHAR},
+            </if>
+            <if test="userTopOrgName != null">
+            USER_TOP_ORG_NAME= #{userTopOrgName, jdbcType=VARCHAR},
+            </if>
+            <if test="userOrgName != null">
+            USER_ORG_NAME= #{userOrgName, jdbcType=VARCHAR},
+            </if>
+            <if test="createUserId != null">
+            CREATE_USER_ID= #{createUserId, jdbcType=BIGINT},
+            </if>
+            <if test="modifyUserId != null">
+            MODIFY_USER_ID= #{modifyUserId, jdbcType=BIGINT},
+            </if>
+            <if test="createDate != null">
+            CREATE_DATE= #{createDate, jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifyDate != null">
+            MODIFY_DATE= #{modifyDate, jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where ID = #{id, jdbcType=BIGINT}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="manageSystem.modules.model.Log">
+        update BID_LOG
+        set
+        CONTENT= #{content, jdbcType=VARCHAR},
+        IP= #{ip, jdbcType=VARCHAR},
+        OPERATION= #{operation, jdbcType=VARCHAR},
+        OPERATOR= #{operator, jdbcType=VARCHAR},
+        PARAMETER= #{parameter, jdbcType=VARCHAR},
+        MODULE= #{module, jdbcType=VARCHAR},
+        USER_TOP_ORG_NAME= #{userTopOrgName, jdbcType=VARCHAR},
+        USER_ORG_NAME= #{userOrgName, jdbcType=VARCHAR},
+        CREATE_USER_ID= #{createUserId, jdbcType=BIGINT},
+        MODIFY_USER_ID= #{modifyUserId, jdbcType=BIGINT},
+        CREATE_DATE= #{createDate, jdbcType=TIMESTAMP},
+        MODIFY_DATE= #{modifyDate, jdbcType=TIMESTAMP}
+        where ID = #{id, jdbcType=BIGINT}
+    </update>
+
+
+</mapper>

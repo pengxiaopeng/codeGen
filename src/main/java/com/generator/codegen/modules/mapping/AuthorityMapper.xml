@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="manageSystem.modules.dao.AuthorityDao">
+    <resultMap id="BaseResultMap" type="manageSystem.modules.model.Authority">
+        <id column="ID" property="id" jdbcType="BIGINT"/>
+        <result column="PARENT_ID" property="parentId" jdbcType="BIGINT"/>
+        <result column="LEVEL_CODE" property="levelCode" jdbcType="VARCHAR"/>
+        <result column="NAME" property="name" jdbcType="VARCHAR"/>
+        <result column="POSITION" property="position" jdbcType="VARCHAR"/>
+        <result column="AUTHORITIES" property="authorities" jdbcType="VARCHAR"/>
+        <result column="URL" property="url" jdbcType="VARCHAR"/>
+        <result column="ITEM_ICON" property="itemIcon" jdbcType="VARCHAR"/>
+        <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP"/>
+        <result column="MODIFY_DATE" property="modifyDate" jdbcType="TIMESTAMP"/>
+        <result column="CREATE_USER_ID" property="createUserId" jdbcType="BIGINT"/>
+        <result column="MODIFY_USER_ID" property="modifyUserId" jdbcType="BIGINT"/>
+        <result column="BIZ_TYPE" property="bizType" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    T.ID,
+    T.PARENT_ID,
+    T.LEVEL_CODE,
+    T.NAME,
+    T.POSITION,
+    T.AUTHORITIES,
+    T.URL,
+    T.ITEM_ICON,
+    T.CREATE_DATE,
+    T.MODIFY_DATE,
+    T.CREATE_USER_ID,
+    T.MODIFY_USER_ID,
+    T.BIZ_TYPE
+    </sql>
+
+    <sql id="whereSql">
+        <if test="parentId != null">
+            and PARENT_ID = #{parentId}
+        </if>
+        <if test="levelCode != null">
+            and LEVEL_CODE = #{levelCode}
+        </if>
+        <if test="name != null">
+            and NAME like CONCAT('%',#{name},'%')
+        </if>
+        <if test="authorities != null">
+            and AUTHORITIES = #{authorities}
+        </if>
+        <if test="bizType != null">
+            and BIZ_TYPE = #{bizType}
+        </if>
+        <if test="url != null">
+            and URL like CONCAT('%',#{url},'%')
+        </if>
+        <if test="idsMap != null">
+            <foreach collection="idsMap.keys" item="key" separator=",">
+                and ${key} in
+                <foreach item="item" collection="idsMap[key]" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </foreach>
+        </if>
+    </sql>
+
+    <sql id="orderSql">
+        <choose>
+            <when test="orderByMap != null">
+                order by
+                <foreach collection="orderByMap.keys" item="key" separator=",">
+                    ${key} ${orderByMap[key]}
+                </foreach>
+            </when>
+        </choose>
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from BID_AUTHORITY T
+        where T.ID = #{id, jdbcType=BIGINT}
+    </select>
+
+    <select id="findList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from BID_AUTHORITY T
+        <where>
+            <include refid="whereSql"/>
+        </where>
+        <include refid="orderSql"/>
+    </select>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from BID_AUTHORITY T
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from BID_AUTHORITY
+        where ID = #{id, jdbcType=BIGINT}
+    </delete>
+
+    <insert id="insert" parameterType="manageSystem.modules.model.Authority" useGeneratedKeys="true" keyProperty="id">
+
+
+        insert into BID_AUTHORITY (
+        PARENT_ID,
+        LEVEL_CODE,
+        NAME,
+        POSITION,
+        AUTHORITIES,
+        URL,
+        ITEM_ICON,
+        CREATE_DATE,
+        MODIFY_DATE,
+        CREATE_USER_ID,
+        MODIFY_USER_ID,
+        BIZ_TYPE
+        )
+        values (
+        #{parentId, jdbcType=VARCHAR},
+        #{levelCode, jdbcType=VARCHAR},
+        #{name, jdbcType=VARCHAR},
+        #{position, jdbcType=VARCHAR},
+        #{authorities, jdbcType=VARCHAR},
+        #{url, jdbcType=VARCHAR},
+        #{itemIcon, jdbcType=VARCHAR},
+        #{createDate, jdbcType=TIMESTAMP},
+        #{modifyDate, jdbcType=TIMESTAMP},
+        #{createUserId, jdbcType=VARCHAR},
+        #{modifyUserId, jdbcType=VARCHAR},
+        #{bizType, jdbcType=INTEGER}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="manageSystem.modules.model.Authority" useGeneratedKeys="true" keyProperty="id">
+
+        insert into BID_AUTHORITY
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="parentId != null">
+                PARENT_ID,
+            </if>
+            <if test="levelCode != null">
+                LEVEL_CODE,
+            </if>
+            <if test="name != null">
+                NAME,
+            </if>
+            <if test="position != null">
+                POSITION,
+            </if>
+            <if test="authorities != null">
+                AUTHORITIES,
+            </if>
+            <if test="url != null">
+                URL,
+            </if>
+            <if test="itemIcon != null">
+                ITEM_ICON,
+            </if>
+            <if test="createDate != null">
+                CREATE_DATE,
+            </if>
+            <if test="modifyDate != null">
+                MODIFY_DATE,
+            </if>
+            <if test="createUserId != null">
+                CREATE_USER_ID,
+            </if>
+            <if test="modifyUserId != null">
+                MODIFY_USER_ID,
+            </if>
+            <if test="bizType != null">
+                BIZ_TYPE,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id, jdbcType=VARCHAR},
+            </if>
+            <if test="parentId != null">
+                #{parentId, jdbcType=VARCHAR},
+            </if>
+            <if test="levelCode != null">
+                #{levelCode, jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                #{name, jdbcType=VARCHAR},
+            </if>
+            <if test="position != null">
+                #{position, jdbcType=VARCHAR},
+            </if>
+            <if test="authorities != null">
+                #{authorities, jdbcType=VARCHAR},
+            </if>
+            <if test="url != null">
+                #{url, jdbcType=VARCHAR},
+            </if>
+            <if test="itemIcon != null">
+                #{itemIcon, jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null">
+                #{createDate, jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifyDate != null">
+                #{modifyDate, jdbcType=TIMESTAMP},
+            </if>
+            <if test="createUserId != null">
+                #{createUserId, jdbcType=VARCHAR},
+            </if>
+            <if test="modifyUserId != null">
+                #{modifyUserId, jdbcType=VARCHAR},
+            </if>
+            <if test="bizType != null">
+                #{bizType, jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="manageSystem.modules.model.Authority">
+        update BID_AUTHORITY
+        <set>
+            <if test="parentId != null">
+                PARENT_ID= #{parentId, jdbcType=VARCHAR},
+            </if>
+            <if test="levelCode != null">
+                LEVEL_CODE= #{levelCode, jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                NAME= #{name, jdbcType=VARCHAR},
+            </if>
+            <if test="position != null">
+                POSITION= #{position, jdbcType=VARCHAR},
+            </if>
+            <if test="authorities != null">
+                AUTHORITIES= #{authorities, jdbcType=VARCHAR},
+            </if>
+            <if test="url != null">
+                URL= #{url, jdbcType=VARCHAR},
+            </if>
+            <if test="itemIcon != null">
+                ITEM_ICON= #{itemIcon, jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null">
+                CREATE_DATE= #{createDate, jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifyDate != null">
+                MODIFY_DATE= #{modifyDate, jdbcType=TIMESTAMP},
+            </if>
+            <if test="createUserId != null">
+                CREATE_USER_ID= #{createUserId, jdbcType=VARCHAR},
+            </if>
+            <if test="modifyUserId != null">
+                MODIFY_USER_ID= #{modifyUserId, jdbcType=VARCHAR},
+            </if>
+            <if test="bizType != null">
+                BIZ_TYPE= #{bizType, jdbcType=INTEGER},
+            </if>
+        </set>
+        where ID = #{id, jdbcType=BIGINT}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="manageSystem.modules.model.Authority">
+        update BID_AUTHORITY
+        set
+        PARENT_ID= #{parentId, jdbcType=VARCHAR},
+        LEVEL_CODE= #{levelCode, jdbcType=VARCHAR},
+        NAME= #{name, jdbcType=VARCHAR},
+        POSITION= #{position, jdbcType=VARCHAR},
+        AUTHORITIES= #{authorities, jdbcType=VARCHAR},
+        URL= #{url, jdbcType=VARCHAR},
+        ITEM_ICON= #{itemIcon, jdbcType=VARCHAR},
+        CREATE_DATE= #{createDate, jdbcType=TIMESTAMP},
+        MODIFY_DATE= #{modifyDate, jdbcType=TIMESTAMP},
+        CREATE_USER_ID= #{createUserId, jdbcType=VARCHAR},
+        MODIFY_USER_ID= #{modifyUserId, jdbcType=VARCHAR},
+        BIZ_TYPE= #{bizType, jdbcType=INTEGER}
+        where ID = #{id, jdbcType=BIGINT}
+    </update>
+
+
+</mapper>

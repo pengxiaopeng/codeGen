@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="manageSystem.modules.dao.OrgDao">
+    <resultMap id="BaseResultMap" type="manageSystem.modules.model.Org">
+        <id column="ID" property="id" jdbcType="BIGINT"/>
+        <result column="NAME" property="name" jdbcType="VARCHAR" />
+        <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+        <result column="PARENT_ID" property="parentId" jdbcType="BIGINT" />
+        <result column="LEVEL_CODE" property="levelCode" jdbcType="VARCHAR" />
+        <result column="ORG_TYPE" property="orgType" jdbcType="VARCHAR" />
+        <result column="IS_ORG" property="isOrg" jdbcType="VARCHAR" />
+        <result column="TOP_USER_ORG_ID" property="topUserOrgId" jdbcType="BIGINT" />
+        <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+        <result column="MODIFY_DATE" property="modifyDate" jdbcType="TIMESTAMP" />
+        <result column="IS_SYSTEM" property="isSystem" jdbcType="VARCHAR" />
+        <result column="CREATE_USER_ID" property="createUserId" jdbcType="BIGINT" />
+        <result column="MODIFY_USER_ID" property="modifyUserId" jdbcType="BIGINT" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    T.ID,
+    T.NAME,
+    T.DESCRIPTION,
+    T.PARENT_ID,
+    T.LEVEL_CODE,
+    T.ORG_TYPE,
+    T.IS_ORG,
+    T.TOP_USER_ORG_ID,
+    T.CREATE_DATE,
+    T.MODIFY_DATE,
+    T.IS_SYSTEM,
+    T.CREATE_USER_ID,
+    T.MODIFY_USER_ID
+    </sql>
+
+    <sql id="whereSql">
+        <if test="name != null">
+            and NAME = #{name}
+        </if>
+        <if test="parentId != null">
+            and PARENT_ID = #{parentId}
+        </if>
+        <if test="levelCode != null">
+            and LEVEL_CODE = #{levelCode}
+        </if>
+        <if test="orgType != null">
+            and ORG_TYPE = #{orgType}
+        </if>
+        <if test="isOrg != null">
+            and IS_ORG = #{isOrg}
+        </if>
+        <if test="topUserOrgId != null">
+            and TOP_USER_ORG_ID = #{topUserOrgId}
+        </if>
+        <if test="isSystem != null">
+            and IS_SYSTEM = #{isSystem}
+        </if>
+        <if test="idsMap != null">
+            <foreach collection="idsMap.keys" item="key" separator=",">
+                and ${key} in
+                <foreach item="item" collection="idsMap[key]" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </foreach>
+        </if>
+    </sql>
+
+    <sql id="orderSql">
+        <choose>
+            <when test="orderByMap != null">
+                order by
+                <foreach collection="orderByMap.keys" item="key" separator=",">
+                ${key} ${orderByMap[key]}
+                </foreach>
+            </when>
+        </choose>
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from BID_ORG T
+        where T.ID = #{id, jdbcType=BIGINT}
+    </select>
+
+    <select id="findList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from BID_ORG T
+        <where>
+            <include refid="whereSql"/>
+        </where>
+        <include refid="orderSql"/>
+    </select>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from BID_ORG T
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from BID_ORG
+        where ID = #{id, jdbcType=BIGINT}
+    </delete>
+
+    <insert id="insert" parameterType="manageSystem.modules.model.Org" useGeneratedKeys="true" keyProperty="id">
+
+
+        insert into BID_ORG (
+        NAME,
+        DESCRIPTION,
+        PARENT_ID,
+        LEVEL_CODE,
+        ORG_TYPE,
+        IS_ORG,
+        TOP_USER_ORG_ID,
+        CREATE_DATE,
+        MODIFY_DATE,
+        IS_SYSTEM,
+        CREATE_USER_ID,
+        MODIFY_USER_ID
+        )
+        values (
+        #{name, jdbcType=VARCHAR},
+        #{description, jdbcType=VARCHAR},
+        #{parentid, jdbcType=BIGINT},
+        #{levelCode, jdbcType=VARCHAR},
+        #{orgType, jdbcType=VARCHAR},
+        #{isOrg, jdbcType=VARCHAR},
+        #{topUserOrgid, jdbcType=BIGINT},
+        #{createDate, jdbcType=TIMESTAMP},
+        #{modifyDate, jdbcType=TIMESTAMP},
+        #{isSystem, jdbcType=BIT},
+        #{createUserid, jdbcType=BIGINT},
+        #{modifyUserid, jdbcType=BIGINT}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="manageSystem.modules.model.Org" useGeneratedKeys="true" keyProperty="id">
+
+        insert into BID_ORG
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+            ID,
+            </if>
+            <if test="name != null">
+            NAME,
+            </if>
+            <if test="description != null">
+            DESCRIPTION,
+            </if>
+            <if test="parentId != null">
+            PARENT_ID,
+            </if>
+            <if test="levelCode != null">
+            LEVEL_CODE,
+            </if>
+            <if test="orgType != null">
+            ORG_TYPE,
+            </if>
+            <if test="isOrg != null">
+            IS_ORG,
+            </if>
+            <if test="topUserOrgId != null">
+            TOP_USER_ORG_ID,
+            </if>
+            <if test="createDate != null">
+            CREATE_DATE,
+            </if>
+            <if test="modifyDate != null">
+            MODIFY_DATE,
+            </if>
+            <if test="isSystem != null">
+            IS_SYSTEM,
+            </if>
+            <if test="createUserId != null">
+            CREATE_USER_ID,
+            </if>
+            <if test="modifyUserId != null">
+            MODIFY_USER_ID,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+            #{id, jdbcType=BIGINT},
+            </if>
+            <if test="name != null">
+            #{name, jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+            #{description, jdbcType=VARCHAR},
+            </if>
+            <if test="parentId != null">
+            #{parentid, jdbcType=BIGINT},
+            </if>
+            <if test="levelCode != null">
+            #{levelCode, jdbcType=VARCHAR},
+            </if>
+            <if test="orgType != null">
+            #{orgType, jdbcType=VARCHAR},
+            </if>
+            <if test="isOrg != null">
+            #{isOrg, jdbcType=VARCHAR},
+            </if>
+            <if test="topUserOrgId != null">
+            #{topUserOrgid, jdbcType=BIGINT},
+            </if>
+            <if test="createDate != null">
+            #{createDate, jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifyDate != null">
+            #{modifyDate, jdbcType=TIMESTAMP},
+            </if>
+            <if test="isSystem != null">
+            #{isSystem, jdbcType=BIT},
+            </if>
+            <if test="createUserId != null">
+            #{createUserid, jdbcType=BIGINT},
+            </if>
+            <if test="modifyUserId != null">
+            #{modifyUserid, jdbcType=BIGINT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="manageSystem.modules.model.Org">
+        update BID_ORG
+        <set>
+            <if test="name != null">
+            NAME= #{name, jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+            DESCRIPTION= #{description, jdbcType=VARCHAR},
+            </if>
+            <if test="parentId != null">
+            PARENT_ID= #{parentid, jdbcType=BIGINT},
+            </if>
+            <if test="levelCode != null">
+            LEVEL_CODE= #{levelCode, jdbcType=VARCHAR},
+            </if>
+            <if test="orgType != null">
+            ORG_TYPE= #{orgType, jdbcType=VARCHAR},
+            </if>
+            <if test="isOrg != null">
+            IS_ORG= #{isOrg, jdbcType=VARCHAR},
+            </if>
+            <if test="topUserOrgId != null">
+            TOP_USER_ORG_ID= #{topUserOrgid, jdbcType=BIGINT},
+            </if>
+            <if test="createDate != null">
+            CREATE_DATE= #{createDate, jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifyDate != null">
+            MODIFY_DATE= #{modifyDate, jdbcType=TIMESTAMP},
+            </if>
+            <if test="isSystem != null">
+            IS_SYSTEM= #{isSystem, jdbcType=BIT},
+            </if>
+            <if test="createUserId != null">
+            CREATE_USER_ID= #{createUserid, jdbcType=BIGINT},
+            </if>
+            <if test="modifyUserId != null">
+            MODIFY_USER_ID= #{modifyUserid, jdbcType=BIGINT},
+            </if>
+        </set>
+        where ID = #{id, jdbcType=BIGINT}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="manageSystem.modules.model.Org">
+        update BID_ORG
+        set
+        NAME= #{name, jdbcType=VARCHAR},
+        DESCRIPTION= #{description, jdbcType=VARCHAR},
+        PARENT_ID= #{parentid, jdbcType=BIGINT},
+        LEVEL_CODE= #{levelCode, jdbcType=VARCHAR},
+        ORG_TYPE= #{orgType, jdbcType=VARCHAR},
+        IS_ORG= #{isOrg, jdbcType=VARCHAR},
+        TOP_USER_ORG_ID= #{topUserOrgid, jdbcType=BIGINT},
+        CREATE_DATE= #{createDate, jdbcType=TIMESTAMP},
+        MODIFY_DATE= #{modifyDate, jdbcType=TIMESTAMP},
+        IS_SYSTEM= #{isSystem, jdbcType=BIT},
+        CREATE_USER_ID= #{createUserid, jdbcType=BIGINT},
+        MODIFY_USER_ID= #{modifyUserid, jdbcType=BIGINT}
+        where ID = #{id, jdbcType=BIGINT}
+    </update>
+
+
+</mapper>

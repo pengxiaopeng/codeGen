@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="manageSystem.modules.dao.UserDao">
+    <resultMap id="BaseResultMap" type="manageSystem.modules.model.User">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="ROLE_ID" property="roleId" jdbcType="VARCHAR" />
+        <result column="ORG_ID" property="orgId" jdbcType="VARCHAR" />
+        <result column="NICKNAME" property="nickname" jdbcType="VARCHAR" />
+        <result column="NAME" property="name" jdbcType="VARCHAR" />
+        <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+        <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+        <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+        <result column="GROUP" property="group" jdbcType="VARCHAR" />
+        <result column="IS_LOCK" property="isLock" jdbcType="VARCHAR" />
+        <result column="IS_ADMIN" property="isAdmin" jdbcType="VARCHAR" />
+        <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+        <result column="IP" property="ip" jdbcType="VARCHAR" />
+        <result column="TOKEN" property="token" jdbcType="VARCHAR" />
+        <result column="SEX" property="sex" jdbcType="VARCHAR" />
+        <result column="LOGINTIME" property="logintime" jdbcType="TIMESTAMP" />
+        <result column="CREATETIME" property="createtime" jdbcType="TIMESTAMP" />
+        <result column="UPDATETIME" property="updatetime" jdbcType="TIMESTAMP" />
+        <result column="LOCK_TIME" property="lockTime" jdbcType="TIMESTAMP" />
+        <result column="LOGIN_FAILURE_COUNT" property="loginFailureCount" jdbcType="INTEGER" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    T.ID,
+    T.ROLE_ID,
+    T.ORG_ID,
+    T.NICKNAME,
+    T.NAME,
+    T.EMAIL,
+    T.PHONE,
+    T.PASSWORD,
+    T.GROUP,
+    T.IS_LOCK,
+    T.IS_ADMIN,
+    T.DESCRIPTION,
+    T.IP,
+    T.TOKEN,
+    T.SEX,
+    T.LOGINTIME,
+    T.CREATETIME,
+    T.UPDATETIME,
+    T.LOCK_TIME,
+    T.LOGIN_FAILURE_COUNT
+    </sql>
+
+    <sql id="whereSql">
+        <if test="id != null">
+            and ID = #{id}
+        </if>
+        <if test="roleId != null">
+            and ROLE_ID = #{roleId}
+        </if>
+        <if test="orgId != null">
+            and ORG_ID = #{orgId}
+        </if>
+        <if test="group != null">
+            and GROUP = #{group}
+        </if>
+        <if test="isLock != null">
+            and IS_LOCK = #{isLock}
+        </if>
+        <if test="isAdmin != null">
+            and IS_ADMIN = #{isAdmin}
+        </if>
+        <if test="idsMap != null">
+            <foreach collection="idsMap.keys" item="key" separator=",">
+                and ${key} in
+                <foreach item="item" collection="idsMap[key]" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </foreach>
+        </if>
+    </sql>
+
+    <sql id="orderSql">
+        <choose>
+            <when test="orderByMap != null">
+                order by
+                <foreach collection="orderByMap.keys" item="key" separator=",">
+                ${key} ${orderByMap[key]}
+                </foreach>
+            </when>
+        </choose>
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from MS_USER T
+        where T.ID = #{id,jdbcType=VARCHAR}
+    </select>
+
+    <select id="findList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from MS_USER T
+        <where>
+            <include refid="whereSql"/>
+        </where>
+        <include refid="orderSql"/>
+    </select>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from MS_USER T
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete from MS_USER
+        where ID = #{id,jdbcType=VARCHAR}
+    </delete>
+
+    <insert id="insert" parameterType="manageSystem.modules.model.User">
+       <!-- <selectKey resultType="java.lang.String" keyProperty="id" order="BEFORE">
+            select sys_guid() as id from dual
+        </selectKey>-->
+
+        insert into MS_USER (
+        ID,
+        ROLE_ID,
+        ORG_ID,
+        NICKNAME,
+        NAME,
+        EMAIL,
+        PHONE,
+        PASSWORD,
+        GROUP,
+        IS_LOCK,
+        IS_ADMIN,
+        DESCRIPTION,
+        IP,
+        TOKEN,
+        SEX,
+        LOGINTIME,
+        CREATETIME,
+        UPDATETIME,
+        LOCK_TIME,
+        LOGIN_FAILURE_COUNT
+        )
+        values (
+        #{id, jdbcType=VARCHAR},
+        #{roleId, jdbcType=VARCHAR},
+        #{orgId, jdbcType=VARCHAR},
+        #{nickname, jdbcType=VARCHAR},
+        #{name, jdbcType=VARCHAR},
+        #{email, jdbcType=VARCHAR},
+        #{phone, jdbcType=VARCHAR},
+        #{password, jdbcType=VARCHAR},
+        #{group, jdbcType=VARCHAR},
+        #{isLock, jdbcType=VARCHAR},
+        #{isAdmin, jdbcType=VARCHAR},
+        #{description, jdbcType=VARCHAR},
+        #{ip, jdbcType=VARCHAR},
+        #{token, jdbcType=VARCHAR},
+        #{sex, jdbcType=VARCHAR},
+        #{logintime, jdbcType=TIMESTAMP},
+        #{createtime, jdbcType=TIMESTAMP},
+        #{updatetime, jdbcType=TIMESTAMP},
+        #{lockTime, jdbcType=TIMESTAMP},
+        #{loginFailureCount, jdbcType=INTEGER}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="manageSystem.modules.model.User">
+       <!-- <selectKey resultType="java.lang.String" keyProperty="id" order="BEFORE">
+            select sys_guid() as id from dual
+        </selectKey>-->
+        insert into MS_USER
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+            ID,
+            </if>
+            <if test="roleId != null">
+            ROLE_ID,
+            </if>
+            <if test="orgId != null">
+            ORG_ID,
+            </if>
+            <if test="nickname != null">
+            NICKNAME,
+            </if>
+            <if test="name != null">
+            NAME,
+            </if>
+            <if test="email != null">
+            EMAIL,
+            </if>
+            <if test="phone != null">
+            PHONE,
+            </if>
+            <if test="password != null">
+            PASSWORD,
+            </if>
+            <if test="group != null">
+            GROUP,
+            </if>
+            <if test="isLock != null">
+            IS_LOCK,
+            </if>
+            <if test="isAdmin != null">
+            IS_ADMIN,
+            </if>
+            <if test="description != null">
+            DESCRIPTION,
+            </if>
+            <if test="ip != null">
+            IP,
+            </if>
+            <if test="token != null">
+            TOKEN,
+            </if>
+            <if test="sex != null">
+            SEX,
+            </if>
+            <if test="logintime != null">
+            LOGINTIME,
+            </if>
+            <if test="createtime != null">
+            CREATETIME,
+            </if>
+            <if test="updatetime != null">
+            UPDATETIME,
+            </if>
+            <if test="lockTime != null">
+            LOCK_TIME,
+            </if>
+            <if test="loginFailureCount != null">
+            LOGIN_FAILURE_COUNT,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+            #{id, jdbcType=VARCHAR},
+            </if>
+            <if test="roleId != null">
+            #{roleId, jdbcType=VARCHAR},
+            </if>
+            <if test="orgId != null">
+            #{orgId, jdbcType=VARCHAR},
+            </if>
+            <if test="nickname != null">
+            #{nickname, jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+            #{name, jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+            #{email, jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+            #{phone, jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+            #{password, jdbcType=VARCHAR},
+            </if>
+            <if test="group != null">
+            #{group, jdbcType=VARCHAR},
+            </if>
+            <if test="isLock != null">
+            #{isLock, jdbcType=VARCHAR},
+            </if>
+            <if test="isAdmin != null">
+            #{isAdmin, jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+            #{description, jdbcType=VARCHAR},
+            </if>
+            <if test="ip != null">
+            #{ip, jdbcType=VARCHAR},
+            </if>
+            <if test="token != null">
+            #{token, jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+            #{sex, jdbcType=VARCHAR},
+            </if>
+            <if test="logintime != null">
+            #{logintime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="createtime != null">
+            #{createtime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatetime != null">
+            #{updatetime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="lockTime != null">
+            #{lockTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="loginFailureCount != null">
+            #{loginFailureCount, jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="manageSystem.modules.model.User">
+        update MS_USER
+        <set>
+            <if test="roleId != null">
+            ROLE_ID= #{roleId, jdbcType=VARCHAR},
+            </if>
+            <if test="orgId != null">
+            ORG_ID= #{orgId, jdbcType=VARCHAR},
+            </if>
+            <if test="nickname != null">
+            NICKNAME= #{nickname, jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+            NAME= #{name, jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+            EMAIL= #{email, jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+            PHONE= #{phone, jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+            PASSWORD= #{password, jdbcType=VARCHAR},
+            </if>
+            <if test="group != null">
+            GROUP= #{group, jdbcType=VARCHAR},
+            </if>
+            <if test="isLock != null">
+            IS_LOCK= #{isLock, jdbcType=VARCHAR},
+            </if>
+            <if test="isAdmin != null">
+            IS_ADMIN= #{isAdmin, jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+            DESCRIPTION= #{description, jdbcType=VARCHAR},
+            </if>
+            <if test="ip != null">
+            IP= #{ip, jdbcType=VARCHAR},
+            </if>
+            <if test="token != null">
+            TOKEN= #{token, jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+            SEX= #{sex, jdbcType=VARCHAR},
+            </if>
+            <if test="logintime != null">
+            LOGINTIME= #{logintime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="createtime != null">
+            CREATETIME= #{createtime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatetime != null">
+            UPDATETIME= #{updatetime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="lockTime != null">
+            LOCK_TIME= #{lockTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="loginFailureCount != null">
+            LOGIN_FAILURE_COUNT= #{loginFailureCount, jdbcType=INTEGER},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=VARCHAR}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="manageSystem.modules.model.User">
+        update MS_USER
+        set
+        ROLE_ID= #{roleId, jdbcType=VARCHAR},
+        ORG_ID= #{orgId, jdbcType=VARCHAR},
+        NICKNAME= #{nickname, jdbcType=VARCHAR},
+        NAME= #{name, jdbcType=VARCHAR},
+        EMAIL= #{email, jdbcType=VARCHAR},
+        PHONE= #{phone, jdbcType=VARCHAR},
+        PASSWORD= #{password, jdbcType=VARCHAR},
+        GROUP= #{group, jdbcType=VARCHAR},
+        IS_LOCK= #{isLock, jdbcType=VARCHAR},
+        IS_ADMIN= #{isAdmin, jdbcType=VARCHAR},
+        DESCRIPTION= #{description, jdbcType=VARCHAR},
+        IP= #{ip, jdbcType=VARCHAR},
+        TOKEN= #{token, jdbcType=VARCHAR},
+        SEX= #{sex, jdbcType=VARCHAR},
+        LOGINTIME= #{logintime, jdbcType=TIMESTAMP},
+        CREATETIME= #{createtime, jdbcType=TIMESTAMP},
+        UPDATETIME= #{updatetime, jdbcType=TIMESTAMP},
+        LOCK_TIME= #{lockTime, jdbcType=TIMESTAMP},
+        LOGIN_FAILURE_COUNT= #{loginFailureCount, jdbcType=INTEGER}
+        where ID = #{id,jdbcType=VARCHAR}
+    </update>
+
+
+</mapper>

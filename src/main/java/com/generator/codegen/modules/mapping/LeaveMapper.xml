@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="manageSystem.modules.dao.LeaveDao">
+    <resultMap id="BaseResultMap" type="manageSystem.modules.model.Leave">
+        <id column="ID" property="id" jdbcType="BIGINT"/>
+        <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+        <result column="CREATE_USER_ID" property="createUserId" jdbcType="BIGINT" />
+        <result column="MODIFY_DATE" property="modifyDate" jdbcType="TIMESTAMP" />
+        <result column="MODIFY_USER_ID" property="modifyUserId" jdbcType="BIGINT" />
+        <result column="APPROVAL_RESULT" property="approvalResult" jdbcType="VARCHAR" />
+        <result column="APPROVAL_TIME" property="approvalTime" jdbcType="TIMESTAMP" />
+        <result column="CONTENT" property="content" jdbcType="VARCHAR" />
+        <result column="END_TIME" property="endTime" jdbcType="TIMESTAMP" />
+        <result column="PROCESS_INSTANCE_ID" property="processInstanceId" jdbcType="BIGINT" />
+        <result column="START_TIME" property="startTime" jdbcType="TIMESTAMP" />
+        <result column="USER_ID" property="userId" jdbcType="BIGINT" />
+        <result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
+        <result column="STATUS" property="status" jdbcType="INTEGER" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    T.ID,
+    T.CREATE_DATE,
+    T.CREATE_USER_ID,
+    T.MODIFY_DATE,
+    T.MODIFY_USER_ID,
+    T.APPROVAL_RESULT,
+    T.APPROVAL_TIME,
+    T.CONTENT,
+    T.END_TIME,
+    T.PROCESS_INSTANCE_ID,
+    T.START_TIME,
+    T.USER_ID,
+    T.USER_NAME,
+    T.STATUS
+    </sql>
+
+    <sql id="whereSql">
+        <if test="processInstanceId != null">
+            and PROCESS_INSTANCE_ID = #{processInstanceId}
+        </if>
+        <if test="userId != null">
+            and USER_ID = #{userId}
+        </if>
+        <if test="userName != null">
+            and USER_NAME = #{userName}
+        </if>
+        <if test="status != null">
+            and STATUS = #{status}
+        </if>
+        <if test="idsMap != null">
+            <foreach collection="idsMap.keys" item="key" separator=",">
+                and ${key} in
+                <foreach item="item" collection="idsMap[key]" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </foreach>
+        </if>
+    </sql>
+
+    <sql id="orderSql">
+        <choose>
+            <when test="orderByMap != null">
+                order by
+                <foreach collection="orderByMap.keys" item="key" separator=",">
+                ${key} ${orderByMap[key]}
+                </foreach>
+            </when>
+        </choose>
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from BID_LEAVE T
+        where T.ID = #{id, jdbcType=BIGINT}
+    </select>
+
+    <select id="findList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from BID_LEAVE T
+        <where>
+            <include refid="whereSql"/>
+        </where>
+        <include refid="orderSql"/>
+    </select>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from BID_LEAVE T
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from BID_LEAVE
+        where ID = #{id, jdbcType=BIGINT}
+    </delete>
+
+    <insert id="insert" parameterType="manageSystem.modules.model.Leave" useGeneratedKeys="true" keyProperty="id">
+
+
+        insert into BID_LEAVE (
+        CREATE_DATE,
+        CREATE_USER_ID,
+        MODIFY_DATE,
+        MODIFY_USER_ID,
+        APPROVAL_RESULT,
+        APPROVAL_TIME,
+        CONTENT,
+        END_TIME,
+        PROCESS_INSTANCE_ID,
+        START_TIME,
+        USER_ID,
+        USER_NAME,
+        STATUS
+        )
+        values (
+        #{createDate, jdbcType=TIMESTAMP},
+        #{createUserId, jdbcType=BIGINT},
+        #{modifyDate, jdbcType=TIMESTAMP},
+        #{modifyUserId, jdbcType=BIGINT},
+        #{approvalResult, jdbcType=VARCHAR},
+        #{approvalTime, jdbcType=TIMESTAMP},
+        #{content, jdbcType=VARCHAR},
+        #{endTime, jdbcType=TIMESTAMP},
+        #{processInstanceId, jdbcType=BIGINT},
+        #{startTime, jdbcType=TIMESTAMP},
+        #{userId, jdbcType=BIGINT},
+        #{userName, jdbcType=VARCHAR},
+        #{status, jdbcType=INTEGER}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="manageSystem.modules.model.Leave" useGeneratedKeys="true" keyProperty="id">
+
+        insert into BID_LEAVE
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+            ID,
+            </if>
+            <if test="createDate != null">
+            CREATE_DATE,
+            </if>
+            <if test="createUserId != null">
+            CREATE_USER_ID,
+            </if>
+            <if test="modifyDate != null">
+            MODIFY_DATE,
+            </if>
+            <if test="modifyUserId != null">
+            MODIFY_USER_ID,
+            </if>
+            <if test="approvalResult != null">
+            APPROVAL_RESULT,
+            </if>
+            <if test="approvalTime != null">
+            APPROVAL_TIME,
+            </if>
+            <if test="content != null">
+            CONTENT,
+            </if>
+            <if test="endTime != null">
+            END_TIME,
+            </if>
+            <if test="processInstanceId != null">
+            PROCESS_INSTANCE_ID,
+            </if>
+            <if test="startTime != null">
+            START_TIME,
+            </if>
+            <if test="userId != null">
+            USER_ID,
+            </if>
+            <if test="userName != null">
+            USER_NAME,
+            </if>
+            <if test="status != null">
+            STATUS,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+            #{Id, jdbcType=BIGINT},
+            </if>
+            <if test="createDate != null">
+            #{createDate, jdbcType=TIMESTAMP},
+            </if>
+            <if test="createUserId != null">
+            #{createUserId, jdbcType=BIGINT},
+            </if>
+            <if test="modifyDate != null">
+            #{modifyDate, jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifyUserId != null">
+            #{modifyUserId, jdbcType=BIGINT},
+            </if>
+            <if test="approvalResult != null">
+            #{approvalResult, jdbcType=VARCHAR},
+            </if>
+            <if test="approvalTime != null">
+            #{approvalTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="content != null">
+            #{content, jdbcType=VARCHAR},
+            </if>
+            <if test="endTime != null">
+            #{endTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="processInstanceId != null">
+            #{processInstanceId, jdbcType=BIGINT},
+            </if>
+            <if test="startTime != null">
+            #{startTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="userId != null">
+            #{userId, jdbcType=BIGINT},
+            </if>
+            <if test="userName != null">
+            #{userName, jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+            #{status, jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="manageSystem.modules.model.Leave">
+        update BID_LEAVE
+        <set>
+            <if test="createDate != null">
+            CREATE_DATE= #{createDate, jdbcType=TIMESTAMP},
+            </if>
+            <if test="createUserId != null">
+            CREATE_USER_ID= #{createUserId, jdbcType=BIGINT},
+            </if>
+            <if test="modifyDate != null">
+            MODIFY_DATE= #{modifyDate, jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifyUserId != null">
+            MODIFY_USER_ID= #{modifyUserId, jdbcType=BIGINT},
+            </if>
+            <if test="approvalResult != null">
+            APPROVAL_RESULT= #{approvalResult, jdbcType=VARCHAR},
+            </if>
+            <if test="approvalTime != null">
+            APPROVAL_TIME= #{approvalTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="content != null">
+            CONTENT= #{content, jdbcType=VARCHAR},
+            </if>
+            <if test="endTime != null">
+            END_TIME= #{endTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="processInstanceId != null">
+            PROCESS_INSTANCE_ID= #{processInstanceId, jdbcType=BIGINT},
+            </if>
+            <if test="startTime != null">
+            START_TIME= #{startTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="userId != null">
+            USER_ID= #{userId, jdbcType=BIGINT},
+            </if>
+            <if test="userName != null">
+            USER_NAME= #{userName, jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+            STATUS= #{status, jdbcType=INTEGER},
+            </if>
+        </set>
+        where ID = #{id, jdbcType=BIGINT}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="manageSystem.modules.model.Leave">
+        update BID_LEAVE
+        set
+        CREATE_DATE= #{createDate, jdbcType=TIMESTAMP},
+        CREATE_USER_ID= #{createUserId, jdbcType=BIGINT},
+        MODIFY_DATE= #{modifyDate, jdbcType=TIMESTAMP},
+        MODIFY_USER_ID= #{modifyUserId, jdbcType=BIGINT},
+        APPROVAL_RESULT= #{approvalResult, jdbcType=VARCHAR},
+        APPROVAL_TIME= #{approvalTime, jdbcType=TIMESTAMP},
+        CONTENT= #{content, jdbcType=VARCHAR},
+        END_TIME= #{endTime, jdbcType=TIMESTAMP},
+        PROCESS_INSTANCE_ID= #{processInstanceId, jdbcType=BIGINT},
+        START_TIME= #{startTime, jdbcType=TIMESTAMP},
+        USER_ID= #{userId, jdbcType=BIGINT},
+        USER_NAME= #{userName, jdbcType=VARCHAR},
+        STATUS= #{status, jdbcType=INTEGER}
+        where ID = #{id, jdbcType=BIGINT}
+    </update>
+
+
+</mapper>
