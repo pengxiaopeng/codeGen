@@ -13,8 +13,8 @@
 <!-- Header -->
 <div class="layui-layout layui-layout-admin">
     <div class="layui-body layui-tab-content site-demo site-demo-body">
-        <p th:if="${param.logout}" class="bg-warning">已注销</p>
-        <p th:if="${param.error}" class="bg-danger">密码错误</p>
+        <#--<p th:if="${param.logout}" class="bg-warning">已注销</p>
+        <p th:if="${param.error}" class="bg-danger">密码错误</p>-->
         <form class="layui-form" action="/login" method="post">
             <div class="layadmin-user-login-main">
                 <div class="layadmin-user-login-box layadmin-user-login-body layui-form">
