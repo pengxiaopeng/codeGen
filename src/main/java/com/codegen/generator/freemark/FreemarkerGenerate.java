@@ -292,6 +292,48 @@ public class FreemarkerGenerate {
         }
     }
 
+    public static void getModel(String targetPath, String tableName, String className, String ftlPath) {
+        Writer out = null;
+        try {
+            List<TableMeta> tableList;
+
+            // tableList = AnalysisDB.readDB() ; 传空值则查询所有表，也可以单独传表名
+            tableList = AnalysisDB.readDB(tableName);
+            AnalysisDB.readTables(tableList);
+            // 输出到文件
+            targetPath = targetPath + "\\" + className + "\\model\\";
+            File dir = new File(targetPath);
+            if (!dir.isDirectory()) {
+                dir.mkdirs();
+            }
+
+            Template tpl = cfg.getTemplate(ftlPath);
+            if (tableList != null) {
+                for (TableMeta tm : tableList) {
+                    if (StringUtils.isBlank(tm.getClassName())) {
+                        continue;
+                    }
+                    out = new FileWriter(new File(targetPath + className + ".java"));
+                    tm.setClassName(className);
+                    tm.setPackageName(GENERATOR_PACKAGE_PATH);
+                    tpl.process(tm, out);
+                    logger.info("===文件 " + tm.getClassName() + ".java"
+                            + " 生成成功===");
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.error(e.getMessage());
+        } finally {
+            try {
+                out.flush();
+                out.close();
+            } catch (IOException e) {
+            }
+        }
+    }
+
     public static String firstLetterUpper(String str) {
         if (str == null)
             return null;
