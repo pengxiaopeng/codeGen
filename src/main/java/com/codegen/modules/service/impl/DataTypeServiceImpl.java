@@ -1,9 +1,9 @@
 package com.codegen.modules.service.impl;
 
-import com.generator.codegen.common.service.BaseService;
-import com.generator.codegen.modules.dao.DataTypeDao;
-import com.generator.codegen.modules.model.DataType;
-import com.generator.codegen.modules.service.DataTypeService;
+import com.codegen.common.service.BaseService;
+import com.codegen.modules.dao.DataTypeDao;
+import com.codegen.modules.model.DataType;
+import com.codegen.modules.service.DataTypeService;
 import org.springframework.stereotype.Service;
 
 @Service

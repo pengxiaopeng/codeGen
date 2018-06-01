@@ -25,7 +25,7 @@ public class PaginationPlugin extends PluginAdapter {
     @Override
     public boolean clientGenerated(Interface interfaze, TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
         FullyQualifiedJavaType fqjt = new FullyQualifiedJavaType("BaseDao<" + introspectedTable.getBaseRecordType() + ">");
-        FullyQualifiedJavaType imp = new FullyQualifiedJavaType("com.generator.codegen.common.BaseDao");
+        FullyQualifiedJavaType imp = new FullyQualifiedJavaType("com.codegen.common.BaseDao");
         interfaze.addSuperInterface(fqjt);// 添加 extends BaseDao<User>
         interfaze.addImportedType(imp);// 添加import common.BaseDao;
         interfaze.getMethods().clear();

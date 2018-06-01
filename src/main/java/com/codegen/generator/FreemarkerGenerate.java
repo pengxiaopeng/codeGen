@@ -1,7 +1,7 @@
 package com.codegen.generator;
 
-import com.generator.codegen.generator.db.AnalysisDB;
-import com.generator.codegen.generator.model.TableMeta;
+import com.codegen.generator.db.AnalysisDB;
+import com.codegen.generator.model.TableMeta;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import org.apache.commons.lang3.StringUtils;

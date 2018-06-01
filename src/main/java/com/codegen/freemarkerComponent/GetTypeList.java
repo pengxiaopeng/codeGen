@@ -1,6 +1,6 @@
 package com.codegen.freemarkerComponent;
 
-import com.generator.codegen.annotation.FreemarkerComponent;
+import com.codegen.annotation.FreemarkerComponent;
 import freemarker.template.TemplateMethodModelEx;
 import freemarker.template.TemplateModelException;
 

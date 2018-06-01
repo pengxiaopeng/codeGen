@@ -2,8 +2,8 @@ package com.codegen.generator.db;
 
 import com.codegen.generator.model.ColumnMeta;
 import com.codegen.generator.model.TableMeta;
-import com.generator.codegen.generator.model.ColumnMeta;
-import com.generator.codegen.generator.model.TableMeta;
+import com.codegen.generator.model.ColumnMeta;
+import com.codegen.generator.model.TableMeta;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

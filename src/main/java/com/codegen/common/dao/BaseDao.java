@@ -2,7 +2,7 @@ package com.codegen.common.dao;
 
 
 import com.codegen.common.model.BaseModel;
-import com.generator.codegen.common.model.BaseModel;
+import com.codegen.common.model.BaseModel;
 
 import java.util.List;
 

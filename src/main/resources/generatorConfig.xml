@@ -7,12 +7,12 @@
     <properties resource="application.properties" />
     <context id="testTables" targetRuntime="MyBatis3">
         <!-- 实现自定义的代码生成器plugin -->
-        <plugin type="com.generator.codegen.PaginationPlugin" />
+        <plugin type="com.codegen.PaginationPlugin" />
         <!--生成的实体中 toString 方法-->
         <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
         <!--传参数的方式 使用plugin-->
         <!--<plugin type="org.mybatis.generator.plugins.MapperConfigPlugin">
-            <property name="targetPackage" value="com.generator.codegen.mapper"/>
+            <property name="targetPackage" value="com.codegen.mapper"/>
             <property name="targetProject" value="src/main/java"/>
         </plugin>-->
 
@@ -72,7 +72,7 @@
         <table tableName="city" enableSelectByExample="false" enableDeleteByExample="false"
                enableCountByExample="false" enableUpdateByExample="false"
                selectByExampleQueryId="false">
-            <property name="rootClass" value="com.generator.codegen.common.BaseEntity" />
+            <property name="rootClass" value="com.codegen.common.BaseEntity" />
         </table>
         <!-- <table schema="" tableName="T_Qk_Orders"></table>
         <table schema="" tableName="T_Qk_Orderitem"></table>

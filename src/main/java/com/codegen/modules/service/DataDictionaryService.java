@@ -1,7 +1,7 @@
 package com.codegen.modules.service;
 
-import com.generator.codegen.common.base.IBaseService;
-import com.generator.codegen.modules.model.DataDictionary;
+import com.codegen.common.base.IBaseService;
+import com.codegen.modules.model.DataDictionary;
 
 public interface DataDictionaryService extends IBaseService<DataDictionary, Long> {
 }

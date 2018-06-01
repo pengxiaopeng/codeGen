@@ -1,7 +1,7 @@
 package com.codegen.modules.model;
 
 
-import com.generator.codegen.common.model.BaseModel;
+import com.codegen.common.model.BaseModel;
 
 import java.util.Date;
 

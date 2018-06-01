@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.generator.codegen.modules.dao.RoleDao">
-    <resultMap id="BaseResultMap" type="com.generator.codegen.modules.model.Role">
+<mapper namespace="com.codegen.modules.dao.RoleDao">
+    <resultMap id="BaseResultMap" type="com.codegen.modules.model.Role">
         <id column="ID" property="id" jdbcType="BIGINT"/>
         <result column="NAME" property="name" jdbcType="VARCHAR" />
         <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
@@ -99,7 +99,7 @@
         where ID = #{id, jdbcType=BIGINT}
     </delete>
 
-    <insert id="insert" parameterType="com.generator.codegen.modules.model.Role" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insert" parameterType="com.codegen.modules.model.Role" useGeneratedKeys="true" keyProperty="id">
 
 
         insert into BID_ROLE (
@@ -129,7 +129,7 @@
         #{modifyUserid, jdbcType=BIGINT}
         )
     </insert>
-    <insert id="insertSelective" parameterType="com.generator.codegen.modules.model.Role" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertSelective" parameterType="com.codegen.modules.model.Role" useGeneratedKeys="true" keyProperty="id">
 
         insert into BID_ROLE
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -209,7 +209,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.generator.codegen.modules.model.Role">
+    <update id="updateByPrimaryKeySelective" parameterType="com.codegen.modules.model.Role">
         update BID_ROLE
         <set>
             <if test="name != null">
@@ -249,7 +249,7 @@
         where ID = #{id, jdbcType=BIGINT}
     </update>
 
-    <update id="updateByPrimaryKey" parameterType="com.generator.codegen.modules.model.Role">
+    <update id="updateByPrimaryKey" parameterType="com.codegen.modules.model.Role">
         update BID_ROLE
         set
         NAME= #{name, jdbcType=VARCHAR},

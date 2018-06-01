@@ -1,7 +1,7 @@
 package com.codegen.configuration;
 
 import com.codegen.annotation.FreemarkerComponent;
-import com.generator.codegen.annotation.FreemarkerComponent;
+import com.codegen.annotation.FreemarkerComponent;
 import freemarker.template.Configuration;
 import freemarker.template.TemplateException;
 import org.springframework.beans.BeansException;

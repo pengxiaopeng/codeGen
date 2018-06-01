@@ -1,11 +1,9 @@
 package com.codegen.common.service;
 
 import com.codegen.common.base.Page;
+import com.codegen.common.dao.BaseDao;
 import com.codegen.common.model.BaseModel;
 import com.github.pagehelper.PageHelper;
-import com.generator.codegen.common.base.Page;
-import com.generator.codegen.common.dao.BaseDao;
-import com.generator.codegen.common.model.BaseModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
