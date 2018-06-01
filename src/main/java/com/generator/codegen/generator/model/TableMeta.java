@@ -11,65 +11,78 @@ import java.util.List;
  * 表结构信息
  *
  * @author xuyb
- *
  */
 public class TableMeta {
-	private String schemaName;
-	private String tableName;
-	private String comment;
-	private List<ColumnMeta> columns;
+    private String schemaName;
+    private String tableName;
+    private String comment;
+    private List<ColumnMeta> columns;
+    private String packageName;
+    private String className;
 
-	public String getTableName() {
-		return tableName;
-	}
+    public String getPackageName() {
+        return packageName;
+    }
 
-	public void setTableName(String tableName) {
-		this.tableName = tableName;
-	}
+    public void setPackageName(String packageName) {
+        this.packageName = packageName;
+    }
 
-	public String getComment() {
-		return comment;
-	}
+    public void setClassName(String className) {
+        this.className = className;
+    }
 
-	public void setComment(String comment) {
-		this.comment = comment;
-	}
+    public String getTableName() {
+        return tableName;
+    }
 
-	public List<ColumnMeta> getColumns() {
-		return columns;
-	}
+    public void setTableName(String tableName) {
+        this.tableName = tableName;
+    }
 
-	public void setColumns(List<ColumnMeta> columns) {
-		this.columns = columns;
-	}
+    public String getComment() {
+        return comment;
+    }
 
-	public String getClassName() {
-		if (tableName == null)
-			return "";
-		StringBuffer className = new StringBuffer();
-		if (StringUtils.startsWith(tableName, Consts.DB_TABLE_PREFIX)) {
-			// String newName = StringUtils.substring(tableName,
-			// tableName.indexOf("_")+1) ;
-			String newName = StringUtils.substring(tableName,
-					Consts.DB_TABLE_PREFIX.length());
-			String[] names = StringUtils.split(newName.toLowerCase(), "_");
-			for (int i = 0, len = names.length; i < len; i++) {
-				className.append(names[i].substring(0, 1).toUpperCase()
-						+ names[i].substring(1));
-			}
-		} else {
-			System.out.println("==不支持的表前缀==");
-		}
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
 
-		return className.toString();
-	}
+    public List<ColumnMeta> getColumns() {
+        return columns;
+    }
 
-	public String getSchemaName() {
-		return schemaName;
-	}
+    public void setColumns(List<ColumnMeta> columns) {
+        this.columns = columns;
+    }
 
-	public void setSchemaName(String schemaName) {
-		this.schemaName = schemaName;
-	}
+    public String getClassName() {
+        if (tableName == null)
+            return "";
+        StringBuffer className = new StringBuffer();
+        if (StringUtils.startsWith(tableName, Consts.DB_TABLE_PREFIX)) {
+            // String newName = StringUtils.substring(tableName,
+            // tableName.indexOf("_")+1) ;
+            String newName = StringUtils.substring(tableName,
+                    Consts.DB_TABLE_PREFIX.length());
+            String[] names = StringUtils.split(newName.toLowerCase(), "_");
+            for (int i = 0, len = names.length; i < len; i++) {
+                className.append(names[i].substring(0, 1).toUpperCase()
+                        + names[i].substring(1));
+            }
+        } else {
+            System.out.println("==不支持的表前缀==");
+        }
+
+        return className.toString();
+    }
+
+    public String getSchemaName() {
+        return schemaName;
+    }
+
+    public void setSchemaName(String schemaName) {
+        this.schemaName = schemaName;
+    }
 
 }

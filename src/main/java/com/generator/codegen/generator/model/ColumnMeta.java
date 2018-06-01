@@ -19,6 +19,24 @@ public class ColumnMeta {
 	private String extra;
 	private String columnComment;
 	private int columnSize; // 字段长度，将在计算属性类型时赋值
+	private String fieldName;
+	private String jdbcType;
+
+	public String getFieldName() {
+		return fieldName;
+	}
+
+	public void setFieldName(String fieldName) {
+		this.fieldName = fieldName;
+	}
+
+	public String getJdbcType() {
+		return jdbcType;
+	}
+
+	public void setJdbcType(String jdbcType) {
+		this.jdbcType = jdbcType;
+	}
 
 	public String getColumnName() {
 		return columnName;

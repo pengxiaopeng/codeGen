@@ -21,10 +21,14 @@ public class Runner {
     public static void main(String[] args) {
         List<Map> paramList = new ArrayList<Map>();
         Map params = new HashMap<String, String>();
+
+        String className = "Leave";
+        String tableName = "bid_leave";
+
         // Leave实体名
-        params.put("modelName", "Leave");
+        params.put("modelName", className);
         // bid_leave 表名
-        params.put("model_name_cn", "bid_leave");
+        params.put("model_name_cn", tableName);
         params.put(FreemarkerGenerate.PACKAGE_PATH, FreemarkerGenerate.GENERATOR_PACKAGE_PATH);
         paramList.add(params);
         FreemarkerGenerate.genDao(targetPath, paramList, "dao.ftl", true);
@@ -36,6 +40,7 @@ public class Runner {
                 "serviceImpl.ftl", true);
         FreemarkerGenerate.genController(targetPath, paramList,
                 "controller.ftl", true);
+        FreemarkerGenerate.getMapper(targetPath, tableName, className, "mapper.ftl");
         logger.info("生成成功。路径={}", Consts.TARGET_DIR);
     }
 }
