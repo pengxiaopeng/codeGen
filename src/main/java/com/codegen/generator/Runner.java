@@ -1,6 +1,7 @@
 package com.codegen.generator;
 
 import com.codegen.generator.db.Consts;
+import com.codegen.generator.freemark.FreemarkerGenerate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

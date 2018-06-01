@@ -1,4 +1,4 @@
-package com.codegen.generator;
+package com.codegen.generator.freemark;
 
 import freemarker.template.Configuration;
 import freemarker.template.DefaultObjectWrapper;

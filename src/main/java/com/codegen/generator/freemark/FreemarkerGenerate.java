@@ -1,4 +1,4 @@
-package com.codegen.generator;
+package com.codegen.generator.freemark;
 
 import com.codegen.generator.db.AnalysisDB;
 import com.codegen.generator.model.TableMeta;
@@ -258,6 +258,7 @@ public class FreemarkerGenerate {
             tableList = AnalysisDB.readDB(tableName);
             AnalysisDB.readTables(tableList);
             // 输出到文件
+            targetPath = targetPath + "\\" + className + "\\mapping\\";
             File dir = new File(targetPath);
             if (!dir.isDirectory()) {
                 dir.mkdirs();
