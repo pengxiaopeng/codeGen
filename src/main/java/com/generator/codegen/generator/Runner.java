@@ -25,7 +25,7 @@ public class Runner {
         params.put("modelName", "Leave");
         // bid_leave 表名
         params.put("model_name_cn", "bid_leave");
-        params.put(FreemarkerGenerate.PACKAGE_PATH, "com.zyfast");
+        params.put(FreemarkerGenerate.PACKAGE_PATH, FreemarkerGenerate.GENERATOR_PACKAGE_PATH);
         paramList.add(params);
         FreemarkerGenerate.genDao(targetPath, paramList, "dao.ftl", true);
         FreemarkerGenerate.genDaoImpl(targetPath, paramList, "daoImpl.ftl",
