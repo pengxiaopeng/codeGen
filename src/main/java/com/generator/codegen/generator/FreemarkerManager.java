@@ -12,7 +12,7 @@ public class FreemarkerManager {
 
 	static {
 
-		URL uri = FreemarkerManager.class.getClassLoader().getResource("templates");
+		URL uri = FreemarkerManager.class.getClassLoader().getResource("generatorTemplates");
 		String ftlPath = uri.getPath();
 		try {
 			cfg.setDirectoryForTemplateLoading(new File(ftlPath));
