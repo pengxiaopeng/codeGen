@@ -26,12 +26,13 @@ public class FreemarkerGenerate {
     public final static String PACKAGE_PATH = "package_path";
     public final static String GENERATOR_PACKAGE_PATH = "com.zyfast.";// 包路径
 
+    private static Configuration cfg = FreemarkerManager.getConfiguration();// 初始化状态
+
     @SuppressWarnings("unchecked")
     public static void createFile(Map data, String path, String fileName,
                                   String templateName) {
         try {
             String filePath = path + fileName;
-            Configuration cfg = FreemarkerManager.getConfiguration();// 初始化状态
 
             Template template = cfg.getTemplate(templateName);// 获取模板..
             File file = new File(filePath);
@@ -264,7 +265,6 @@ public class FreemarkerGenerate {
                 dir.mkdirs();
             }
 
-            Configuration cfg = FreemarkerManager.getConfiguration();// 初始化状态
             Template tpl = cfg.getTemplate(ftlPath);
             if (tableList != null) {
                 for (TableMeta tm : tableList) {
