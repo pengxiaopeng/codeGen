@@ -84,28 +84,28 @@
     </delete>
 
     <insert id="insert" parameterType="${packageName+"model."+className}" useGeneratedKeys="true" keyProperty="id">
-        insert into ${tableName?upper_case} (
-    <#list columns as cls>
-        <#if cls.columnName != 'id'>
-            <#if cls_index=columns?size-1>
-                ${cls.columnName?upper_case}
-            <#else>
-                ${cls.columnName?upper_case+","}
-            </#if>
+            insert into ${tableName?upper_case} (
+<#list columns as cls>
+    <#if cls.columnName != 'id'>
+        <#if cls_index=columns?size-1>
+            ${cls.columnName?upper_case}
+        <#else>
+            ${cls.columnName?upper_case+","}
         </#if>
-    </#list>
-        )
-        values (
-    <#list columns as cls>
-        <#if cls.columnName != 'id'>
-            <#if cls_index=columns?size-1>
-                ${"#{"+cls.columnName+", jdbcType="+cls.jdbcType+"}"}
-            <#else>
-                ${"#{"+cls.columnName+", jdbcType="+cls.jdbcType+"},"}
-            </#if>
+    </#if>
+</#list>
+            )
+            values (
+<#list columns as cls>
+    <#if cls.columnName != 'id'>
+        <#if cls_index=columns?size-1>
+            ${"#{"+cls.columnName+", jdbcType="+cls.jdbcType+"}"}
+        <#else>
+            ${"#{"+cls.columnName+", jdbcType="+cls.jdbcType+"},"}
         </#if>
-    </#list>
-        )
+    </#if>
+</#list>
+            )
     </insert>
     <insert id="insertSelective" parameterType="${packageName+"model."+className}" useGeneratedKeys="true" keyProperty="id">
         insert into ${tableName?upper_case}
