@@ -1,7 +1,7 @@
-package manageSystem.modules.service;
+package com.generator.codegen.modules.service;
 
-import manageSystem.common.base.IBaseService;
-import manageSystem.modules.model.Leave;
+import com.generator.codegen.common.base.IBaseService;
+import com.generator.codegen.modules.model.Leave;
 
 public interface LeaveService extends IBaseService<Leave, Long> {
 }

@@ -1,9 +1,9 @@
-package manageSystem.modules.service.impl;
+package com.generator.codegen.modules.service.impl;
 
-import manageSystem.common.service.BaseService;
-import manageSystem.modules.dao.AdminDao;
-import manageSystem.modules.model.Admin;
-import manageSystem.modules.service.AdminService;
+import com.generator.codegen.common.service.BaseService;
+import com.generator.codegen.modules.dao.AdminDao;
+import com.generator.codegen.modules.model.Admin;
+import com.generator.codegen.modules.service.AdminService;
 import org.springframework.stereotype.Service;
 
 @Service

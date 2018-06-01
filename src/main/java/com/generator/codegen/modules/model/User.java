@@ -1,6 +1,6 @@
-package manageSystem.modules.model;
+package com.generator.codegen.modules.model;
 
-import manageSystem.common.model.BaseModel;
+import com.generator.codegen.common.model.BaseModel;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

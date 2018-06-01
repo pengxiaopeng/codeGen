@@ -1,9 +1,9 @@
-package manageSystem.modules.service.impl;
+package com.generator.codegen.modules.service.impl;
 
-import manageSystem.common.service.BaseService;
-import manageSystem.modules.dao.SequenceDao;
-import manageSystem.modules.model.Sequence;
-import manageSystem.modules.service.SequenceService;
+import com.generator.codegen.common.service.BaseService;
+import com.generator.codegen.modules.dao.SequenceDao;
+import com.generator.codegen.modules.model.Sequence;
+import com.generator.codegen.modules.service.SequenceService;
 import org.springframework.stereotype.Service;
 
 @Service

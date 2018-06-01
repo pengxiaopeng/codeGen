@@ -1,9 +1,9 @@
-package manageSystem.modules.service.impl;
+package com.generator.codegen.modules.service.impl;
 
-import manageSystem.common.service.BaseService;
-import manageSystem.modules.dao.LeaveDao;
-import manageSystem.modules.model.Leave;
-import manageSystem.modules.service.LeaveService;
+import com.generator.codegen.common.service.BaseService;
+import com.generator.codegen.modules.dao.LeaveDao;
+import com.generator.codegen.modules.model.Leave;
+import com.generator.codegen.modules.service.LeaveService;
 import org.springframework.stereotype.Service;
 
 @Service

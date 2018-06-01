@@ -1,9 +1,9 @@
-package manageSystem.modules.service.impl;
+package com.generator.codegen.modules.service.impl;
 
-import manageSystem.common.service.BaseService;
-import manageSystem.modules.dao.EmailDao;
-import manageSystem.modules.model.Email;
-import manageSystem.modules.service.EmailService;
+import com.generator.codegen.common.service.BaseService;
+import com.generator.codegen.modules.dao.EmailDao;
+import com.generator.codegen.modules.model.Email;
+import com.generator.codegen.modules.service.EmailService;
 import org.springframework.stereotype.Service;
 
 @Service

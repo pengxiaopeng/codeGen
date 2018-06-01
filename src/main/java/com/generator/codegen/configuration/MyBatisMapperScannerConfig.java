@@ -1,6 +1,6 @@
 package com.generator.codegen.configuration;
 
-import manageSystem.common.dao.annotation.MyBatisDao;
+import com.generator.codegen.common.dao.annotation.MyBatisDao;
 import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.context.annotation.Bean;

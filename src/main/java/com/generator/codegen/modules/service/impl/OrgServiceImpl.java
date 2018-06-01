@@ -1,9 +1,9 @@
-package manageSystem.modules.service.impl;
+package com.generator.codegen.modules.service.impl;
 
-import manageSystem.common.service.BaseService;
-import manageSystem.modules.dao.OrgDao;
-import manageSystem.modules.model.Org;
-import manageSystem.modules.service.OrgService;
+import com.generator.codegen.common.service.BaseService;
+import com.generator.codegen.modules.dao.OrgDao;
+import com.generator.codegen.modules.model.Org;
+import com.generator.codegen.modules.service.OrgService;
 import org.springframework.stereotype.Service;
 
 @Service

@@ -1,7 +1,7 @@
-package manageSystem.modules.service;
+package com.generator.codegen.modules.service;
 
-import manageSystem.common.base.IBaseService;
-import manageSystem.modules.model.AdminRole;
+import com.generator.codegen.common.base.IBaseService;
+import com.generator.codegen.modules.model.AdminRole;
 
 public interface AdminRoleService extends IBaseService<AdminRole, Long> {
 }
