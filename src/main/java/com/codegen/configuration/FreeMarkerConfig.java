@@ -2,9 +2,10 @@ package com.codegen.configuration;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.freemarker.FreeMarkerAutoConfiguration;
+import org.springframework.boot.autoconfigure.freemarker.FreeMarkerProperties;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 
 /**
@@ -13,8 +14,7 @@ import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
  * @create 2018-04-19 9:51
  **/
 @Configuration
-@Import({FreeMarkerAutoConfiguration.class})
-public class FreeMarkerConfig {
+public class FreeMarkerConfig extends FreeMarkerAutoConfiguration{
     @Value("${spring.freemarker.template-loader-path}")
     private String templateLoaderPath;
     @Value("${spring.freemarker.prefer-file-system-access}")
@@ -23,6 +23,10 @@ public class FreeMarkerConfig {
     private String charset;
     @Value("${spring.freemarker.suffix}")
     private String suffix;
+
+    public FreeMarkerConfig(ApplicationContext applicationContext, FreeMarkerProperties properties) {
+        super(applicationContext, properties);
+    }
 
     @Bean("freeMarkerConfigurer")
     public FreeMarkerConfigurer getFreemarkerConfig() {

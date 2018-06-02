@@ -53,7 +53,7 @@ public class MyBatisConfig implements TransactionManagementConfigurer {
         ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
 
         try {
-            bean.setMapperLocations(resolver.getResources("classpath*:manageSystem/modules/mapping/*.xml"));
+            bean.setMapperLocations(resolver.getResources("classpath*:com/codegen/modules/mapping/*.xml"));
             return bean.getObject();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
