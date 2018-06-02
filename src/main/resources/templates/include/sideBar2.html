@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+<div th:fragment="sideBar">
+    <div class="sidebar" id="sidebar">
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                data-accordion="false">
+
+                <li th:each="authority : ${authorityList}" class="nav-item">
+                    <a href="#" class="nav-link"
+                       th:href="@{${authority.parentId == 0 ? '#' : authority.url}}">
+                        <i class="fa fa-tree nav-icon"></i>
+                        <p>[[${authority.name}]]<i class="right fa fa-angle-left"></i></p>
+                    </a>
+                    <ul class="nav nav-treeview" th:if="${not #lists.isEmpty(authority.childAuthorityList)}">
+                        <li th:each="childMenu : ${authority.childAuthorityList}" class="nav-item">
+                            <a href="#" class="nav-link"
+                               th:href="@{${childMenu.parentId == 0 ? '#' : childMenu.url}}">
+                                <i class="fa fa-circle-o nav-icon"></i>
+                                <p th:text="${childMenu.name}">name</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <script th:inline="javascript">
+        // 选中的菜单 进行高亮显示
+        var pathname = window.location.pathname;
+        var pathname2 = pathname.substring(0, pathname.lastIndexOf("/"));
+        if(pathname2 != "") {
+            $('#sidebar a').each(function (index) {
+                if ($(this).attr('href').startsWith(pathname2)  ) {
+                    $(this).addClass('active');
+                    var $ul = $(this).parent().parent();
+                    if ($ul.hasClass("nav-treeview")) {
+                        $ul.prev().addClass('active');
+                        $ul.parent().addClass('menu-open');
+                    }
+                }
+            });
+        }
+    </script>
+</div>
+</body>
+</html>
