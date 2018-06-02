@@ -1,8 +1,5 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<footer th:fragment="jsResource">
-    <script src="/static/js/jquery/3.3.1/dist/jquery.min.js"
-            th:src="@{/static/js/jquery/3.3.1/dist/jquery.min.js}"></script>
+
+    <script src=".static/js/jquery/3.3.1/dist/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
     <script src="/static/AdminLTE-3.0.0-alpha/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- DataTables -->
@@ -17,7 +14,5 @@
     <!-- AdminLTE for demo purposes -->
     <script src="/static/AdminLTE-3.0.0-alpha/dist/js/demo.js"></script>
 
-</footer>
-</html>
 
 
