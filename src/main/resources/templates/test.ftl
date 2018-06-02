@@ -6,8 +6,7 @@
 </head>
 <body>
 <div>nnnnn</div>
-    <#list getTypeList() as item>
-        <li>${item}</li>
-    </#list>
+
+    <#--<#include "../include/sideBarMenu.ftl">-->
 </body>
 </html>
