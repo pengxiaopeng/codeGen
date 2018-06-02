@@ -42,6 +42,7 @@ public class Runner {
         FreemarkerGenerate.genController(targetPath, paramList,
                 "controller.ftl", true);
         FreemarkerGenerate.getMapper(targetPath, tableName, className, "mapper.ftl");
+        FreemarkerGenerate.getModel(targetPath, tableName, className, "model.ftl");
         logger.info("生成成功。路径={}", Consts.TARGET_DIR);
     }
 }
