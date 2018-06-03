@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="manageSystem.modules.dao.CollegeInfoDao">
-    <resultMap id="BaseResultMap" type="manageSystem.modules.model.CollegeInfo">
+<mapper namespace="com.codegen.modules.dao.CollegeInfoDao">
+    <resultMap id="BaseResultMap" type="com.codegen.modules.model.CollegeInfo">
         <id column="ID" property="id" jdbcType="BIGINT"/>
         <result column="COLLEGE_ID" property="collegeId" jdbcType="BIGINT" />
         <result column="COLLEGE_NAME" property="collegeName" jdbcType="VARCHAR" />
@@ -101,7 +101,7 @@
         where ID = #{id, jdbcType=BIGINT}
     </delete>
 
-    <insert id="insert" parameterType="manageSystem.modules.model.CollegeInfo" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insert" parameterType="com.codegen.modules.model.CollegeInfo" useGeneratedKeys="true" keyProperty="id">
 
 
         insert into BID_COLLEGE_INFO (
@@ -145,7 +145,7 @@
         #{logo, jdbcType=VARCHAR}
         )
     </insert>
-    <insert id="insertSelective" parameterType="manageSystem.modules.model.CollegeInfo" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertSelective" parameterType="com.codegen.modules.model.CollegeInfo" useGeneratedKeys="true" keyProperty="id">
 
         insert into BID_COLLEGE_INFO
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -267,7 +267,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="manageSystem.modules.model.CollegeInfo">
+    <update id="updateByPrimaryKeySelective" parameterType="com.codegen.modules.model.CollegeInfo">
         update BID_COLLEGE_INFO
         <set>
             <if test="collegeId != null">
@@ -328,7 +328,7 @@
         where ID = #{id, jdbcType=BIGINT}
     </update>
 
-    <update id="updateByPrimaryKey" parameterType="manageSystem.modules.model.CollegeInfo">
+    <update id="updateByPrimaryKey" parameterType="com.codegen.modules.model.CollegeInfo">
         update BID_COLLEGE_INFO
         set
         COLLEGE_ID= #{collegeId, jdbcType=BIGINT},

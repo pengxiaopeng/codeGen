@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="manageSystem.modules.dao.EmailDao">
-    <resultMap id="BaseResultMap" type="manageSystem.modules.model.Email">
+<mapper namespace="com.codegen.modules.dao.EmailDao">
+    <resultMap id="BaseResultMap" type="com.codegen.modules.model.Email">
         <id column="ID" property="id" jdbcType="BIGINT"/>
         <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
         <result column="MODIFY_DATE" property="modifyDate" jdbcType="TIMESTAMP" />
@@ -75,7 +75,7 @@
         where ID = #{id, jdbcType=BIGINT}
     </delete>
 
-    <insert id="insert" parameterType="manageSystem.modules.model.Email" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insert" parameterType="com.codegen.modules.model.Email" useGeneratedKeys="true" keyProperty="id">
 
 
         insert into BID_EMAIL (
@@ -99,7 +99,7 @@
         #{modifyUserid, jdbcType=BIGINT}
         )
     </insert>
-    <insert id="insertSelective" parameterType="manageSystem.modules.model.Email" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertSelective" parameterType="com.codegen.modules.model.Email" useGeneratedKeys="true" keyProperty="id">
 
         insert into BID_EMAIL
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -161,7 +161,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="manageSystem.modules.model.Email">
+    <update id="updateByPrimaryKeySelective" parameterType="com.codegen.modules.model.Email">
         update BID_EMAIL
         <set>
             <if test="createDate != null">
@@ -192,7 +192,7 @@
         where ID = #{id, jdbcType=BIGINT}
     </update>
 
-    <update id="updateByPrimaryKey" parameterType="manageSystem.modules.model.Email">
+    <update id="updateByPrimaryKey" parameterType="com.codegen.modules.model.Email">
         update BID_EMAIL
         set
         CREATE_DATE= #{createDate, jdbcType=TIMESTAMP},

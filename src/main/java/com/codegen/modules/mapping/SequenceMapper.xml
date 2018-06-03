@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="manageSystem.modules.dao.SequenceDao">
-    <resultMap id="BaseResultMap" type="manageSystem.modules.model.Sequence">
+<mapper namespace="com.codegen.modules.dao.SequenceDao">
+    <resultMap id="BaseResultMap" type="com.codegen.modules.model.Sequence">
         <id column="ID" property="Id" jdbcType="BIGINT"/>
         <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
         <result column="MODIFY_DATE" property="modifyDate" jdbcType="TIMESTAMP" />
@@ -67,7 +67,7 @@
         where ID = #{id, jdbcType=BIGINT}
     </delete>
 
-    <insert id="insert" parameterType="manageSystem.modules.model.Sequence" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insert" parameterType="com.codegen.modules.model.Sequence" useGeneratedKeys="true" keyProperty="id">
 
 
         insert into BID_SEQUENCE (
@@ -83,7 +83,7 @@
         #{modifyUserId, jdbcType=VARCHAR}
         )
     </insert>
-    <insert id="insertSelective" parameterType="manageSystem.modules.model.Sequence" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertSelective" parameterType="com.codegen.modules.model.Sequence" useGeneratedKeys="true" keyProperty="id">
 
         insert into BID_SEQUENCE
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -121,7 +121,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="manageSystem.modules.model.Sequence">
+    <update id="updateByPrimaryKeySelective" parameterType="com.codegen.modules.model.Sequence">
         update BID_SEQUENCE
         <set>
             <if test="createDate != null">
@@ -140,7 +140,7 @@
         where ID = #{id, jdbcType=BIGINT}
     </update>
 
-    <update id="updateByPrimaryKey" parameterType="manageSystem.modules.model.Sequence">
+    <update id="updateByPrimaryKey" parameterType="com.codegen.modules.model.Sequence">
         update BID_SEQUENCE
         set
         CREATE_DATE= #{createDate, jdbcType=TIMESTAMP},

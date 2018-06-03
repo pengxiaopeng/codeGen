@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="manageSystem.modules.dao.EmailReceiversDao">
-    <resultMap id="BaseResultMap" type="manageSystem.modules.model.EmailReceivers">
+<mapper namespace="com.codegen.modules.dao.EmailReceiversDao">
+    <resultMap id="BaseResultMap" type="com.codegen.modules.model.EmailReceivers">
         <id column="BID_EMAIL" property="bidEmail" jdbcType="BIGINT"/>
         <result column="RECEIVERS" property="receivers" jdbcType="VARCHAR" />
         <result column="RECEIVERS_NAME" property="receiversName" jdbcType="VARCHAR" />
@@ -73,7 +73,7 @@
         where BID_EMAIL = #{bidEmail,jdbcType=VARCHAR}
     </delete>
 
-    <insert id="insert" parameterType="manageSystem.modules.model.EmailReceivers" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insert" parameterType="com.codegen.modules.model.EmailReceivers" useGeneratedKeys="true" keyProperty="id">
 
         insert into BID_EMAIL_RECEIVERS (
         BID_EMAIL,
@@ -94,7 +94,7 @@
         #{modifyUserid, jdbcType=BIGINT}
         )
     </insert>
-    <insert id="insertSelective" parameterType="manageSystem.modules.model.EmailReceivers" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertSelective" parameterType="com.codegen.modules.model.EmailReceivers" useGeneratedKeys="true" keyProperty="id">
 
         insert into BID_EMAIL_RECEIVERS
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -150,7 +150,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="manageSystem.modules.model.EmailReceivers">
+    <update id="updateByPrimaryKeySelective" parameterType="com.codegen.modules.model.EmailReceivers">
         update BID_EMAIL_RECEIVERS
         <set>
             <if test="receivers != null">
@@ -178,7 +178,7 @@
         where BID_EMAIL = #{bidEmail,jdbcType=VARCHAR}
     </update>
 
-    <update id="updateByPrimaryKey" parameterType="manageSystem.modules.model.EmailReceivers">
+    <update id="updateByPrimaryKey" parameterType="com.codegen.modules.model.EmailReceivers">
         update BID_EMAIL_RECEIVERS
         set
         RECEIVERS= #{receivers, jdbcType=BIGINT},

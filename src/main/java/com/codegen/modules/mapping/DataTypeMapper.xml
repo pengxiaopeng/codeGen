@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="manageSystem.modules.dao.DataTypeDao">
-    <resultMap id="BaseResultMap" type="manageSystem.modules.model.DataType">
+<mapper namespace="com.codegen.modules.dao.DataTypeDao">
+    <resultMap id="BaseResultMap" type="com.codegen.modules.model.DataType">
         <id column="ID" property="id" jdbcType="BIGINT"/>
         <result column="CODE" property="code" jdbcType="VARCHAR" />
         <result column="DESCPT" property="descpt" jdbcType="VARCHAR" />
@@ -82,7 +82,7 @@
         where ID = #{id, jdbcType=BIGINT}
     </delete>
 
-    <insert id="insert" parameterType="manageSystem.modules.model.DataType" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insert" parameterType="com.codegen.modules.model.DataType" useGeneratedKeys="true" keyProperty="id">
 
 
         insert into BID_DATA_TYPE (
@@ -104,7 +104,7 @@
         #{modifyDate, jdbcType=TIMESTAMP}
         )
     </insert>
-    <insert id="insertSelective" parameterType="manageSystem.modules.model.DataType">
+    <insert id="insertSelective" parameterType="com.codegen.modules.model.DataType">
 
         insert into BID_DATA_TYPE
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -160,7 +160,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="manageSystem.modules.model.DataType">
+    <update id="updateByPrimaryKeySelective" parameterType="com.codegen.modules.model.DataType">
         update BID_DATA_TYPE
         <set>
             <if test="code != null">
@@ -188,7 +188,7 @@
         where ID = #{id, jdbcType=BIGINT}
     </update>
 
-    <update id="updateByPrimaryKey" parameterType="manageSystem.modules.model.DataType">
+    <update id="updateByPrimaryKey" parameterType="com.codegen.modules.model.DataType">
         update BID_DATA_TYPE
         set
         CODE= #{code, jdbcType=VARCHAR},

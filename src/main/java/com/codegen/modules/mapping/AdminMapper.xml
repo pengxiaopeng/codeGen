@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="manageSystem.modules.dao.AdminDao">
-    <resultMap id="BaseResultMap" type="manageSystem.modules.model.Admin">
+<mapper namespace="com.codegen.modules.dao.AdminDao">
+    <resultMap id="BaseResultMap" type="com.codegen.modules.model.Admin">
         <id column="ID" property="id" jdbcType="BIGINT"/>
         <result column="USERNAME" property="username" jdbcType="VARCHAR" />
         <result column="NICKNAME" property="nickname" jdbcType="VARCHAR" />
@@ -122,7 +122,7 @@
         where ID = #{id, jdbcType=BIGINT}
     </delete>
 
-    <insert id="insert" parameterType="manageSystem.modules.model.Admin" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insert" parameterType="com.codegen.modules.model.Admin" useGeneratedKeys="true" keyProperty="id">
         insert into BID_ADMIN (
 
         USERNAME,
@@ -190,7 +190,7 @@
         #{hadReadAttention, jdbcType=BIT}
         )
     </insert>
-    <insert id="insertSelective" parameterType="manageSystem.modules.model.Admin" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertSelective" parameterType="com.codegen.modules.model.Admin" useGeneratedKeys="true" keyProperty="id">
         insert into BID_ADMIN
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -385,7 +385,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="manageSystem.modules.model.Admin">
+    <update id="updateByPrimaryKeySelective" parameterType="com.codegen.modules.model.Admin">
         update BID_ADMIN
         <set>
             <if test="username != null">
@@ -483,7 +483,7 @@
         where ID = #{id,jdbcType=BIGINT}
     </update>
 
-    <update id="updateByPrimaryKey" parameterType="manageSystem.modules.model.Admin">
+    <update id="updateByPrimaryKey" parameterType="com.codegen.modules.model.Admin">
         update BID_ADMIN
         set
         USERNAME= #{username, jdbcType=VARCHAR},

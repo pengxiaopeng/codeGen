@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="manageSystem.modules.dao.DataDictionaryDao">
-    <resultMap id="BaseResultMap" type="manageSystem.modules.model.DataDictionary">
+<mapper namespace="com.codegen.modules.dao.DataDictionaryDao">
+    <resultMap id="BaseResultMap" type="com.codegen.modules.model.DataDictionary">
         <id column="ID" property="id" jdbcType="BIGINT"/>
         <result column="CODE" property="code" jdbcType="VARCHAR" />
         <result column="DESCPT" property="descpt" jdbcType="VARCHAR" />
@@ -84,7 +84,7 @@
         where ID = #{id, jdbcType=BIGINT}
     </delete>
 
-    <insert id="insert" parameterType="manageSystem.modules.model.DataDictionary" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insert" parameterType="com.codegen.modules.model.DataDictionary" useGeneratedKeys="true" keyProperty="id">
 
 
         insert into BID_DATA_DICTIONARY (
@@ -108,7 +108,7 @@
         #{modifyDate, jdbcType=TIMESTAMP}
         )
     </insert>
-    <insert id="insertSelective" parameterType="manageSystem.modules.model.DataDictionary" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertSelective" parameterType="com.codegen.modules.model.DataDictionary" useGeneratedKeys="true" keyProperty="id">
 
         insert into BID_DATA_DICTIONARY
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -170,7 +170,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="manageSystem.modules.model.DataDictionary">
+    <update id="updateByPrimaryKeySelective" parameterType="com.codegen.modules.model.DataDictionary">
         update BID_DATA_DICTIONARY
         <set>
             <if test="code != null">
@@ -201,7 +201,7 @@
         where ID = #{id, jdbcType=BIGINT}
     </update>
 
-    <update id="updateByPrimaryKey" parameterType="manageSystem.modules.model.DataDictionary">
+    <update id="updateByPrimaryKey" parameterType="com.codegen.modules.model.DataDictionary">
         update BID_DATA_DICTIONARY
         set
         CODE= #{code, jdbcType=VARCHAR},

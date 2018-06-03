@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+
+    <contextName>service-voucher</contextName><!-- 区分不同应用程序的记录，默认为default -->
+
+    <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>[%p][%d{yyyy-MM-dd HH:mm:ss.SSS}][%c]%m%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="R" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>../logs/voucher.log</File>
+        <encoder>
+            <pattern>[%p][%d{yyyy-MM-dd HH:mm:ss.SSS}][%c]%m%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>../voucher/service.log.%d{yyyy-MM-dd}</fileNamePattern>
+        </rollingPolicy>
+    </appender>
+<!--正式环境部署放开
+
+    <appender name="logstash" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <destination>192.168.190.91:9250</destination>
+        <encoder charset="UTF-8" class="net.logstash.logback.encoder.LogstashEncoder" >
+            <customFields>{"appname":"voucher-service"}</customFields>
+        </encoder>
+    </appender>-->
+    <root level="info">
+        <appender-ref ref="Console"/>
+        <appender-ref ref="R"/>
+<!--
+正式环境部署放开
+        <appender-ref ref="logstash"/>
+-->
+    </root>
+</configuration>

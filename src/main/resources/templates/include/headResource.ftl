@@ -1,17 +1,17 @@
 
-    <link href="/static/css/core.css" rel="stylesheet" media="screen"/>
-    <link href="/static/layui/css/layui.css" rel="stylesheet"
+    <link href="/css/core.css" type="text/css"/>
+    <link href="/layui/css/layui.css" type="text/css"
           media="screen"/>
-    <link href="/static/layui/css/global.css" rel="stylesheet"
+    <link href="/layui/css/global.css" type="text/css"
           media="screen"/>
-    <link href="/static/css/common.css" rel="stylesheet"
+    <link href="/css/common.css" type="text/css"
           media="screen"/>
-    <script src="/static/AdminLTE-3.0.0-alpha/plugins/jquery/jquery.min.js"></script>
-    <script src="/static/layui/layui.js"></script>
+    <script src="/AdminLTE-3.0.0-alpha/plugins/jquery/jquery.min.js" type="javascript"></script>
+    <script src="/layui/layui.js" type="javascript"></script>
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
     <!--[if lt IE 9]>
-    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
-    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js" type="javascript"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js" type="javascript"></script>
     <![endif]-->
     <script type="javascript">
         //Demo
