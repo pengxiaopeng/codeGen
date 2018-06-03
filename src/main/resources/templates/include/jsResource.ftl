@@ -1,3 +1,4 @@
+    <script src="/AdminLTE-3.0.0-alpha/plugins/jquery/jquery.min.js"></script>
    <!-- Bootstrap 4 -->
     <script src="/AdminLTE-3.0.0-alpha/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- DataTables -->
