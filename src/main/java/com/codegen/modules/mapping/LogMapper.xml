@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="manageSystem.modules.dao.LogDao">
-    <resultMap id="BaseResultMap" type="manageSystem.modules.model.Log">
+<mapper namespace="com.codegen.modules.dao.LogDao">
+    <resultMap id="BaseResultMap" type="com.codegen.modules.model.Log">
         <id column="ID" property="id" jdbcType="BIGINT"/>
         <result column="CONTENT" property="content" jdbcType="VARCHAR" />
         <result column="IP" property="ip" jdbcType="VARCHAR" />
@@ -84,7 +84,7 @@
         where ID = #{id, jdbcType=BIGINT}
     </delete>
 
-    <insert id="insert" parameterType="manageSystem.modules.model.Log" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insert" parameterType="com.codegen.modules.model.Log" useGeneratedKeys="true" keyProperty="id">
 
 
         insert into BID_LOG (
@@ -118,7 +118,7 @@
         #{modifyDate, jdbcType=TIMESTAMP}
         )
     </insert>
-    <insert id="insertSelective" parameterType="manageSystem.modules.model.Log" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertSelective" parameterType="com.codegen.modules.model.Log" useGeneratedKeys="true" keyProperty="id">
 
         insert into BID_LOG
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -204,7 +204,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="manageSystem.modules.model.Log">
+    <update id="updateByPrimaryKeySelective" parameterType="com.codegen.modules.model.Log">
         update BID_LOG
         <set>
             <if test="content != null">
@@ -247,7 +247,7 @@
         where ID = #{id, jdbcType=BIGINT}
     </update>
 
-    <update id="updateByPrimaryKey" parameterType="manageSystem.modules.model.Log">
+    <update id="updateByPrimaryKey" parameterType="com.codegen.modules.model.Log">
         update BID_LOG
         set
         CONTENT= #{content, jdbcType=VARCHAR},

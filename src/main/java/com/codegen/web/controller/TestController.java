@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class TestController {
     protected final Log logger = LogFactory.getLog(this.getClass());
-    @RequestMapping("/test")
+    @RequestMapping("/")
     public String test(Model model) {
         logger.info("test......");
-        return "/test/test";
+        return "test";
     }
 }

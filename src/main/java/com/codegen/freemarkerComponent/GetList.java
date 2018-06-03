@@ -3,12 +3,12 @@ package com.codegen.freemarkerComponent;
 import com.codegen.annotation.FreemarkerComponent;
 import com.codegen.common.web.CommonContrller;
 import com.codegen.modules.model.Authority;
+import freemarker.template.SimpleScalar;
 import freemarker.template.TemplateMethodModelEx;
 import freemarker.template.TemplateModelException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.List;
 
@@ -22,15 +22,19 @@ public class GetList extends CommonContrller implements TemplateMethodModelEx {
     protected final Log logger = LogFactory.getLog(this.getClass());
     @Override
     public Object exec(List arguments) throws TemplateModelException {
-        String name = (String) arguments.get(0);
+        SimpleScalar simpleScalar = (SimpleScalar) arguments.get(0);
+        String name = simpleScalar.getAsString();
         try {
             Method method = GetList.class.getMethod("get" + firstLetterUpper(name) + "List");
-            return method.invoke(this);
-        } catch (NoSuchMethodException | IllegalAccessException |IllegalArgumentException | InvocationTargetException e){
+            try {
+                return method.invoke(this);
+            } catch (Exception e) {
+                logger.error(e.getMessage());
+            }
+        } catch (NoSuchMethodException e){
             e.printStackTrace();
             logger.error(e.getMessage());
         }
-
         return "";
     }
 

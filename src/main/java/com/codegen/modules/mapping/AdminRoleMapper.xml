@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="manageSystem.modules.dao.AdminRoleDao">
-    <resultMap id="BaseResultMap" type="manageSystem.modules.model.AdminRole">
+<mapper namespace="com.codegen.modules.dao.AdminRoleDao">
+    <resultMap id="BaseResultMap" type="com.codegen.modules.model.AdminRole">
         <id column="ID" property="id" jdbcType="BIGINT"/>
         <result column="ROLES" property="roles" jdbcType="BIGINT" />
         <result column="ADMINS" property="admins" jdbcType="BIGINT" />
@@ -69,7 +69,7 @@
         where ID = #{id, jdbcType=BIGINT}
     </delete>
 
-    <insert id="insert" parameterType="manageSystem.modules.model.AdminRole" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insert" parameterType="com.codegen.modules.model.AdminRole" useGeneratedKeys="true" keyProperty="id">
 
 
         insert into BID_ADMIN_ROLE (
@@ -81,7 +81,7 @@
         #{admins, jdbcType=BIGINT}
         )
     </insert>
-    <insert id="insertSelective" parameterType="manageSystem.modules.model.AdminRole" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertSelective" parameterType="com.codegen.modules.model.AdminRole" useGeneratedKeys="true" keyProperty="id">
 
         insert into BID_ADMIN_ROLE
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -107,7 +107,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="manageSystem.modules.model.AdminRole">
+    <update id="updateByPrimaryKeySelective" parameterType="com.codegen.modules.model.AdminRole">
         update BID_ADMIN_ROLE
         <set>
             <if test="roles != null">
@@ -120,7 +120,7 @@
         where ID = #{id, jdbcType=BIGINT}
     </update>
 
-    <update id="updateByPrimaryKey" parameterType="manageSystem.modules.model.AdminRole">
+    <update id="updateByPrimaryKey" parameterType="com.codegen.modules.model.AdminRole">
         update BID_ADMIN_ROLE
         set
         ROLES= #{roles, jdbcType=BIGINT},

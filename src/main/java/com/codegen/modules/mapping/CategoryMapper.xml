@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="manageSystem.modules.dao.CategoryDao">
-    <resultMap id="BaseResultMap" type="manageSystem.modules.model.Category">
+<mapper namespace="com.codegen.modules.dao.CategoryDao">
+    <resultMap id="BaseResultMap" type="com.codegen.modules.model.Category">
         <id column="ID" property="id" jdbcType="VARCHAR"/>
         <result column="IMG" property="img" jdbcType="VARCHAR" />
         <result column="NAME" property="name" jdbcType="VARCHAR" />
@@ -71,7 +71,7 @@
         where ID = #{id,jdbcType=VARCHAR}
     </delete>
 
-    <insert id="insert" parameterType="manageSystem.modules.model.Category">
+    <insert id="insert" parameterType="com.codegen.modules.model.Category">
         <!--<selectKey resultType="java.lang.String" keyProperty="id" order="BEFORE">
             select sys_guid() as id from dual
         </selectKey>-->
@@ -91,7 +91,7 @@
         #{updateDate, jdbcType=TIMESTAMP}
         )
     </insert>
-    <insert id="insertSelective" parameterType="manageSystem.modules.model.Category">
+    <insert id="insertSelective" parameterType="com.codegen.modules.model.Category">
 
         insert into TBD_PRICE_COMPARE_TYPE
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -129,7 +129,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="manageSystem.modules.model.Category">
+    <update id="updateByPrimaryKeySelective" parameterType="com.codegen.modules.model.Category">
         update TBD_PRICE_COMPARE_TYPE
         <set>
             <if test="img != null">
@@ -148,7 +148,7 @@
         where ID = #{id,jdbcType=VARCHAR}
     </update>
 
-    <update id="updateByPrimaryKey" parameterType="manageSystem.modules.model.Category">
+    <update id="updateByPrimaryKey" parameterType="com.codegen.modules.model.Category">
         update TBD_PRICE_COMPARE_TYPE
         set
         IMG= #{img, jdbcType=VARCHAR},

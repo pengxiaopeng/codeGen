@@ -1,5 +1,7 @@
 package com.codegen.configuration;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.freemarker.FreeMarkerAutoConfiguration;
 import org.springframework.boot.autoconfigure.freemarker.FreeMarkerProperties;
@@ -8,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 
+
 /**
  * @author Pengxiaopeng
  * @DESCRIPTION todo
@@ -15,6 +18,7 @@ import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
  **/
 @Configuration
 public class FreeMarkerConfig extends FreeMarkerAutoConfiguration{
+    protected final Log logger = LogFactory.getLog(this.getClass());
     @Value("${spring.freemarker.template-loader-path}")
     private String templateLoaderPath;
     @Value("${spring.freemarker.prefer-file-system-access}")
@@ -31,6 +35,7 @@ public class FreeMarkerConfig extends FreeMarkerAutoConfiguration{
     @Bean("freeMarkerConfigurer")
     public FreeMarkerConfigurer getFreemarkerConfig() {
         FreeMarkerConfigurer factory = new CustomizeFreeMarkerConfigurer();
+
         factory.setTemplateLoaderPaths(templateLoaderPath);
         factory.setPreferFileSystemAccess(preferFileSystemAccess);
         factory.setDefaultEncoding(charset);
