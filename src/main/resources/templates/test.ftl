@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Insert title here</title>
     <#include "include/cssResource.ftl">
-
+    <#import "include/formElements.ftl" as formElements>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -22,23 +22,11 @@
     <div class="content-wrapper">
         <form id="list" class="layui-form">
             <div class="layui-form-item">
-                <div class="layui-inline" style="margin-top: 10px;">
-                    <label class="layui-form-label">名字</label>
-                    <div class="layui-input-inline">
-                        <input type="text" name="name" value="${authority.name!""}" autocomplete="off"
-                               class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-inline" style="margin-top: 10px;">
-                    <label class="layui-form-label">url</label>
-                    <div class="layui-input-inline">
-                        <input type="text" name="url" value="${authority.url!""}" autocomplete="off"
-                               class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-inline" style="margin-top: 10px;">
-                    <button class="btn btn-success" lay-submit=""><i class="fa fa-search"></i>搜索</button>
-                </div>
+                <@formElements.searchElement style="margin-top: 10px;" name="name" value="${authority.name!''}" label="名字" placeholder="请输入名字" />
+
+                <@formElements.searchElement style="margin-top: 10px;" name="url" value="${authority.url!''}" label="url" placeholder="请输入url" />
+
+                <@formElements.searchButton />
             </div>
             <#assign headItmeList=["名字","url","parentId","节点类型","权限别名","创建时间","修改时间","操作"]>
             <#assign bodyItmeList=["name","url","parentId","positionDesc","name","createDateDesc","modifyDateDesc","buttonStr"]>
