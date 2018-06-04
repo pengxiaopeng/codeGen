@@ -4,7 +4,13 @@
     <tr>
     <input type='hidden' id='id' value=${item.id}>
     <#list bodyItmeList as body>
-       <td>${item[body]}</td>
+       <td>
+       <#if body?has_next>
+            ${item[body]}
+       <#else>
+           ${operateButtonStr}
+       </#if>
+       </td>
     </#list>
     </tr>
 </#list>
@@ -13,7 +19,6 @@
 <#assign inlineTemplate = templateSource?interpret>
 
 <@inlineTemplate />
-
 
 
 

@@ -8,29 +8,13 @@
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
-    <#include "include/navbar.ftl">
-    <@navbar json={"name":"mouse", "price":50}>
-    <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
-        <ul class="nav nav-pills">
-            <li class="nav-item ">
-                <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
-            </li>
-            <li class="nav-item d-none d-sm-inline-block">
-                <a href="/admin/authority/list" class="nav-link active">菜单列表</a>
-            </li>
-            <li class="nav-item d-none d-sm-inline-block">
-                <a href="/admin/authority/addView" class="nav-link">添加菜单</a>
-            </li>
-        </ul>
 
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#"><i
-                        class="fa fa-th-large"></i></a>
-            </li>
-        </ul>
-    </nav>
+    <#include "include/navbar.ftl">
+    <@navbar json={"list":[
+        {"url":"/admin/authority/list","class":"active","title":"菜单列表"},
+        {"url":"/admin/authority/addView","class":"","title":"添加菜单"}
+    ]}
+    />
 
     <#include "include/sideBarMenu.ftl">
 
@@ -58,6 +42,8 @@
             </div>
             <#assign headItmeList=["名字","url","parentId","节点类型","权限别名","创建时间","修改时间","操作"]>
             <#assign bodyItmeList=["name","url","parentId","positionDesc","name","createDateDesc","modifyDateDesc","buttonStr"]>
+            <#assign operateButtonStr = "<a class='btn btn-success btn-sm' onclick='editById(this);'>修改</a>
+                               <a class='btn  btn-success btn-sm' onclick='deleteById(this);'>删除</a>">
             <#include "include/table.ftl">
         </form>
     </div>
@@ -71,6 +57,7 @@
             window.location.href = "/admin/authority/delete?id=" + id;
         });
     }
+
     function editById(_this) {
 
     }
