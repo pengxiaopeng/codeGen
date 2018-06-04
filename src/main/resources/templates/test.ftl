@@ -29,7 +29,11 @@
                 <@formElements.searchButton />
             </div>
             <#assign headItmeList=["名字","url","parentId","节点类型","权限别名","创建时间","修改时间","操作"]>
-            <#assign bodyItmeList=["name","url","parentId","positionDesc","name","createDateDesc","modifyDateDesc","buttonStr"]>
+
+            <#assign bodyItmeList=["${r'${item.name}'}","${r'${item.url}'}","${r'${item.parentId}'}",
+            "${r'${(item.position==1)?then(\"功能节点 \",\"菜单节点\")}'}","${r'${item.authorities}'}",
+            "${r'${item.createDate?datetime}'}","${r'${item.modifyDate?datetime}'}","buttonStr"]>
+
             <#assign operateButtonStr = "<a class='btn btn-success btn-sm' onclick='editById(this);'>修改</a>
                                <a class='btn  btn-success btn-sm' onclick='deleteById(this);'>删除</a>">
             <#include "include/table.ftl">
@@ -41,13 +45,13 @@
 <script type="text/javascript">
     function deleteById(_this) {
         layer.confirm('确认删除该记录?', {icon: 3, title: '提示'}, function (index) {
-            var id = $(_this).closest("tr").find("input[name='id']").attr("name");
+            var id = $(_this).closest("tr").find("input[id='id']").attr("name");
             window.location.href = "/admin/authority/delete?id=" + id;
         });
     }
 
     function editById(_this) {
-        var id = $(_this).closest("tr").find("input[name='id']").attr("name");
+        var id = $(_this).closest("tr").find("input[id='id']").attr("name");
         window.location.href = "/admin/authority/edit?id=" + id;
     }
 </script>

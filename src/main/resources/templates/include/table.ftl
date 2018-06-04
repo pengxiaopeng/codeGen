@@ -5,8 +5,33 @@
                 <!-- /.card-header -->
                 <div class="card-body">
                     <table id="table" class="table table-bordered table-hover">
-                           <#include "tableHead.ftl">
-                           <#include "tableBody.ftl">
+                        <thead>
+                            <tr>
+                            <#list headItmeList as head>
+                                <th>${head}</th>
+                            </#list>
+                            </tr>
+                        </thead>
+                        </head
+                        <tbody>
+                            <#list page.result as item>
+                            <tr>
+                                <input type='hidden' id='id' value=${item.id}>
+                                <#list bodyItmeList as body>
+                                   <td>
+                                   <#if body?has_next>
+                                       <#assign bodyStr="${body}" >
+                                       <#assign templateSource = r""+bodyStr>
+                                       <#assign inlineTemplate = templateSource?interpret>
+                                       <@inlineTemplate />
+                                   <#else>
+                                       ${operateButtonStr}
+                                   </#if>
+                                   </td>
+                                </#list>
+                            </tr>
+                            </#list>
+                        </tbody>
                     </table>
                 </div>
                 <!-- /.card-body -->
