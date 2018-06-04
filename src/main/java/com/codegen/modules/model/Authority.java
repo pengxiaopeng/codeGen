@@ -1,7 +1,6 @@
 package com.codegen.modules.model;
 
 import com.codegen.common.model.BaseModel;
-import org.apache.commons.lang3.time.DateFormatUtils;
 
 import java.util.Date;
 import java.util.List;
@@ -40,38 +39,6 @@ public class Authority extends BaseModel {
     // 节点业务类型（0：其他；1：待办；2：我的应用）
     private Integer bizType;
     private List<Authority> childAuthorityList;
-
-    private String positionDesc;
-    private String modifyDateDesc;
-    private String createDateDesc;
-
-    public String getPositionDesc() {
-        if(position == null) {
-            return "";
-        }
-
-        return position == 1 ? "功能节点" : "菜单节点";
-    }
-
-    public void setPositionDesc(String positionDesc) {
-        this.positionDesc = positionDesc;
-    }
-
-    public String getModifyDateDesc() {
-        return modifyDate == null ? "" : DateFormatUtils.format(modifyDate, "yyyy-MM-dd HH:mm:ss");
-    }
-
-    public void setModifyDateDesc(String modifyDateDesc) {
-        this.modifyDateDesc = modifyDateDesc;
-    }
-
-    public String getCreateDateDesc() {
-        return createDate == null ? "" : DateFormatUtils.format(createDate, "yyyy-MM-dd HH:mm:ss");
-    }
-
-    public void setCreateDateDesc(String createDateDesc) {
-        this.createDateDesc = createDateDesc;
-    }
 
     public Authority() {
     }
