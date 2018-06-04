@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+
+<head>
+    <title>添加菜单</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <head th:insert="fragments/cssResource :: cssResource"></head>
+    <style type="text/css">
+        form label {
+            width: 7rem !important;
+        }
+    </style>
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
+        <ul class="nav nav-pills">
+            <li class="nav-item ">
+                <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="/admin/authority/list" class="nav-link">菜单列表</a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="/admin/authority/addView" class="nav-link active">添加菜单</a>
+            </li>
+        </ul>
+
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#"><i
+                        class="fa fa-th-large"></i></a>
+            </li>
+        </ul>
+    </nav>
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar elevation-4 sidebar-dark-primary">
+        <!-- Brand Logo -->
+        <a href="../index3.html" class="brand-link">
+            <span class="brand-text font-weight-light">管理系统</span>
+        </a>
+
+        <!-- Sidebar -->
+        <div th:insert="fragments/sideBar2 :: sideBar"></div>
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-12">
+                        <!-- general form elements -->
+                        <div class="card card-success">
+                            <div class="card-header">
+                                <h3 class="card-title">添加菜单</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <form class="layui-form" action="/admin/authority/add">
+                                <div class="card-body">
+                                    <div class="layui-form-item">
+                                        <div class="layui-inline">
+                                            <label class="layui-form-label">名字</label>
+                                            <div class="layui-input-inline">
+                                                <input type="text" name="name" lay-verify="required" placeholder="请输入名字" autocomplete="off" class="layui-input" maxlength="30">
+                                            </div>
+                                        </div>
+                                        <div class="layui-inline">
+                                            <label class="layui-form-label">url</label>
+                                            <div class="layui-input-inline">
+                                                <input type="text" name="url" lay-verify="required" autocomplete="off" class="layui-input" maxlength="200">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-inline">
+                                            <label class="layui-form-label">权限别名</label>
+                                            <div class="layui-input-inline">
+                                                <input type="text" name="authorities" lay-verify="required" placeholder="请输入权限别名" autocomplete="off" class="layui-input" maxlength="200">
+                                            </div>
+                                        </div>
+                                        <div class="layui-inline">
+                                            <label class="layui-form-label">icon</label>
+                                            <div class="layui-input-inline">
+                                                <input type="text" name="itemIcon" placeholder="请输入icon的css 类名" autocomplete="off" class="layui-input" maxlength="100">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-inline">
+                                            <label class="layui-form-label">父节点</label>
+                                            <div class="layui-input-inline">
+                                                <select name="parentId" lay-verify="" lay-search>
+                                                    <option value="0">请选择</option>
+                                                    <option th:each="root : ${parentAuthorityList}"
+                                                            th:value="${root.id}"
+                                                            th:text="${root.name}">1
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="layui-inline">
+                                        <label class="layui-form-label">菜单类型</label>
+                                        <div class="layui-inline">
+                                            <input type="radio" name="position" value="1" title="功能节点" checked="">
+                                            <input type="radio" name="position" value="0" title="菜单节点">
+                                        </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button class="btn btn-success" lay-submit lay-filter="formDemo">提交</button>
+                                            <button type="button" onClick="javascript :history.back(-1);" class="layui-btn layui-btn-primary">返回</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- /.content -->
+    </div>
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+</div>
+<footer th:insert="fragments/jsResource :: jsResource"></footer>
+</body>
+</html>
