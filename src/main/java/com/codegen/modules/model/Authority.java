@@ -1,13 +1,14 @@
 package com.codegen.modules.model;
 
 import com.codegen.common.model.BaseModel;
+import org.apache.commons.lang3.time.DateFormatUtils;
 
 import java.util.Date;
 import java.util.List;
 
 /**
-* tableName：bid_authority
-*/
+ * tableName：bid_authority
+ */
 public class Authority extends BaseModel {
 
     private static final long serialVersionUID = 1L;
@@ -28,20 +29,63 @@ public class Authority extends BaseModel {
     private String url;
     //节点对应的图标样式
     private String itemIcon;
-   // 创建时间
+    // 创建时间
     private Date createDate;
     //更新时间
     private Date modifyDate;
-   // 创建人id
+    // 创建人id
     private Long createUserId;
-   // 修改人id
+    // 修改人id
     private Long modifyUserId;
-   // 节点业务类型（0：其他；1：待办；2：我的应用）
+    // 节点业务类型（0：其他；1：待办；2：我的应用）
     private Integer bizType;
     private List<Authority> childAuthorityList;
+    private String buttonStr = "<a class='btn btn-success btn-sm' onclick='editById(this);'>修改</a>\n" +
+            "<a class='btn  btn-success btn-sm' onclick='deleteById(this);'>删除</a>";
+    private String positionDesc;
+    private String modifyDateDesc;
+    private String createDateDesc;
 
-    public Authority(){}
-    public Authority(Long parentId){
+    public String getPositionDesc() {
+        if(position == null) {
+            return "";
+        }
+
+        return position == 1 ? "功能节点" : "菜单节点";
+    }
+
+    public void setPositionDesc(String positionDesc) {
+        this.positionDesc = positionDesc;
+    }
+
+    public String getModifyDateDesc() {
+        return modifyDate == null ? "" : DateFormatUtils.format(modifyDate, "yyyy-MM-dd HH:mm:ss");
+    }
+
+    public void setModifyDateDesc(String modifyDateDesc) {
+        this.modifyDateDesc = modifyDateDesc;
+    }
+
+    public String getCreateDateDesc() {
+        return createDate == null ? "" : DateFormatUtils.format(createDate, "yyyy-MM-dd HH:mm:ss");
+    }
+
+    public void setCreateDateDesc(String createDateDesc) {
+        this.createDateDesc = createDateDesc;
+    }
+
+    public String getButtonStr() {
+        return buttonStr;
+    }
+
+    public void setButtonStr(String buttonStr) {
+        this.buttonStr = buttonStr;
+    }
+
+    public Authority() {
+    }
+
+    public Authority(Long parentId) {
         this.parentId = parentId;
     }
 
