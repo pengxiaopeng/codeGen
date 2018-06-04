@@ -40,8 +40,7 @@ public class Authority extends BaseModel {
     // 节点业务类型（0：其他；1：待办；2：我的应用）
     private Integer bizType;
     private List<Authority> childAuthorityList;
-    private String buttonStr = "<a class='btn btn-success btn-sm' onclick='editById(this);'>修改</a>\n" +
-            "<a class='btn  btn-success btn-sm' onclick='deleteById(this);'>删除</a>";
+
     private String positionDesc;
     private String modifyDateDesc;
     private String createDateDesc;
@@ -72,14 +71,6 @@ public class Authority extends BaseModel {
 
     public void setCreateDateDesc(String createDateDesc) {
         this.createDateDesc = createDateDesc;
-    }
-
-    public String getButtonStr() {
-        return buttonStr;
-    }
-
-    public void setButtonStr(String buttonStr) {
-        this.buttonStr = buttonStr;
     }
 
     public Authority() {
