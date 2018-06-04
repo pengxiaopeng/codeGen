@@ -8,6 +8,8 @@
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
+    <#include "include/navbar.ftl">
+    <@navbar json={"name":"mouse", "price":50}>
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
         <ul class="nav nav-pills">
