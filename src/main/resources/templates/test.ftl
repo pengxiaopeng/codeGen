@@ -63,6 +63,7 @@
                     <button class="btn btn-success" lay-submit=""><i class="fa fa-search"></i>搜索</button>
                 </div>
             </div>
+
             <section class="content">
                 <div class="row">
                     <div class="col-12">
@@ -83,27 +84,43 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <#list page.result as item>
+
+                                   <#-- <#assign bodyItmeList=["item.name","item.url","(item.position==1)?string('功能节点','菜单节点')",
+                                    "item.authorities","item.createDate?datetime","item.modifyDate?datetime",""]>-->
+                                   <#--<#assign bodyItmeList=["${r'${item.name}'}","${r'${item.url}'}","${r\"${(item.position==1)?string('功能节点','菜单节点')}\"}",
+                                                                        "${r'${item.authorities}'}","${r'${item.createDate?datetime}'}","${r'${item.modifyDate?datetime}'}",""]>-->
+                                   <#assign bodyPrefixList=["","","(","","","","",""]>
+                                   <#assign bodyItmeList=["name","url","name","url","name","createDate","modifyDate","url"]>
+                                   <#assign bodySuffixList=["","","","==1)?string('功能节点','菜单节点')","","?datetime","?datetime","url"]>
+                                   <#include "include/table.ftl">
+
+                                   <#--<#list page.result as item>
                                     <tr>
-                                        <td >${item.name}</td>
-                                        <td >${item.url}</td>
-                                        <td >${item.url}</td>
-                                        <td >${(item.position==1)?string('功能节点','菜单节点')}</td>
-                                        <td >${item.authorities}</td>
-                                        <td >${item.createDate?datetime}</td>
-                                        <td >${item.modifyDate?datetime}</td>
+                                        <#include "include/table.ftl">
+                                    </tr>
+                                    </#list>-->
+
+
+
+                                    <#--<#list page.result as item>
+                                    <tr>
+                                        <td>${item.name}</td>
+                                        <td>${item.url}</td>
+                                        <td>${item.url}</td>
+                                        <td>${(item.position==1)?string('功能节点','菜单节点')}</td>
+                                        <td>${item.authorities}</td>
+                                        <td>${item.createDate?datetime}</td>
+                                        <td>${item.modifyDate?datetime}</td>
                                         <td>
-                                            <#--<div sec:authorize="hasAuthority('admin:authority')">-->
                                                 <a class="btn btn-success btn-sm"
                                                    href="/admin/authority/editView?id='+${item.id}">修改
                                                 </a>
                                                 <a class="btn  btn-success btn-sm" onclick='deleteById(this);'
                                                    name=${item.id}">删除
                                                 </a>
-                                            <#--</div>-->
                                         </td>
                                     </tr>
-                                    </#list>
+                                    </#list>-->
                                     </tbody>
                                 </table>
                             </div>
