@@ -29,21 +29,12 @@
             </li>
         </ul>
     </nav>
-    <!-- Main Sidebar Container -->
-    <aside class="main-sidebar elevation-4 sidebar-dark-primary">
-        <!-- Brand Logo -->
-        <a href="../index3.html" class="brand-link">
-            <span class="brand-text font-weight-light">管理系统</span>
-        </a>
 
-        <!-- Sidebar -->
-        <#include "include/sideBarMenu.ftl">
-    </aside>
+    <#include "include/sideBarMenu.ftl">
+
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <form id="list" class="layui-form">
-            <input type="hidden" name="page">
-            <input type="hidden" name="pageMax">
             <div class="layui-form-item">
                 <div class="layui-inline" style="margin-top: 10px;">
                     <label class="layui-form-label">名字</label>
@@ -63,82 +54,12 @@
                     <button class="btn btn-success" lay-submit=""><i class="fa fa-search"></i>搜索</button>
                 </div>
             </div>
-
-            <section class="content">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <!-- /.card-header -->
-                            <div class="card-body">
-                                <table id="example2" class="table table-bordered table-hover">
-                                    <thead>
-                                    <tr>
-                                        <th>名字</th>
-                                        <th>url</th>
-                                        <th>parentId</th>
-                                        <th>节点类型</th>
-                                        <th>权限别名</th>
-                                        <th>创建时间</th>
-                                        <th>修改时间</th>
-                                        <th>操作</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-
-                                   <#-- <#assign bodyItmeList=["item.name","item.url","(item.position==1)?string('功能节点','菜单节点')",
-                                    "item.authorities","item.createDate?datetime","item.modifyDate?datetime",""]>-->
-                                   <#--<#assign bodyItmeList=["${r'${item.name}'}","${r'${item.url}'}","${r\"${(item.position==1)?string('功能节点','菜单节点')}\"}",
-                                                                        "${r'${item.authorities}'}","${r'${item.createDate?datetime}'}","${r'${item.modifyDate?datetime}'}",""]>-->
-                                   <#assign bodyPrefixList=["","","(","","","","",""]>
-                                   <#assign bodyItmeList=["name","url","name","url","name","createDate","modifyDate","url"]>
-                                   <#assign bodySuffixList=["","","","==1)?string('功能节点','菜单节点')","","?datetime","?datetime","url"]>
-                                   <#include "include/table.ftl">
-
-                                   <#--<#list page.result as item>
-                                    <tr>
-                                        <#include "include/table.ftl">
-                                    </tr>
-                                    </#list>-->
-
-
-
-                                    <#--<#list page.result as item>
-                                    <tr>
-                                        <td>${item.name}</td>
-                                        <td>${item.url}</td>
-                                        <td>${item.url}</td>
-                                        <td>${(item.position==1)?string('功能节点','菜单节点')}</td>
-                                        <td>${item.authorities}</td>
-                                        <td>${item.createDate?datetime}</td>
-                                        <td>${item.modifyDate?datetime}</td>
-                                        <td>
-                                                <a class="btn btn-success btn-sm"
-                                                   href="/admin/authority/editView?id='+${item.id}">修改
-                                                </a>
-                                                <a class="btn  btn-success btn-sm" onclick='deleteById(this);'
-                                                   name=${item.id}">删除
-                                                </a>
-                                        </td>
-                                    </tr>
-                                    </#list>-->
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- /.card-body -->
-                            <#include "include/page.ftl">
-                        </div>
-                        <!-- /.card -->
-                    </div>
-                    <!-- /.col -->
-                </div>
-                <!-- /.row -->
-            </section>
-            <!-- /.content -->
+            <#assign headItmeList=["名字","url","parentId","节点类型","权限别名","创建时间","修改时间","操作"]>
+            <#assign bodyItmeList=["name","url","parentId","positionDesc","name","createDateDesc","modifyDateDesc","buttonStr"]>
+            <#include "include/table.ftl">
         </form>
     </div>
-    <aside class="control-sidebar control-sidebar-dark">
-        <!-- Control sidebar content goes here -->
-    </aside>
+    <#include "include/sidebarControl.ftl">
 </div>
 <#include "include/jsResource.ftl">
 <script type="text/javascript">
@@ -148,7 +69,9 @@
             window.location.href = "/admin/authority/delete?id=" + id;
         });
     }
-</script>
+    function editById(_this) {
 
+    }
+</script>
 </body>
 </html>
