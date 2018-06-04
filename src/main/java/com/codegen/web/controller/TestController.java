@@ -25,6 +25,6 @@ public class TestController extends CommonContrller {
         pageMax = pageMax == null ? 10 : pageMax;
         model.addAttribute("page", authorityService.findPage(page, pageMax, authority));
         model.addAttribute("authority", authority);
-        return "test";
+        return "authority/list";
     }
 }
