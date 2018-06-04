@@ -2,7 +2,7 @@
 <tbody>
 <#list page.result as item>
     <tr>
-    <input type='hidden' id='id' value=${item.id}>
+    <input type='hidden' name='id' value=${item.id}>
     <#list bodyItmeList as body>
        <td>
        <#if body?has_next>
