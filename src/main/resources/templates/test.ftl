@@ -22,9 +22,9 @@
     <div class="content-wrapper">
         <form id="list" class="layui-form" action="/admin/authority/list">
             <div class="layui-form-item">
-                <@formElements.searchElement style="margin-top: 10px;" name="name" value="${authority.name!''}" label="名字" placeholder="请输入名字" />
+                <@formElements.inputElement style="margin-top: 10px;" name="name" value="${authority.name!''}" label="名字" placeholder="请输入名字" />
 
-                <@formElements.searchElement style="margin-top: 10px;" name="url" value="${authority.url!''}" label="url" placeholder="请输入url" />
+                <@formElements.inputElement style="margin-top: 10px;" name="url" value="${authority.url!''}" label="url" placeholder="请输入url" />
 
                 <@formElements.searchButton />
             </div>

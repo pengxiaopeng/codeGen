@@ -13,5 +13,3 @@
     <!-- AdminLTE for demo purposes -->
     <script src="/AdminLTE-3.0.0-alpha/dist/js/demo.js"></script>
 
-
-

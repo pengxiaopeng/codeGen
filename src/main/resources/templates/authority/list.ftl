@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Insert title here</title>
+    <title>权限管理</title>
     <#include "../include/cssResource.ftl">
     <#import "../include/formElements.ftl" as formElements>
 </head>
@@ -18,13 +18,12 @@
 
     <#include "../include/sideBarMenu.ftl">
 
-    <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <form id="list" class="layui-form" action="/admin/authority/list">
             <div class="layui-form-item">
-                <@formElements.searchElement style="margin-top: 10px;" name="name" value="${authority.name!''}" label="名字" placeholder="请输入名字" />
+                <@formElements.inputElement style="margin-top: 10px;" name="name" value="${authority.name!''}" label="名字" placeholder="请输入名字" />
 
-                <@formElements.searchElement style="margin-top: 10px;" name="url" value="${authority.url!''}" label="url" placeholder="请输入url" />
+                <@formElements.inputElement style="margin-top: 10px;" name="url" value="${authority.url!''}" label="url" placeholder="请输入url" />
 
                 <@formElements.searchButton />
             </div>
