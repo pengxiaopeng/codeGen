@@ -25,7 +25,7 @@
                 <div class="layui-inline" style="margin-top: 10px;">
                     <label class="layui-form-label">名字</label>
                     <div class="layui-input-inline">
-                        <input type="tel" name="name" value="${authority.name!""}" autocomplete="off"
+                        <input type="text" name="name" value="${authority.name!""}" autocomplete="off"
                                class="layui-input">
                     </div>
                 </div>
