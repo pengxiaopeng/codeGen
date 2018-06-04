@@ -20,7 +20,7 @@
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-        <form id="list" class="layui-form">
+        <form id="list" class="layui-form" action="/admin/authority/list">
             <div class="layui-form-item">
                 <@formElements.searchElement style="margin-top: 10px;" name="name" value="${authority.name!''}" label="名字" placeholder="请输入名字" />
 
