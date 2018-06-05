@@ -44,8 +44,8 @@ public class AuthorityController extends CommonContrller {
             authority.setModifyDate(new Date());
             authorityService.save(authority);
         }
-        redirectAttributes.addFlashAttribute("message", "添加成功");
-        redirectAttributes.addFlashAttribute("icon", Constants.SUCCESS_ICON);
+        redirectAttributes.addFlashAttribute(Constants.MESSAGE_NAME, "添加成功");
+        redirectAttributes.addFlashAttribute(Constants.ICON_NAME, Constants.SUCCESS_ICON);
         return "redirect:/admin/authority/list";
     }
 
@@ -56,8 +56,8 @@ public class AuthorityController extends CommonContrller {
             return "authority/edit";
         }
 
-        redirectAttributes.addFlashAttribute("message", "id不能为空");
-        redirectAttributes.addFlashAttribute("icon", Constants.FAIL_ICON);
+        redirectAttributes.addFlashAttribute(Constants.MESSAGE_NAME, "id不能为空");
+        redirectAttributes.addFlashAttribute(Constants.ICON_NAME, Constants.FAIL_ICON);
         return "redirect:/admin/authority/list";
 
     }
@@ -73,8 +73,8 @@ public class AuthorityController extends CommonContrller {
             icon = Constants.SUCCESS_ICON;
         }
 
-        redirectAttributes.addFlashAttribute("message", message);
-        redirectAttributes.addFlashAttribute("icon", icon);
+        redirectAttributes.addFlashAttribute(Constants.MESSAGE_NAME, message);
+        redirectAttributes.addFlashAttribute(Constants.ICON_NAME, icon);
         return "redirect:/admin/authority/list";
     }
 
@@ -83,8 +83,8 @@ public class AuthorityController extends CommonContrller {
         if (id != null) {
             authorityService.deleteByPrimaryKey(id);
         }
-        redirectAttributes.addFlashAttribute("message", "删除成功");
-        redirectAttributes.addFlashAttribute("icon", Constants.SUCCESS_ICON);
+        redirectAttributes.addFlashAttribute(Constants.MESSAGE_NAME, "删除成功");
+        redirectAttributes.addFlashAttribute(Constants.ICON_NAME, Constants.SUCCESS_ICON);
         return "redirect:/admin/authority/list";
     }
 }
