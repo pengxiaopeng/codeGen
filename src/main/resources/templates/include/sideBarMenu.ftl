@@ -9,7 +9,6 @@
                 data-accordion="false">
         <#list getListFrom("authority") as authority>
             <li class="nav-item">
-            <#--<a href="<#if authority.parentId == 0>#<#else>${authority.url}</#if>" class="nav-link">-->
                 <a href="${(authority.parentId == 0)?string('#',authority.url)}" class="nav-link">
                     <i class="fa fa-tree nav-icon"></i>
                     <p>${authority.name}<i class="right fa fa-angle-left"></i></p>
@@ -19,7 +18,6 @@
                     <ul class="nav nav-treeview">
                         <#list childAuthorityList as childAuthority>
                             <li class="nav-item">
-                            <#--<a href="<#if childAuthority.parentId == 0>#<#else>${childAuthority.url}</#if>" class="nav-link">-->
                                 <a href="${(childAuthority.parentId == 0)?string('#',childAuthority.url)}"
                                    class="nav-link">
                                     <i class="fa fa-circle-o nav-icon"></i>
@@ -35,3 +33,20 @@
         </nav>
     </div>
 </aside>
+<script type="text/javascript">
+    // 选中的菜单 进行高亮显示
+    var pathname = window.location.pathname;
+    var pathname2 = pathname.substring(0, pathname.lastIndexOf("/"));
+    if(pathname2 != "") {
+        $('#sidebar a').each(function (index) {
+            if ($(this).attr('href').startsWith(pathname2)) {
+                $(this).addClass('active');
+                var $ul = $(this).parent().parent();
+                if ($ul.hasClass("nav-treeview")) {
+                    $ul.prev().addClass('active');
+                    $ul.parent().addClass('menu-open');
+                }
+            }
+        });
+    }
+</script>

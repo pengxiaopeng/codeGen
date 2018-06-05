@@ -1,5 +1,5 @@
 <#--输入框模板-->
-<#macro inputElement style="" name="" value="" label="" type="text" placeholder="" verify="" maxlength="">
+<#macro inputElement style="" name="" value="" label="" type="text" placeholder="" verify="" maxlength="200">
     <div class="layui-inline" style="${style!""}">
         <label class="layui-form-label">${label!""}</label>
         <div class="layui-input-inline">
@@ -29,7 +29,7 @@
 </#macro>
 
 <#--下拉选择框-->
-<#macro selectModel label="" verify="" name="" list>
+<#macro selectModel label="" verify="" name="" list=[]>
     <div class="layui-inline">
         <label class="layui-form-label">${label!""}</label>
         <div class="layui-input-inline">
@@ -37,7 +37,7 @@
                 <option value="">请选择${label!""}</option>
                 <#if  list?? && (list?size>0)>
                     <#list list as item>
-                        <option value="${item.value}">${item.value}</option>
+                        <option value="${item.id}">${item.name}</option>
                     </#list>
                 </#if>
             </select>

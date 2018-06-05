@@ -30,6 +30,7 @@
     <link href="/layui/css/global.css" rel="stylesheet"
           media="screen"/>
     <script src="/layui/layui.js"></script>
+    <script src="/AdminLTE-3.0.0-alpha/plugins/jquery/jquery.min.js"></script>
     <script type="text/javascript">
         //Demo
         layui.use(['form', 'layedit', 'laydate', 'element', 'laypage', 'table', 'layer'], function () {

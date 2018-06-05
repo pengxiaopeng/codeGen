@@ -45,14 +45,14 @@
 <script type="text/javascript">
     function deleteById(_this) {
         layer.confirm('确认删除该记录?', {icon: 3, title: '提示'}, function (index) {
-            var id = $(_this).closest("tr").find("input[id='id']").attr("name");
+            var id = $(_this).closest("tr").find("input[id='id']").val();
             window.location.href = "/admin/authority/delete?id=" + id;
         });
     }
 
     function editById(_this) {
-        var id = $(_this).closest("tr").find("input[id='id']").attr("name");
-        window.location.href = "/admin/authority/edit?id=" + id;
+        var id = $(_this).closest("tr").find("input[id='id']").val();
+        window.location.href = "/admin/authority/editView?id=" + id;
     }
 </script>
 </body>

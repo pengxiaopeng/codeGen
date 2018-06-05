@@ -51,7 +51,7 @@
                                     </div>
                                     <div class="layui-form-item">
                                         <@formElements.selectModel label="父节点" list = getListFrom("parentAuthority") />
-                                        <@formElements.radioModel label="菜单类型" list=[{"value":"1","title":"功能节点","checked":"checked"},
+                                        <@formElements.radioModel label="菜单类型" name="position" list=[{"value":"1","title":"功能节点","checked":"checked"},
                                         {"value":"0","title":"菜单节点"}]/>
                                     </div>
 
