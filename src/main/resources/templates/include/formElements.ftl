@@ -29,7 +29,7 @@
 </#macro>
 
 <#--下拉选择框-->
-<#macro selectModel label="" verify="" name="" list=[]>
+<#macro selectModel selectValue="" label="" verify="" name="" list=[] valueName="id" optionName="name">
     <div class="layui-inline">
         <label class="layui-form-label">${label!""}</label>
         <div class="layui-input-inline">
@@ -37,7 +37,11 @@
                 <option value="">请选择${label!""}</option>
                 <#if  list?? && (list?size>0)>
                     <#list list as item>
-                        <option value="${item.id}">${item.name}</option>
+                        <option value="${item[valueName]}"
+                            <#if selectValue!="" && selectValue == item[valueName]?c>
+                                selected="${selectValue}"
+                            </#if>>${item[optionName]}
+                        </option>
                     </#list>
                 </#if>
             </select>
