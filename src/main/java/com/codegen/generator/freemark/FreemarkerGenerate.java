@@ -24,7 +24,7 @@ public class FreemarkerGenerate {
 
     public final static String PACKAGE_NAME = "package";
     public final static String PACKAGE_PATH = "package_path";
-    public final static String GENERATOR_PACKAGE_PATH = "com.codegen.modules";// 包路径
+    public final static String GENERATOR_PACKAGE_PATH = "com.codegen.modules.";// 包路径
 
     private static Configuration cfg = FreemarkerManager.getConfiguration();// 初始化状态
 
