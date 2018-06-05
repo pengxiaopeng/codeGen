@@ -1,169 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.codegen.modulesdao.AdminDao">
-    <resultMap id="BaseResultMap" type="com.codegen.modulesmodel.Admin">
+<mapper namespace="com.codegen.modules.dao.AdminDao">
+    <resultMap id="BaseResultMap" type="com.codegen.modules.model.Admin">
         <id column="ID" property="id" jdbcType="BIGINT"/>
-        <result column="USERNAME" property="username" jdbcType="VARCHAR"/>
-        <result column="NICKNAME" property="nickname" jdbcType="VARCHAR"/>
-        <result column="USERTYPE" property="userType" jdbcType="SMALLINT"/>
-        <result column="USERORGID" property="userOrgId" jdbcType="BIGINT"/>
-        <result column="TOPUSERORGID" property="topUserOrgId" jdbcType="BIGINT"/>
-        <result column="CREATEDATE" property="createDate" jdbcType="TIMESTAMP"/>
-        <result column="MODIFYDATE" property="modifyDate" jdbcType="TIMESTAMP"/>
-        <result column="EMAIL" property="email" jdbcType="VARCHAR"/>
-        <result column="AVATAR" property="avatar" jdbcType="BIGINT"/>
-        <result column="ISENABLED" property="isEnabled" jdbcType="BIT"/>
-        <result column="ISLOCKED" property="isLocked" jdbcType="BIT"/>
-        <result column="LOCKEDDATE" property="lockedDate" jdbcType="TIMESTAMP"/>
-        <result column="LOGINDATE" property="loginDate" jdbcType="TIMESTAMP"/>
-        <result column="LOGINFAILURECOUNT" property="loginFailureCount" jdbcType="INTEGER"/>
-        <result column="LOGINIP" property="loginIp" jdbcType="VARCHAR"/>
-        <result column="PASSWORD" property="password" jdbcType="VARCHAR"/>
-        <result column="PARTMENTID" property="partmentId" jdbcType="BIGINT"/>
-        <result column="CREATEUSERID" property="createUserId" jdbcType="BIGINT"/>
-        <result column="MODIFYUSERID" property="modifyUserId" jdbcType="BIGINT"/>
-        <result column="AUTHORITYARRAYLONGS" property="authorityArrayLongs" jdbcType="BIGINT"/>
-        <result column="DROPDOWNS" property="dropdowns" jdbcType="INTEGER"/>
-        <result column="FOOTER" property="footer" jdbcType="INTEGER"/>
-        <result column="HEADER" property="header" jdbcType="INTEGER"/>
-        <result column="LAYOUT" property="layout" jdbcType="INTEGER"/>
-        <result column="SIDERBARMENU" property="siderbarMenu" jdbcType="INTEGER"/>
-        <result column="SIDERBARMODE" property="siderbarMode" jdbcType="INTEGER"/>
-        <result column="SIDERBARPOSITION" property="siderbarPosition" jdbcType="INTEGER"/>
-        <result column="THEMECOLOR" property="themeColor" jdbcType="INTEGER"/>
-        <result column="THEMESTYLE" property="themeStyle" jdbcType="INTEGER"/>
-        <result column="ISADMIN" property="isAdmin" jdbcType="BIT"/>
-        <result column="HADREADATTENTION" property="hadReadAttention" jdbcType="BIT"/>
+        <result column="USERNAME" property="username" jdbcType="VARCHAR" />
+        <result column="NICKNAME" property="nickname" jdbcType="VARCHAR" />
+        <result column="USER_TYPE" property="userType" jdbcType="VARCHAR" />
+        <result column="USER_ORG_ID" property="userOrgId" jdbcType="BIGINT" />
+        <result column="TOP_USER_ORG_ID" property="topUserOrgId" jdbcType="BIGINT" />
+        <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+        <result column="MODIFY_DATE" property="modifyDate" jdbcType="TIMESTAMP" />
+        <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+        <result column="AVATAR" property="avatar" jdbcType="BINARY" />
+        <result column="IS_ENABLED" property="isEnabled" jdbcType="BIT" />
+        <result column="IS_LOCKED" property="isLocked" jdbcType="BIT" />
+        <result column="LOCKED_DATE" property="lockedDate" jdbcType="TIMESTAMP" />
+        <result column="LOGIN_DATE" property="loginDate" jdbcType="TIMESTAMP" />
+        <result column="LOGIN_FAILURE_COUNT" property="loginFailureCount" jdbcType="VARCHAR" />
+        <result column="LOGIN_IP" property="loginIp" jdbcType="VARCHAR" />
+        <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+        <result column="PARTMENT_ID" property="partmentId" jdbcType="BIGINT" />
+        <result column="CREATE_USER_ID" property="createUserId" jdbcType="BIGINT" />
+        <result column="MODIFY_USER_ID" property="modifyUserId" jdbcType="BIGINT" />
+        <result column="DROPDOWNS" property="dropdowns" jdbcType="INTEGER" />
+        <result column="FOOTER" property="footer" jdbcType="INTEGER" />
+        <result column="HEADER" property="header" jdbcType="INTEGER" />
+        <result column="LAYOUT" property="layout" jdbcType="INTEGER" />
+        <result column="SIDERBAR_MENU" property="siderbarMenu" jdbcType="INTEGER" />
+        <result column="SIDERBAR_MODE" property="siderbarMode" jdbcType="INTEGER" />
+        <result column="SIDERBAR_POSITION" property="siderbarPosition" jdbcType="INTEGER" />
+        <result column="THEME_COLOR" property="themeColor" jdbcType="INTEGER" />
+        <result column="THEME_STYLE" property="themeStyle" jdbcType="INTEGER" />
+        <result column="IS_ADMIN" property="isAdmin" jdbcType="BIT" />
+        <result column="HAD_READ_ATTENTION" property="hadReadAttention" jdbcType="BIT" />
     </resultMap>
 
     <sql id="Base_Column_List">
-        T.ID,
-        T.USERNAME,
-        T.NICKNAME,
-        T.USERTYPE,
-        T.USERORGID,
-        T.TOPUSERORGID,
-        T.CREATEDATE,
-        T.MODIFYDATE,
-        T.EMAIL,
-        T.AVATAR,
-        T.ISENABLED,
-        T.ISLOCKED,
-        T.LOCKEDDATE,
-        T.LOGINDATE,
-        T.LOGINFAILURECOUNT,
-        T.LOGINIP,
-        T.PASSWORD,
-        T.PARTMENTID,
-        T.CREATEUSERID,
-        T.MODIFYUSERID,
-        T.AUTHORITYARRAYLONGS,
-        T.DROPDOWNS,
-        T.FOOTER,
-        T.HEADER,
-        T.LAYOUT,
-        T.SIDERBARMENU,
-        T.SIDERBARMODE,
-        T.SIDERBARPOSITION,
-        T.THEMECOLOR,
-        T.THEMESTYLE,
-        T.ISADMIN,
-        T.HADREADATTENTION
+    T.ID,
+    T.USERNAME,
+    T.NICKNAME,
+    T.USER_TYPE,
+    T.USER_ORG_ID,
+    T.TOP_USER_ORG_ID,
+    T.CREATE_DATE,
+    T.MODIFY_DATE,
+    T.EMAIL,
+    T.AVATAR,
+    T.IS_ENABLED,
+    T.IS_LOCKED,
+    T.LOCKED_DATE,
+    T.LOGIN_DATE,
+    T.LOGIN_FAILURE_COUNT,
+    T.LOGIN_IP,
+    T.PASSWORD,
+    T.PARTMENT_ID,
+    T.CREATE_USER_ID,
+    T.MODIFY_USER_ID,
+    T.DROPDOWNS,
+    T.FOOTER,
+    T.HEADER,
+    T.LAYOUT,
+    T.SIDERBAR_MENU,
+    T.SIDERBAR_MODE,
+    T.SIDERBAR_POSITION,
+    T.THEME_COLOR,
+    T.THEME_STYLE,
+    T.IS_ADMIN,
+    T.HAD_READ_ATTENTION
     </sql>
 
     <sql id="whereSql">
         <if test="username != null">
-            and USERNAME like CONCAT("%",#{username},"%")
-        </if>
-        <if test="nickname != null">
-            and NICKNAME like CONCAT("%",#{nickname},"%")
-        </if>
-        <if test="userType != null">
-            and USERTYPE = #{userType}
-        </if>
-        <if test="userOrgId != null">
-            and USERORGID = #{userOrgId}
-        </if>
-        <if test="topUserOrgId != null">
-            and TOPUSERORGID = #{topUserOrgId}
-        </if>
-        <if test="createDate != null">
-            and CREATEDATE = #{createDate}
-        </if>
-        <if test="modifyDate != null">
-            and MODIFYDATE = #{modifyDate}
-        </if>
-        <if test="email != null">
-            and EMAIL like CONCAT("%",#{email},"%")
-        </if>
-        <if test="avatar != null">
-            and AVATAR = #{avatar}
-        </if>
-        <if test="isEnabled != null">
-            and ISENABLED = #{isEnabled}
-        </if>
-        <if test="isLocked != null">
-            and ISLOCKED = #{isLocked}
-        </if>
-        <if test="lockedDate != null">
-            and LOCKEDDATE = #{lockedDate}
-        </if>
-        <if test="loginDate != null">
-            and LOGINDATE = #{loginDate}
-        </if>
-        <if test="loginFailureCount != null">
-            and LOGINFAILURECOUNT = #{loginFailureCount}
-        </if>
-        <if test="loginIp != null">
-            and LOGINIP like CONCAT("%",#{loginIp},"%")
-        </if>
-        <if test="password != null">
-            and PASSWORD like CONCAT("%",#{password},"%")
-        </if>
-        <if test="partmentId != null">
-            and PARTMENTID = #{partmentId}
-        </if>
-        <if test="createUserId != null">
-            and CREATEUSERID = #{createUserId}
-        </if>
-        <if test="modifyUserId != null">
-            and MODIFYUSERID = #{modifyUserId}
-        </if>
-        <if test="authorityArrayLongs != null">
-            and AUTHORITYARRAYLONGS = #{authorityArrayLongs}
-        </if>
-        <if test="dropdowns != null">
-            and DROPDOWNS = #{dropdowns}
-        </if>
-        <if test="footer != null">
-            and FOOTER = #{footer}
-        </if>
-        <if test="header != null">
-            and HEADER = #{header}
-        </if>
-        <if test="layout != null">
-            and LAYOUT = #{layout}
-        </if>
-        <if test="siderbarMenu != null">
-            and SIDERBARMENU = #{siderbarMenu}
-        </if>
-        <if test="siderbarMode != null">
-            and SIDERBARMODE = #{siderbarMode}
-        </if>
-        <if test="siderbarPosition != null">
-            and SIDERBARPOSITION = #{siderbarPosition}
-        </if>
-        <if test="themeColor != null">
-            and THEMECOLOR = #{themeColor}
-        </if>
-        <if test="themeStyle != null">
-            and THEMESTYLE = #{themeStyle}
-        </if>
-        <if test="isAdmin != null">
-            and ISADMIN = #{isAdmin}
-        </if>
-        <if test="hadReadAttention != null">
-            and HADREADATTENTION = #{hadReadAttention}
+            and USERNAME = #{username}
         </if>
         <if test="idsMap != null">
             <foreach collection="idsMap.keys" item="key" separator=",">
@@ -180,17 +88,17 @@
             <when test="orderByMap != null">
                 order by
                 <foreach collection="orderByMap.keys" item="key" separator=",">
-                    ${key} ${orderByMap[key]}
+                ${key} ${orderByMap[key]}
                 </foreach>
             </when>
         </choose>
     </sql>
 
-    <select id="selectByPrimaryKey" parameterType="java." resultMap="BaseResultMap">
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from BID_ADMIN T
-        where T.ID = #{id,jdbcType=BIGINT}
+        where T.ID = #{id, jdbcType=BIGINT}
     </select>
 
     <select id="findList" resultMap="BaseResultMap">
@@ -209,406 +117,407 @@
         from BID_ADMIN T
     </select>
 
-    <delete id="deleteByPrimaryKey" parameterType="java.">
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
         delete from BID_ADMIN
-        where ID = #{id,jdbcType=BIGINT}
+        where ID = #{id, jdbcType=BIGINT}
     </delete>
 
-    <insert id="insert" parameterType="com.codegen.modulesmodel.Admin" useGeneratedKeys="true" keyProperty="id">
-            insert into BID_ADMIN (
-            USERNAME,
-            NICKNAME,
-            USERTYPE,
-            USERORGID,
-            TOPUSERORGID,
-            CREATEDATE,
-            MODIFYDATE,
-            EMAIL,
-            AVATAR,
-            ISENABLED,
-            ISLOCKED,
-            LOCKEDDATE,
-            LOGINDATE,
-            LOGINFAILURECOUNT,
-            LOGINIP,
-            PASSWORD,
-            PARTMENTID,
-            CREATEUSERID,
-            MODIFYUSERID,
-            AUTHORITYARRAYLONGS,
-            DROPDOWNS,
-            FOOTER,
-            HEADER,
-            LAYOUT,
-            SIDERBARMENU,
-            SIDERBARMODE,
-            SIDERBARPOSITION,
-            THEMECOLOR,
-            THEMESTYLE,
-            ISADMIN,
-            HADREADATTENTION
-            )
-            values (
-            #{username, jdbcType=VARCHAR},
-            #{nickname, jdbcType=VARCHAR},
-            #{userType, jdbcType=SMALLINT},
-            #{userOrgId, jdbcType=BIGINT},
-            #{topUserOrgId, jdbcType=BIGINT},
-            #{createDate, jdbcType=TIMESTAMP},
-            #{modifyDate, jdbcType=TIMESTAMP},
-            #{email, jdbcType=VARCHAR},
-            #{avatar, jdbcType=BIGINT},
-            #{isEnabled, jdbcType=BIT},
-            #{isLocked, jdbcType=BIT},
-            #{lockedDate, jdbcType=TIMESTAMP},
-            #{loginDate, jdbcType=TIMESTAMP},
-            #{loginFailureCount, jdbcType=INTEGER},
-            #{loginIp, jdbcType=VARCHAR},
-            #{password, jdbcType=VARCHAR},
-            #{partmentId, jdbcType=BIGINT},
-            #{createUserId, jdbcType=BIGINT},
-            #{modifyUserId, jdbcType=BIGINT},
-            #{authorityArrayLongs, jdbcType=BIGINT},
-            #{dropdowns, jdbcType=INTEGER},
-            #{footer, jdbcType=INTEGER},
-            #{header, jdbcType=INTEGER},
-            #{layout, jdbcType=INTEGER},
-            #{siderbarMenu, jdbcType=INTEGER},
-            #{siderbarMode, jdbcType=INTEGER},
-            #{siderbarPosition, jdbcType=INTEGER},
-            #{themeColor, jdbcType=INTEGER},
-            #{themeStyle, jdbcType=INTEGER},
-            #{isAdmin, jdbcType=BIT},
-            #{hadReadAttention, jdbcType=BIT}
-            )
+    <insert id="insert" parameterType="com.codegen.modules.model.Admin" useGeneratedKeys="true" keyProperty="id">
+        insert into BID_ADMIN (
+
+        USERNAME,
+        NICKNAME,
+        USER_TYPE,
+        USER_ORG_ID,
+        TOP_USER_ORG_ID,
+        CREATE_DATE,
+        MODIFY_DATE,
+        EMAIL,
+        AVATAR,
+        IS_ENABLED,
+        IS_LOCKED,
+        LOCKED_DATE,
+        LOGIN_DATE,
+        LOGIN_FAILURE_COUNT,
+        LOGIN_IP,
+        PASSWORD,
+        PARTMENT_ID,
+        CREATE_USER_ID,
+        MODIFY_USER_ID,
+        DROPDOWNS,
+        FOOTER,
+        HEADER,
+        LAYOUT,
+        SIDERBAR_MENU,
+        SIDERBAR_MODE,
+        SIDERBAR_POSITION,
+        THEME_COLOR,
+        THEME_STYLE,
+        IS_ADMIN,
+        HAD_READ_ATTENTION
+        )
+        values (
+
+        #{username, jdbcType=VARCHAR},
+        #{nickname, jdbcType=VARCHAR},
+        #{userType, jdbcType=INTEGER},
+        #{userOrgId, jdbcType=BIGINT},
+        #{topUserOrgId, jdbcType=BIGINT},
+        #{createDate, jdbcType=TIMESTAMP},
+        #{modifyDate, jdbcType=TIMESTAMP},
+        #{email, jdbcType=VARCHAR},
+        #{avatar, jdbcType=BINARY},
+        #{isEnabled, jdbcType=BIT},
+        #{isLocked, jdbcType=BIT},
+        #{lockedDate, jdbcType=TIMESTAMP},
+        #{loginDate, jdbcType=TIMESTAMP},
+        #{loginFailureCount, jdbcType=INTEGER},
+        #{loginIp, jdbcType=VARCHAR},
+        #{password, jdbcType=VARCHAR},
+        #{partmentId, jdbcType=BIGINT},
+        #{createUserId, jdbcType=BIGINT},
+        #{modifyUserId, jdbcType=BIGINT},
+        #{dropdowns, jdbcType=INTEGER},
+        #{footer, jdbcType=INTEGER},
+        #{header, jdbcType=INTEGER},
+        #{layout, jdbcType=INTEGER},
+        #{siderbarMenu, jdbcType=INTEGER},
+        #{siderbarMode, jdbcType=INTEGER},
+        #{siderbarPosition, jdbcType=INTEGER},
+        #{themeColor, jdbcType=INTEGER},
+        #{themeStyle, jdbcType=INTEGER},
+        #{isAdmin, jdbcType=BIT},
+        #{hadReadAttention, jdbcType=BIT}
+        )
     </insert>
-    <insert id="insertSelective" parameterType="com.codegen.modulesmodel.Admin" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertSelective" parameterType="com.codegen.modules.model.Admin" useGeneratedKeys="true" keyProperty="id">
         insert into BID_ADMIN
         <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+            ID,
+            </if>
             <if test="username != null">
-                USERNAME,
+            USERNAME,
             </if>
             <if test="nickname != null">
-                NICKNAME,
+            NICKNAME,
             </if>
             <if test="userType != null">
-                USERTYPE,
+            USER_TYPE,
             </if>
             <if test="userOrgId != null">
-                USERORGID,
+            USER_ORG_ID,
             </if>
             <if test="topUserOrgId != null">
-                TOPUSERORGID,
+            TOP_USER_ORG_ID,
             </if>
             <if test="createDate != null">
-                CREATEDATE,
+            CREATE_DATE,
             </if>
             <if test="modifyDate != null">
-                MODIFYDATE,
+            MODIFY_DATE,
             </if>
             <if test="email != null">
-                EMAIL,
+            EMAIL,
             </if>
             <if test="avatar != null">
-                AVATAR,
+            AVATAR,
             </if>
             <if test="isEnabled != null">
-                ISENABLED,
+            IS_ENABLED,
             </if>
             <if test="isLocked != null">
-                ISLOCKED,
+            IS_LOCKED,
             </if>
             <if test="lockedDate != null">
-                LOCKEDDATE,
+            LOCKED_DATE,
             </if>
             <if test="loginDate != null">
-                LOGINDATE,
+            LOGIN_DATE,
             </if>
             <if test="loginFailureCount != null">
-                LOGINFAILURECOUNT,
+            LOGIN_FAILURE_COUNT,
             </if>
             <if test="loginIp != null">
-                LOGINIP,
+            LOGIN_IP,
             </if>
             <if test="password != null">
-                PASSWORD,
+            PASSWORD,
             </if>
             <if test="partmentId != null">
-                PARTMENTID,
+            PARTMENT_ID,
             </if>
             <if test="createUserId != null">
-                CREATEUSERID,
+            CREATE_USER_ID,
             </if>
             <if test="modifyUserId != null">
-                MODIFYUSERID,
+            MODIFY_USER_ID,
             </if>
-            <if test="authorityArrayLongs != null">
-                AUTHORITYARRAYLONGS,
-            </if>
+
             <if test="dropdowns != null">
-                DROPDOWNS,
+            DROPDOWNS,
             </if>
             <if test="footer != null">
-                FOOTER,
+            FOOTER,
             </if>
             <if test="header != null">
-                HEADER,
+            HEADER,
             </if>
             <if test="layout != null">
-                LAYOUT,
+            LAYOUT,
             </if>
             <if test="siderbarMenu != null">
-                SIDERBARMENU,
+            SIDERBAR_MENU,
             </if>
             <if test="siderbarMode != null">
-                SIDERBARMODE,
+            SIDERBAR_MODE,
             </if>
             <if test="siderbarPosition != null">
-                SIDERBARPOSITION,
+            SIDERBAR_POSITION,
             </if>
             <if test="themeColor != null">
-                THEMECOLOR,
+            THEME_COLOR,
             </if>
             <if test="themeStyle != null">
-                THEMESTYLE,
+            THEME_STYLE,
             </if>
             <if test="isAdmin != null">
-                ISADMIN,
+            IS_ADMIN,
             </if>
             <if test="hadReadAttention != null">
-                HADREADATTENTION,
+            HAD_READ_ATTENTION,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+            #{id, jdbcType=BIGINT},
+            </if>
             <if test="username != null">
-                #{username, jdbcType=VARCHAR},
+            #{username, jdbcType=VARCHAR},
             </if>
             <if test="nickname != null">
-                #{nickname, jdbcType=VARCHAR},
+            #{nickname, jdbcType=VARCHAR},
             </if>
             <if test="userType != null">
-                #{userType, jdbcType=SMALLINT},
+            #{userType, jdbcType=INTEGER},
             </if>
             <if test="userOrgId != null">
-                #{userOrgId, jdbcType=BIGINT},
+            #{userOrgId, jdbcType=BIGINT},
             </if>
             <if test="topUserOrgId != null">
-                #{topUserOrgId, jdbcType=BIGINT},
+            #{topUserOrgId, jdbcType=BIGINT},
             </if>
             <if test="createDate != null">
-                #{createDate, jdbcType=TIMESTAMP},
+            #{createDate, jdbcType=TIMESTAMP},
             </if>
             <if test="modifyDate != null">
-                #{modifyDate, jdbcType=TIMESTAMP},
+            #{modifyDate, jdbcType=TIMESTAMP},
             </if>
             <if test="email != null">
-                #{email, jdbcType=VARCHAR},
+            #{email, jdbcType=VARCHAR},
             </if>
             <if test="avatar != null">
-                #{avatar, jdbcType=BIGINT},
+            #{avatar, jdbcType=BINARY},
             </if>
             <if test="isEnabled != null">
-                #{isEnabled, jdbcType=BIT},
+            #{isEnabled, jdbcType=BIT},
             </if>
             <if test="isLocked != null">
-                #{isLocked, jdbcType=BIT},
+            #{isLocked, jdbcType=BIT},
             </if>
             <if test="lockedDate != null">
-                #{lockedDate, jdbcType=TIMESTAMP},
+            #{lockedDate, jdbcType=TIMESTAMP},
             </if>
             <if test="loginDate != null">
-                #{loginDate, jdbcType=TIMESTAMP},
+            #{loginDate, jdbcType=TIMESTAMP},
             </if>
             <if test="loginFailureCount != null">
-                #{loginFailureCount, jdbcType=INTEGER},
+            #{loginFailureCount, jdbcType=INTEGER},
             </if>
             <if test="loginIp != null">
-                #{loginIp, jdbcType=VARCHAR},
+            #{loginIp, jdbcType=VARCHAR},
             </if>
             <if test="password != null">
-                #{password, jdbcType=VARCHAR},
+            #{password, jdbcType=VARCHAR},
             </if>
             <if test="partmentId != null">
-                #{partmentId, jdbcType=BIGINT},
+            #{partmentId, jdbcType=BIGINT},
             </if>
             <if test="createUserId != null">
-                #{createUserId, jdbcType=BIGINT},
+            #{createUserId, jdbcType=BIGINT},
             </if>
             <if test="modifyUserId != null">
-                #{modifyUserId, jdbcType=BIGINT},
+            #{modifyUserId, jdbcType=BIGINT},
             </if>
-            <if test="authorityArrayLongs != null">
-                #{authorityArrayLongs, jdbcType=BIGINT},
-            </if>
+
             <if test="dropdowns != null">
-                #{dropdowns, jdbcType=INTEGER},
+            #{dropdowns, jdbcType=VARCHAR},
             </if>
             <if test="footer != null">
-                #{footer, jdbcType=INTEGER},
+            #{footer, jdbcType=VARCHAR},
             </if>
             <if test="header != null">
-                #{header, jdbcType=INTEGER},
+            #{header, jdbcType=VARCHAR},
             </if>
             <if test="layout != null">
-                #{layout, jdbcType=INTEGER},
+            #{layout, jdbcType=VARCHAR},
             </if>
             <if test="siderbarMenu != null">
-                #{siderbarMenu, jdbcType=INTEGER},
+            #{siderbarMenu, jdbcType=VARCHAR},
             </if>
             <if test="siderbarMode != null">
-                #{siderbarMode, jdbcType=INTEGER},
+            #{siderbarMode, jdbcType=VARCHAR},
             </if>
             <if test="siderbarPosition != null">
-                #{siderbarPosition, jdbcType=INTEGER},
+            #{siderbarPosition, jdbcType=VARCHAR},
             </if>
             <if test="themeColor != null">
-                #{themeColor, jdbcType=INTEGER},
+            #{themeColor, jdbcType=VARCHAR},
             </if>
             <if test="themeStyle != null">
-                #{themeStyle, jdbcType=INTEGER},
+            #{themeStyle, jdbcType=VARCHAR},
             </if>
             <if test="isAdmin != null">
-                #{isAdmin, jdbcType=BIT},
+            #{isAdmin, jdbcType=BIT},
             </if>
             <if test="hadReadAttention != null">
-                #{hadReadAttention, jdbcType=BIT},
+            #{hadReadAttention, jdbcType=BIT},
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.codegen.modulesmodel.Admin">
+    <update id="updateByPrimaryKeySelective" parameterType="com.codegen.modules.model.Admin">
         update BID_ADMIN
         <set>
             <if test="username != null">
-                USERNAME= #{username, jdbcType=VARCHAR},
+            USERNAME= #{username, jdbcType=VARCHAR},
             </if>
             <if test="nickname != null">
-                NICKNAME= #{nickname, jdbcType=VARCHAR},
+            NICKNAME= #{nickname, jdbcType=VARCHAR},
             </if>
             <if test="userType != null">
-                USERTYPE= #{userType, jdbcType=SMALLINT},
+            USER_TYPE= #{userType, jdbcType=INTEGER},
             </if>
             <if test="userOrgId != null">
-                USERORGID= #{userOrgId, jdbcType=BIGINT},
+            USER_ORG_ID= #{userOrgId, jdbcType=BIGINT},
             </if>
             <if test="topUserOrgId != null">
-                TOPUSERORGID= #{topUserOrgId, jdbcType=BIGINT},
+            TOP_USER_ORG_ID= #{topUserOrgId, jdbcType=BIGINT},
             </if>
             <if test="createDate != null">
-                CREATEDATE= #{createDate, jdbcType=TIMESTAMP},
+            CREATE_DATE= #{createDate, jdbcType=TIMESTAMP},
             </if>
             <if test="modifyDate != null">
-                MODIFYDATE= #{modifyDate, jdbcType=TIMESTAMP},
+            MODIFY_DATE= #{modifyDate, jdbcType=TIMESTAMP},
             </if>
             <if test="email != null">
-                EMAIL= #{email, jdbcType=VARCHAR},
+            EMAIL= #{email, jdbcType=VARCHAR},
             </if>
             <if test="avatar != null">
-                AVATAR= #{avatar, jdbcType=BIGINT},
+            AVATAR= #{avatar, jdbcType=BINARY},
             </if>
             <if test="isEnabled != null">
-                ISENABLED= #{isEnabled, jdbcType=BIT},
+            IS_ENABLED= #{isEnabled, jdbcType=BIT},
             </if>
             <if test="isLocked != null">
-                ISLOCKED= #{isLocked, jdbcType=BIT},
+            IS_LOCKED= #{isLocked, jdbcType=BIT},
             </if>
             <if test="lockedDate != null">
-                LOCKEDDATE= #{lockedDate, jdbcType=TIMESTAMP},
+            LOCKED_DATE= #{lockedDate, jdbcType=TIMESTAMP},
             </if>
             <if test="loginDate != null">
-                LOGINDATE= #{loginDate, jdbcType=TIMESTAMP},
+            LOGIN_DATE= #{loginDate, jdbcType=TIMESTAMP},
             </if>
             <if test="loginFailureCount != null">
-                LOGINFAILURECOUNT= #{loginFailureCount, jdbcType=INTEGER},
+            LOGIN_FAILURE_COUNT= #{loginFailureCount, jdbcType=INTEGER},
             </if>
             <if test="loginIp != null">
-                LOGINIP= #{loginIp, jdbcType=VARCHAR},
+            LOGIN_IP= #{loginIp, jdbcType=VARCHAR},
             </if>
             <if test="password != null">
-                PASSWORD= #{password, jdbcType=VARCHAR},
+            PASSWORD= #{password, jdbcType=VARCHAR},
             </if>
             <if test="partmentId != null">
-                PARTMENTID= #{partmentId, jdbcType=BIGINT},
+            PARTMENT_ID= #{partmentId, jdbcType=BIGINT},
             </if>
             <if test="createUserId != null">
-                CREATEUSERID= #{createUserId, jdbcType=BIGINT},
+            CREATE_USER_ID= #{createUserId, jdbcType=BIGINT},
             </if>
             <if test="modifyUserId != null">
-                MODIFYUSERID= #{modifyUserId, jdbcType=BIGINT},
+            MODIFY_USER_ID= #{modifyUserId, jdbcType=BIGINT},
             </if>
-            <if test="authorityArrayLongs != null">
-                AUTHORITYARRAYLONGS= #{authorityArrayLongs, jdbcType=BIGINT},
-            </if>
+
             <if test="dropdowns != null">
-                DROPDOWNS= #{dropdowns, jdbcType=INTEGER},
+            DROPDOWNS= #{dropdowns, jdbcType=INTEGER},
             </if>
             <if test="footer != null">
-                FOOTER= #{footer, jdbcType=INTEGER},
+            FOOTER= #{footer, jdbcType=INTEGER},
             </if>
             <if test="header != null">
-                HEADER= #{header, jdbcType=INTEGER},
+            HEADER= #{header, jdbcType=INTEGER},
             </if>
             <if test="layout != null">
-                LAYOUT= #{layout, jdbcType=INTEGER},
+            LAYOUT= #{layout, jdbcType=INTEGER},
             </if>
             <if test="siderbarMenu != null">
-                SIDERBARMENU= #{siderbarMenu, jdbcType=INTEGER},
+            SIDERBAR_MENU= #{siderbarMenu, jdbcType=INTEGER},
             </if>
             <if test="siderbarMode != null">
-                SIDERBARMODE= #{siderbarMode, jdbcType=INTEGER},
+            SIDERBAR_MODE= #{siderbarMode, jdbcType=INTEGER},
             </if>
             <if test="siderbarPosition != null">
-                SIDERBARPOSITION= #{siderbarPosition, jdbcType=INTEGER},
+            SIDERBAR_POSITION= #{siderbarPosition, jdbcType=INTEGER},
             </if>
             <if test="themeColor != null">
-                THEMECOLOR= #{themeColor, jdbcType=INTEGER},
+            THEME_COLOR= #{themeColor, jdbcType=INTEGER},
             </if>
             <if test="themeStyle != null">
-                THEMESTYLE= #{themeStyle, jdbcType=INTEGER},
+            THEME_STYLE= #{themeStyle, jdbcType=INTEGER},
             </if>
             <if test="isAdmin != null">
-                ISADMIN= #{isAdmin, jdbcType=BIT},
+            IS_ADMIN= #{isAdmin, jdbcType=BIT},
             </if>
             <if test="hadReadAttention != null">
-                HADREADATTENTION= #{hadReadAttention, jdbcType=BIT},
+            HAD_READ_ATTENTION= #{hadReadAttention, jdbcType=BIT},
             </if>
         </set>
         where ID = #{id,jdbcType=BIGINT}
     </update>
 
-    <update id="updateByPrimaryKey" parameterType="com.codegen.modulesmodel.Admin">
+    <update id="updateByPrimaryKey" parameterType="com.codegen.modules.model.Admin">
         update BID_ADMIN
         set
-            USERNAME= #{username, jdbcType=VARCHAR},
-            NICKNAME= #{nickname, jdbcType=VARCHAR},
-            USERTYPE= #{userType, jdbcType=SMALLINT},
-            USERORGID= #{userOrgId, jdbcType=BIGINT},
-            TOPUSERORGID= #{topUserOrgId, jdbcType=BIGINT},
-            CREATEDATE= #{createDate, jdbcType=TIMESTAMP},
-            MODIFYDATE= #{modifyDate, jdbcType=TIMESTAMP},
-            EMAIL= #{email, jdbcType=VARCHAR},
-            AVATAR= #{avatar, jdbcType=BIGINT},
-            ISENABLED= #{isEnabled, jdbcType=BIT},
-            ISLOCKED= #{isLocked, jdbcType=BIT},
-            LOCKEDDATE= #{lockedDate, jdbcType=TIMESTAMP},
-            LOGINDATE= #{loginDate, jdbcType=TIMESTAMP},
-            LOGINFAILURECOUNT= #{loginFailureCount, jdbcType=INTEGER},
-            LOGINIP= #{loginIp, jdbcType=VARCHAR},
-            PASSWORD= #{password, jdbcType=VARCHAR},
-            PARTMENTID= #{partmentId, jdbcType=BIGINT},
-            CREATEUSERID= #{createUserId, jdbcType=BIGINT},
-            MODIFYUSERID= #{modifyUserId, jdbcType=BIGINT},
-            AUTHORITYARRAYLONGS= #{authorityArrayLongs, jdbcType=BIGINT},
-            DROPDOWNS= #{dropdowns, jdbcType=INTEGER},
-            FOOTER= #{footer, jdbcType=INTEGER},
-            HEADER= #{header, jdbcType=INTEGER},
-            LAYOUT= #{layout, jdbcType=INTEGER},
-            SIDERBARMENU= #{siderbarMenu, jdbcType=INTEGER},
-            SIDERBARMODE= #{siderbarMode, jdbcType=INTEGER},
-            SIDERBARPOSITION= #{siderbarPosition, jdbcType=INTEGER},
-            THEMECOLOR= #{themeColor, jdbcType=INTEGER},
-            THEMESTYLE= #{themeStyle, jdbcType=INTEGER},
-            ISADMIN= #{isAdmin, jdbcType=BIT},
-            HADREADATTENTION= #{hadReadAttention, jdbcType=BIT}
+        USERNAME= #{username, jdbcType=VARCHAR},
+        NICKNAME= #{nickname, jdbcType=VARCHAR},
+        USER_TYPE= #{userType, jdbcType=INTEGER},
+        USER_ORG_ID= #{userOrgId, jdbcType=BIGINT},
+        TOP_USER_ORG_ID= #{topUserOrgId, jdbcType=BIGINT},
+        CREATE_DATE= #{createDate, jdbcType=TIMESTAMP},
+        MODIFY_DATE= #{modifyDate, jdbcType=TIMESTAMP},
+        EMAIL= #{email, jdbcType=VARCHAR},
+        AVATAR= #{avatar, jdbcType=BINARY},
+        IS_ENABLED= #{isEnabled, jdbcType=BIT},
+        IS_LOCKED= #{isLocked, jdbcType=BIT},
+        LOCKED_DATE= #{lockedDate, jdbcType=TIMESTAMP},
+        LOGIN_DATE= #{loginDate, jdbcType=TIMESTAMP},
+        LOGIN_FAILURE_COUNT= #{loginFailureCount, jdbcType=INTEGER},
+        LOGIN_IP= #{loginIp, jdbcType=VARCHAR},
+        PASSWORD= #{password, jdbcType=VARCHAR},
+        PARTMENT_ID= #{partmentId, jdbcType=BIGINT},
+        CREATE_USER_ID= #{createUserId, jdbcType=BIGINT},
+        MODIFY_USER_ID= #{modifyUserId, jdbcType=BIGINT},
+        DROPDOWNS= #{dropdowns, jdbcType=INTEGER},
+        FOOTER= #{footer, jdbcType=INTEGER},
+        HEADER= #{header, jdbcType=INTEGER},
+        LAYOUT= #{layout, jdbcType=INTEGER},
+        SIDERBAR_MENU= #{siderbarMenu, jdbcType=INTEGER},
+        SIDERBAR_MODE= #{siderbarMode, jdbcType=INTEGER},
+        SIDERBAR_POSITION= #{siderbarPosition, jdbcType=INTEGER},
+        THEME_COLOR= #{themeColor, jdbcType=INTEGER},
+        THEME_STYLE= #{themeStyle, jdbcType=INTEGER},
+        IS_ADMIN= #{isAdmin, jdbcType=BIT},
+        HAD_READ_ATTENTION= #{hadReadAttention, jdbcType=BIT}
         where ID = #{id,jdbcType=BIGINT}
     </update>
+
+
 </mapper>
