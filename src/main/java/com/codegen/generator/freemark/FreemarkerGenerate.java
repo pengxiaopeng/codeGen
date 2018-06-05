@@ -17,14 +17,14 @@ import java.util.Map;
  */
 public class FreemarkerGenerate {
     private static Logger logger = LoggerFactory.getLogger(FreemarkerGenerate.class);
-    private final static String baseDao = "com.zyfast.dao.BaseDao";
-    private final static String baseDaoImpl = "com.zyfast.dao.impl.BaseDaoImpl";
-    private final static String baseService = "com.zyfast.service.BaseService";
-    private final static String baseServiceImpl = "com.zyfast.service.impl.BaseServiceImpl";
+    private final static String baseDao = "com.codegen.modules.dao.BaseDao";
+    private final static String baseDaoImpl = "com.codegen.modules.dao.impl.BaseDaoImpl";
+    private final static String baseService = "com.codegen.modules.service.BaseService";
+    private final static String baseServiceImpl = "com.codegen.modules.service.impl.BaseServiceImpl";
 
     public final static String PACKAGE_NAME = "package";
     public final static String PACKAGE_PATH = "package_path";
-    public final static String GENERATOR_PACKAGE_PATH = "com.zyfast.";// 包路径
+    public final static String GENERATOR_PACKAGE_PATH = "com.codegen.modules";// 包路径
 
     private static Configuration cfg = FreemarkerManager.getConfiguration();// 初始化状态
 

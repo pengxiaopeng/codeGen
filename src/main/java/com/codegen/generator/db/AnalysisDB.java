@@ -2,8 +2,6 @@ package com.codegen.generator.db;
 
 import com.codegen.generator.model.ColumnMeta;
 import com.codegen.generator.model.TableMeta;
-import com.codegen.generator.model.ColumnMeta;
-import com.codegen.generator.model.TableMeta;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -167,7 +165,9 @@ public class AnalysisDB {
             return "DECIMAL";
         } else if (StringUtils.equalsIgnoreCase(type, "BIT")) {
             return "BIT";
-        } else if (StringUtils.equalsIgnoreCase(type, "BIGINT")) {
+        } else if (StringUtils.equalsIgnoreCase(type, "BIGINT")
+                || StringUtils.equalsIgnoreCase(type,"LONGBLOB")
+                || StringUtils.equalsIgnoreCase(type,"TINYBLOB")) {
             return "BIGINT";
         } else if (StringUtils.equalsIgnoreCase(type, "BLOB")) {
             return "BLOB";
