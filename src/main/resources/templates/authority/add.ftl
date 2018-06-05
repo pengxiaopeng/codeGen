@@ -6,7 +6,7 @@
 
     <#include "../include/cssResource.ftl">
     <#import "../include/formElements.ftl" as formElements>
-
+    <#import "../include/navbar.ftl" as navbarTemplate>
     <style type="text/css">
         form label {
             width: 7rem !important;
@@ -18,8 +18,8 @@
     <!-- Navbar -->
 
     <#include "../include/navbar.ftl">
-    <@navbar json={"list":[
-    {"url":"/admin/authority/list","class":"","title":"菜单列表"},
+    <@navbarTemplate.navbar json={"list":[
+    {"url":"/admin/authority/list","title":"菜单列表"},
     {"url":"/admin/authority/addView","class":"active","title":"添加菜单"}
     ]}/>
 
@@ -50,25 +50,9 @@
                                         <@formElements.inputElement name="itemIcon" label="icon" placeholder="请输入icon的css 类名" verify="required"/>
                                     </div>
                                     <div class="layui-form-item">
-                                        <div class="layui-inline">
-                                            <label class="layui-form-label">父节点</label>
-                                            <div class="layui-input-inline">
-                                                <select name="parentId" lay-verify="" lay-search>
-                                                    <option value="0">请选择</option>
-                                                    <option th:each="root : ${parentAuthorityList}"
-                                                            th:value="${root.id}"
-                                                            th:text="${root.name}">1
-                                                    </option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="layui-inline">
-                                            <label class="layui-form-label">菜单类型</label>
-                                            <div class="layui-inline">
-                                                <input type="radio" name="position" value="1" title="功能节点" checked="">
-                                                <input type="radio" name="position" value="0" title="菜单节点">
-                                            </div>
-                                        </div>
+                                        <@formElements.selectModel label="父节点" list = getListFrom("parentAuthority") />
+                                        <@formElements.radioModel label="菜单类型" list=[{"value":"1","title":"功能节点","checked":"checked"},
+                                        {"value":"0","title":"菜单节点"}]/>
                                     </div>
 
                                     <@formElements.submitAndBackBtn />
@@ -81,10 +65,8 @@
         </section>
         <!-- /.content -->
     </div>
-    <aside class="control-sidebar control-sidebar-dark">
-        <!-- Control sidebar content goes here -->
-    </aside>
+    <#include "../include/sidebarControl.ftl">
 </div>
-<footer th:insert="fragments/jsResource :: jsResource"></footer>
+<#include "../include/jsResource.ftl">
 </body>
 </html>

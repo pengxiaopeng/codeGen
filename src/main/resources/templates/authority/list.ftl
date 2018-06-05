@@ -5,14 +5,15 @@
     <title>权限管理</title>
     <#include "../include/cssResource.ftl">
     <#import "../include/formElements.ftl" as formElements>
+    <#import "../include/navbar.ftl" as navbarTemplate>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
 
-    <#include "../include/navbar.ftl">
-    <@navbar json={"list":[
+
+    <@navbarTemplate.navbar json={"list":[
         {"url":"/admin/authority/list","class":"active","title":"菜单列表"},
-        {"url":"/admin/authority/addView","class":"","title":"添加菜单"}
+        {"url":"/admin/authority/addView","title":"添加菜单"}
     ]}
     />
 

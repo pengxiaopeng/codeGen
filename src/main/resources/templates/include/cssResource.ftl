@@ -32,8 +32,16 @@
     <script src="/layui/layui.js"></script>
     <script type="text/javascript">
         //Demo
-        layui.use(['layer'], function () {
-            var layer = layui.layer
+        layui.use(['form', 'layedit', 'laydate', 'element', 'laypage', 'table', 'layer'], function () {
+            var form = layui.form
+                    , layer = layui.layer
+                    , layedit = layui.layedit
+                    , element = layui.element
+                    , laypage = layui.laypage
+                    , layer = layui.layer
+                    , laydate = layui.laydate
+                    , table = layui.table;
+
             // 通知
             var message = "${message!''}";
             var icon = "${icon!''}";

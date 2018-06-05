@@ -6,7 +6,7 @@
             </li>
             <#list json.list as item>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="${item.url}" class="nav-link ${item.class}">${item.title}</a>
+                    <a href="${item.url}" class="nav-link ${item.class!''}">${item.title}</a>
                 </li>
             </#list>
         </ul>
