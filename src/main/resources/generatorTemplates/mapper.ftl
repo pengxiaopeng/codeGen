@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper columnNamespace="${packageName+"dao."+className+"Dao"}">
+<mapper namespace="${packageName+"dao."+className+"Dao"}">
     <resultMap id="BaseResultMap" type="${packageName+"model."+className}">
     <#list columns as cls>
         <#if cls_index=0>
