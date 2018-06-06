@@ -6,9 +6,9 @@
 <head>
     <title>Hello Spring Boot!</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link href="/static/layui/css/layui.css" * rel="stylesheet"
+    <link type="text/css" href="/static/layui/css/layui.css" rel="stylesheet"
           media="screen"/>
-    <link href="/static/css/login.css" rel="stylesheet"
+    <link type="text/css" href="/static/css/login.css" rel="stylesheet"
           media="screen"/>
 </head>
 <body>
