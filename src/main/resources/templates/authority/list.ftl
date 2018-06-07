@@ -27,6 +27,7 @@
                 <@formElements.inputElement style="margin-top: 10px;" name="url" value="${authority.url!''}" label="url" placeholder="请输入url" />
 
                 <@formElements.searchButton />
+                <a href="/logout">logout</a>
             </div>
             <#assign headItmeList=["名字","url","parentId","节点类型","权限别名","创建时间","修改时间","操作"]>
 

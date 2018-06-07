@@ -1,59 +1,67 @@
 <!DOCTYPE html>
-<html xmlns:security="http://www.springframework.org/schema/security"
- <#--xmlns:sec="http://www.springframework.org/security/tags"--> >
-
-
+<html>
 <head>
-    <title>Hello Spring Boot!</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link type="text/css" href="/static/layui/css/layui.css" rel="stylesheet"
-          media="screen"/>
-    <link type="text/css" href="/static/css/login.css" rel="stylesheet"
-          media="screen"/>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>login</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/static/AdminLTE-3.0.0-alpha/dist/css/adminlte.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="/static/AdminLTE-3.0.0-alpha/plugins/iCheck/square/blue.css">
+    <link rel="stylesheet" href="/static/css/ionicons.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
-<body>
-<!-- Header -->
-<div class="layui-layout layui-layout-admin">
-    <div class="layui-body layui-tab-content site-demo site-demo-body">
-        <#--<p th:if="${param.logout}" class="bg-warning">已注销</p>
-        <p th:if="${param.error}" class="bg-danger">密码错误</p>-->
-        <form class="layui-form" action="/login" method="post">
-            <div class="layadmin-user-login-main">
-                <div class="layadmin-user-login-box layadmin-user-login-body layui-form">
-                    <div class="layui-form-item">
-                        <label class="layadmin-user-login-icon layui-icon layui-icon-username"
-                               for="LAY-user-login-username"></label>
-                        <input type="text" name="username" id="LAY-user-login-username" lay-verify="required"
-                               placeholder="用户名" class="layui-input">
-                    </div>
-                    <div class="layui-form-item">
-                        <label class="layadmin-user-login-icon layui-icon layui-icon-password"
-                               for="LAY-user-login-password"></label>
-                        <input type="password" name="password" id="LAY-user-login-password" lay-verify="required"
-                               placeholder="密码" class="layui-input">
-                    </div>
-                    <!--<div class="layui-form-item" style="margin-bottom: 20px;">
-                        <input type="checkbox" name="remember" lay-skin="primary" title="记住密码">
-                        <div class="layui-unselect layui-form-checkbox" lay-skin="primary"><span>记住密码</span><i
-                                class="layui-icon"></i></div>
-                        <a lay-href="/user/forget" class="layadmin-user-jump-change layadmin-link" style="margin-top: 7px;">忘记密码？</a>
-                    </div>-->
-                    <div class="layui-form-item">
-                        <button class="layui-btn layui-btn-fluid" lay-submit="" type="submit">登 入
-                        </button>
-                    </div>
-                    <!--<div class="layui-trans layui-form-item layadmin-user-login-other">
-                        <label>社交账号登入</label>
-                        <a href="javascript:;"><i class="layui-icon layui-icon-login-qq"></i></a>
-                        <a href="javascript:;"><i class="layui-icon layui-icon-login-wechat"></i></a>
-                        <a href="javascript:;"><i class="layui-icon layui-icon-login-weibo"></i></a>
-                        <a lay-href="/user/reg" class="layadmin-user-jump-change layadmin-link">注册帐号</a>
-                    </div>-->
+<body class="hold-transition login-page">
+<div class="login-box">
+    <div class="login-logo">
+        <b>管理系统</b>
+    </div>
+    <div class="card">
+        <div class="card-body login-card-body">
+            <p class="login-box-msg">登录</p>
+            <form action="/login" method="post">
+                <#if RequestParameters['error']??>
+                    <p style="color:red;">密码错误</p>
+                </#if>
+                <div class="form-group has-feedback">
+                    <input type="text" class="form-control" placeholder="用户名" name="username">
                 </div>
-            </div>
-        </form>
+                <div class="form-group has-feedback">
+                    <input type="password" name="password" class="form-control" placeholder="密码">
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">登录</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
-</div>
+<!-- /.login-box -->
+
+<!-- jQuery -->
+<script src="/static/AdminLTE-3.0.0-alpha/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="/static/AdminLTE-3.0.0-alpha/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- iCheck -->
+<script src="/static/AdminLTE-3.0.0-alpha/plugins/iCheck/icheck.min.js"></script>
+<script>
+    $(function () {
+        $('input').iCheck({
+            checkboxClass: 'icheckbox_square-blue',
+            radioClass   : 'iradio_square-blue',
+            increaseArea : '20%' // optional
+        })
+    })
+</script>
 </body>
 </html>
