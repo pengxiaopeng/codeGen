@@ -14,12 +14,12 @@
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown">
                 <a class="nav-link" data-toggle="dropdown" href="#">
-                    <i class="fa fa-bell-o"></i>
+                    <ion-icon name="contact" size="large"></ion-icon>
                 </a>
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                     <div class="dropdown-divider"></div>
                     <a href="/logout" class="dropdown-item">
-                        <ion-icon name="trending-down"></ion-icon> 退出登录
+                        <i class="fab fa-chrome"></i> 退出登录
                     </a>
                     <a href="/logout" class="dropdown-item">
                         <ion-icon name="switch"></ion-icon>切换账号
@@ -28,8 +28,8 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#"><i
-                        class="fa fa-th-large"></i></a>
+                <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#">
+                    <ion-icon name="apps" size="large"></ion-icon></a>
             </li>
         </ul>
     </nav>

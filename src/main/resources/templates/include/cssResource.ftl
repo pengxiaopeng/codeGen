@@ -1,7 +1,7 @@
     <link href="/css/common.css" rel="stylesheet"
           media="screen"/>
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="/static/AdminLTE-3.0.0-alpha/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/font-awesome/css/fontawesome-all.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="/static/css/ionicons.min.css">
     <!-- Theme style -->
