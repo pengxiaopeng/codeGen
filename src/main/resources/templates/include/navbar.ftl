@@ -19,10 +19,10 @@
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                     <div class="dropdown-divider"></div>
                     <a href="/logout" class="dropdown-item">
-                        <i class="fa fa-envelope mr-2"></i> 退出登录
+                        <ion-icon name="trending-down"></ion-icon> 退出登录
                     </a>
                     <a href="/logout" class="dropdown-item">
-                        <i class="fa fa-users mr-2"></i> 切换账号
+                        <ion-icon name="switch"></ion-icon>切换账号
                     </a>
                     <div class="dropdown-divider"></div>
                 </div>

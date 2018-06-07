@@ -8,14 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="/static/css/ionicons.min.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="/static/AdminLTE-3.0.0-alpha/dist/css/adminlte.min.css">
     <!-- iCheck -->
     <link rel="stylesheet" href="/static/AdminLTE-3.0.0-alpha/plugins/iCheck/square/blue.css">
-    <link rel="stylesheet" href="/static/css/ionicons.min.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -23,6 +21,7 @@
 <div class="login-box">
     <div class="login-logo">
         <b>管理系统</b>
+        <ion-icon name="contacts"></ion-icon>
     </div>
     <div class="card">
         <div class="card-body login-card-body">
@@ -54,6 +53,7 @@
 <script src="/static/AdminLTE-3.0.0-alpha/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- iCheck -->
 <script src="/static/AdminLTE-3.0.0-alpha/plugins/iCheck/icheck.min.js"></script>
+<script src="https://unpkg.com/ionicons@4.1.2/dist/ionicons.js"></script>
 <script>
     $(function () {
         $('input').iCheck({

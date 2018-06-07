@@ -12,4 +12,5 @@
     <script src="/AdminLTE-3.0.0-alpha/dist/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="/AdminLTE-3.0.0-alpha/dist/js/demo.js"></script>
+    <script src="https://unpkg.com/ionicons@4.1.2/dist/ionicons.js"></script>
 
