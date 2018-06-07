@@ -1,7 +1,7 @@
 package com.codegen.configuration;
 
 import com.codegen.annotation.FreemarkerComponent;
-import com.codegen.annotation.FreemarkerComponent;
+import freemarker.ext.jsp.TaglibFactory;
 import freemarker.template.Configuration;
 import freemarker.template.TemplateException;
 import org.springframework.beans.BeansException;
@@ -10,6 +10,8 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -26,6 +28,14 @@ public class CustomizeFreeMarkerConfigurer extends FreeMarkerConfigurer implemen
         Configuration configuration = this.getConfiguration();
         for (String key : map.keySet()) {
             configuration.setSharedVariable(key, map.get(key));
+        }
+
+        List<String> tlds = new ArrayList<>();
+        tlds.add("/static/security.tld");
+        TaglibFactory taglibFactory = getTaglibFactory();
+        taglibFactory.setClasspathTlds(tlds);
+        if(taglibFactory.getObjectWrapper() == null) {
+            taglibFactory.setObjectWrapper(getConfiguration().getObjectWrapper());
         }
     }
 
