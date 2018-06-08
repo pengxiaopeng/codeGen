@@ -4,13 +4,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>权限管理</title>
     <#include "../include/cssResource.ftl">
-    <#import "../include/formElements.ftl" as formElements>
+    <#import "../include/formElements.ftl" as formElementsTemplate>
     <#import "../include/navbar.ftl" as navbarTemplate>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
-
-
     <@navbarTemplate.navbar json={"list":[
         {"url":"/admin/authority/list","class":"active","title":"菜单列表"},
         {"url":"/admin/authority/addView","title":"添加菜单"}
@@ -22,11 +20,11 @@
     <div class="content-wrapper">
         <form id="list" class="layui-form" action="/admin/authority/list">
             <div class="layui-form-item">
-                <@formElements.inputElement style="margin-top: 10px;" name="name" value="${authority.name!''}" label="名字" placeholder="请输入名字" />
+                <@formElementsTemplate.inputElement style="margin-top: 10px;" name="name" value="${authority.name!''}" label="名字" placeholder="请输入名字" />
 
-                <@formElements.inputElement style="margin-top: 10px;" name="url" value="${authority.url!''}" label="url" placeholder="请输入url" />
+                <@formElementsTemplate.inputElement style="margin-top: 10px;" name="url" value="${authority.url!''}" label="url" placeholder="请输入url" />
 
-                <@formElements.searchButton />
+                <@formElementsTemplate.searchButton />
                 <a href="/logout">logout</a>
             </div>
             <#assign headItmeList=["名字","url","parentId","节点类型","权限别名","创建时间","修改时间","操作"]>
