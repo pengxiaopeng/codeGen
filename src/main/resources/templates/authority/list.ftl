@@ -27,6 +27,7 @@
                 <@formElementsTemplate.searchButton />
                 <a href="/logout">logout</a>
             </div>
+
             <#assign headItmeList=["名字","url","parentId","节点类型","权限别名","创建时间","修改时间","操作"]>
 
             <#assign bodyItmeList=["${r'${item.name}'}","${r'${item.url}'}","${r'${item.parentId}'}",
