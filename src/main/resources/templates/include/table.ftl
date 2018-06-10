@@ -19,14 +19,10 @@
                                 <input type='hidden' id='id' value=${item.id}>
                                 <#list bodyItmeList as body>
                                    <td>
-                                   <#--<#if body?has_next>-->
                                        <#assign bodyStr="${body}" >
                                        <#assign templateSource = r""+bodyStr>
                                        <#assign inlineTemplate = templateSource?interpret>
                                        <@inlineTemplate />
-                                   <#--<#else>
-                                       ${operateButtonStr}
-                                   </#if>-->
                                    </td>
                                 </#list>
                             </tr>

@@ -30,12 +30,11 @@
 
             <#assign headItmeList=["名字","url","parentId","节点类型","权限别名","创建时间","修改时间","操作"]>
 
-            <#assign operateButtonStr = "<a class='btn btn-success btn-sm' onclick='editById(this);'>修改</a>
-                               <a class='btn  btn-success btn-sm' onclick='deleteById(this);'>删除</a>">
-
             <#assign bodyItmeList=["${r'${item.name}'}","${r'${item.url}'}","${r'${item.parentId}'}",
             "${r'${(item.position==1)?then(\"功能节点 \",\"菜单节点\")}'}","${r'${item.authorities}'}",
-            "${r'${item.createDate?datetime}'}","${r'${item.modifyDate?datetime}'}","${r'${operateButtonStr}'}"]>
+            "${r'${item.createDate?datetime}'}","${r'${item.modifyDate?datetime}'}",
+            "${r'<a class=\"btn btn-success btn-sm\" href=\"/admin/authority/editView?id=${item.id}\">修改</a>
+                               <a class=\"btn  btn-success btn-sm\" onclick=\"deleteById(this);\">删除</a>'}"]>
 
             <#include "../include/table.ftl">
         </form>
