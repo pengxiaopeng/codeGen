@@ -37,7 +37,7 @@
             <foreach collection="idsMap.keys" item="key" separator=",">
                 and ${r'${key}'} in
                 <foreach item="item" collection="idsMap[key]" open="(" separator="," close=")">
-                ${r'#{item}'}
+                ${r'"${item}"'}
                 </foreach>
             </foreach>
         </if>
