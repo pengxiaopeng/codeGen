@@ -17,7 +17,6 @@
 <div class="wrapper">
     <!-- Navbar -->
 
-    <#include "../include/navbar.ftl">
     <@navbarTemplate.navbar json={"list":[
     {"url":"/admin/authority/list","title":"菜单列表"},
     {"url":"#","class":"active","title":"编辑菜单"}

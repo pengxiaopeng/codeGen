@@ -28,7 +28,7 @@
             </div>
 
             <#assign headItmeList=["code","描述","创建时间","修改时间","操作"]>
-            <#assign bodyItmeList=["${r'<a class=\"btn btn-link\" href=\"/admin/dataType/view?id=\"+${item.id}>${item.code}</a>'}","${r'${item.descpt}'}","${r'${item.sort}'}",
+            <#assign bodyItmeList=["${r'<a class=\"btn btn-link\" href=\"/admin/dataType/view?id=\"+${item.id}>${item.code}</a>'}","${r'${item.descpt}'}",
             "${r'${item.createDate?datetime}'}","${r'${item.modifyDate?datetime}'}",
             "${r'<a class=\"btn btn-success btn-sm\" href=\"/admin/authority/editView?id=${item.id}\">修改</a>
                                <a class=\"btn  btn-success btn-sm\" onclick=\"deleteById(this);\">删除</a>'}"]>
@@ -47,10 +47,6 @@
         });
     }
 
-    function editById(_this) {
-        var id = $(_this).closest("tr").find("input[id='id']").val();
-        window.location.href = "/admin/authority/editView?id=" + id;
-    }
 </script>
 </body>
 </html>

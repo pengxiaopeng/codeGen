@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/html">
 <head>
-    <title>添加菜单</title>
+    <title>编辑数字字典</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
     <#include "../include/cssResource.ftl">
@@ -17,11 +17,11 @@
 <div class="wrapper">
     <!-- Navbar -->
 
-    <#include "../include/navbar.ftl">
     <@navbarTemplate.navbar json={"list":[
-    {"url":"/admin/authority/list","title":"菜单列表"},
-    {"url":"#","class":"active","title":"编辑菜单"}
-    ]}/>
+    {"url":"/admin/dataType/list","title":"数字字典列表"},
+    {"url":"/admin/dataType/addView","class":"active","title":"编辑数字字典"}
+    ]}
+    />
 
     <#include "../include/sideBarMenu.ftl">
 
