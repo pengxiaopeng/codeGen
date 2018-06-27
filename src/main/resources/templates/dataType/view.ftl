@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/html">
 <head>
-    <title>编辑数字字典</title>
+    <title>查看数字字典</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
     <#include "../include/cssResource.ftl">
@@ -19,7 +19,7 @@
 
     <@navbarTemplate.navbar json={"list":[
     {"url":"/admin/dataType/list","title":"数字字典列表"},
-    {"url":"/admin/dataType/addView","class":"active","title":"编辑数字字典"}
+    {"url":"/admin/dataType/addView","class":"active","title":"查看数字字典"}
     ]}
     />
 
@@ -35,19 +35,46 @@
                         <!-- general form elements -->
                         <div class="card card-success">
                             <div class="card-header">
-                                <h3 class="card-title">编辑字典类型</h3>
+                                <h3 class="card-title">查看字典类型</h3>
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
                             <form class="layui-form" action="/admin/dataType/edit">
                                 <div class="card-body">
                                     <div class="layui-form-item">
-                                        <@formElements.inputElement name="code" label="code" placeholder="请输入code" verify="required" value="${dataType.code}"/>
-                                        <@formElements.inputElement name="descpt" label="描述" placeholder="请输入描述" verify="required" value="${dataType.descpt}"/>
+                                        <@formElements.viewModel label="code" value="${dataType.code}"/>
+                                        <@formElements.viewModel label="描述"  value="${dataType.descpt}"/>
+                                        <@formElements.viewModel label="排序"  value="${dataType.sort}"/>
+
                                     </div>
-                                    <div class="layui-form-item">
-                                        <@formElements.inputElement name="sort" label="排序" placeholder="请输入排序" verify="required|number" value="${dataType.sort}"/>
+                                    <div class="col-md-6">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h3 class="card-title">字典列表：</h3>
+                                            </div>
+                                            <div class="card-body">
+                                                <table id="example2" class="table table-bordered table-hover"
+                                                       th:if="${not #lists.isEmpty(dataType.dataDictionaries)}">
+                                                    <thead>
+                                                    <tr>
+                                                        <th style="width: 10px">#</th>
+                                                        <th>code</th>
+                                                        <th>描述</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr th:each="item,index : ${dataType.dataDictionaries}">
+                                                        <td th:text="${index.index}"></td>
+                                                        <td th:text="${item.code}"></td>
+                                                        <td th:text="${item.descpt}">""</td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
                                     </div>
+
+
                                     <div id="dataTypeList"
                                          style="padding: 1rem; margin-bottom: 1rem; border: 1px solid #28a745;">
                                         <label class="layui-form-label">字典列表：</label>

@@ -23,7 +23,8 @@
     <div class="layui-form-item">
         <div class="layui-input-block">
             <button class="btn btn-success" lay-submit lay-filter="formDemo">提交</button>
-            <button type="button" onClick="javascript :history.back(-1);" class="layui-btn layui-btn-primary">返回</button>
+            <button type="button" onClick="javascript :history.back(-1);" class="layui-btn layui-btn-primary">返回
+            </button>
         </div>
     </div>
 </#macro>
@@ -64,7 +65,7 @@
     </div>
 </#macro>
 
-<#--radio 选择-->
+<#--checkbox 选择-->
 <#macro checkBoxModel label="" name="" list=[]>
     <div class="layui-inline">
         <label class="layui-form-label">${label!""}</label>
@@ -77,13 +78,10 @@
         </#if>
         </div>
     </div>
-
+</#macro>
+<#macro viewModel label="" value="" >
 <div class="layui-inline">
-    <label class="layui-form-label">复选框</label>
-    <div class="layui-input-block">
-        <input type="checkbox" name="like[write]" title="写作">
-        <input type="checkbox" name="like[read]" title="阅读" checked="">
-        <input type="checkbox" name="like[game]" title="游戏">
-    </div>
+    <label class="layui-form-label">${label!""}</label>
+    <div class="layui-form-mid">${value!""}</div>
 </div>
 </#macro>

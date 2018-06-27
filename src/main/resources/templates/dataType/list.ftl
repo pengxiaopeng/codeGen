@@ -30,7 +30,7 @@
             <#assign headItmeList=["code","描述","创建时间","修改时间","操作"]>
             <#assign bodyItmeList=["${r'<a class=\"btn btn-link\" href=\"/admin/dataType/view?id=\"+${item.id}>${item.code}</a>'}","${r'${item.descpt}'}",
             "${r'${item.createDate?datetime}'}","${r'${item.modifyDate?datetime}'}",
-            "${r'<a class=\"btn btn-success btn-sm\" href=\"/admin/authority/editView?id=${item.id}\">修改</a>
+            "${r'<a class=\"btn btn-success btn-sm\" href=\"/admin/dataType/editView?id=${item.id}\">修改</a>
                                <a class=\"btn  btn-success btn-sm\" onclick=\"deleteById(this);\">删除</a>'}"]>
 
             <#include "../include/table.ftl">
@@ -43,7 +43,7 @@
     function deleteById(_this) {
         layer.confirm('确认删除该记录?', {icon: 3, title: '提示'}, function (index) {
             var id = $(_this).closest("tr").find("input[id='id']").val();
-            window.location.href = "/admin/authority/delete?id=" + id;
+            window.location.href = "/admin/dataType/delete?id=" + id;
         });
     }
 
