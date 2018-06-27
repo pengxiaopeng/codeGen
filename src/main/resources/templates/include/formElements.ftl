@@ -23,8 +23,17 @@
     <div class="layui-form-item">
         <div class="layui-input-block">
             <button class="btn btn-success" lay-submit lay-filter="formDemo">提交</button>
-            <button type="button" onClick="javascript :history.back(-1);" class="layui-btn layui-btn-primary">返回
-            </button>
+            <button class="layui-btn layui-btn-primary" type="button" onClick="javascript :history.back(-1);" >返回</button>
+        </div>
+    </div>
+</#macro>
+
+<#--编辑（默认）按钮及返回-->
+<#macro someBtnAndBackBtn btnName="编辑" href="">
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <a class="btn btn-success" href="${href!""}" >${btnName!""}</a>
+            <a class="layui-btn layui-btn-primary" onClick="javascript :history.back(-1);" >返回</a>
         </div>
     </div>
 </#macro>
@@ -79,12 +88,15 @@
         </div>
     </div>
 </#macro>
+
 <#macro viewModel label="" value="" >
 <div class="layui-inline">
     <label class="layui-form-label">${label!""}</label>
     <div class="layui-form-mid">${value!""}</div>
 </div>
 </#macro>
+
+<#--table-->
 <#macro tableModel headItmeList=[] list=[] bodyItmeList=[] needIndex="N">
     <table id="table" class="table table-bordered table-hover">
         <thead>
@@ -117,6 +129,7 @@
     </table>
 </#macro>
 
+<#--list中的table-->
 <#macro listTableModel headItmeList=[] list=[] bodyItmeList=[] needIndex="N">
     <section class="content">
         <div class="row">
