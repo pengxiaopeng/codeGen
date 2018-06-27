@@ -58,8 +58,7 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                    <@formElementsTemplate.submitAndBackBtn />
+                                <@formElementsTemplate.someBtnAndBackBtn href="/admin/dataType/editView?id="+dataType.id />
                             </div>
                         </div>
                     </div>
