@@ -36,7 +36,7 @@
             "${r'<a class=\"btn btn-success btn-sm\" href=\"/admin/authority/editView?id=${item.id}\">修改</a>
                                <a class=\"btn  btn-success btn-sm\" onclick=\"deleteById(this);\">删除</a>'}"]>
 
-            <#include "../include/table.ftl">
+            <@formElementsTemplate.listTableModel headItmeList=headItmeList bodyItmeList=bodyItmeList list=page.result/>
         </form>
     </div>
     <#include "../include/sidebarControl.ftl">

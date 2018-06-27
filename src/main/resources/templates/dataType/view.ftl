@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
     <#include "../include/cssResource.ftl">
-    <#import "../include/formElements.ftl" as formElements>
+    <#import "../include/formElements.ftl" as formElementsTemplate>
     <#import "../include/navbar.ftl" as navbarTemplate>
     <style type="text/css">
         form label {
@@ -39,65 +39,28 @@
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form class="layui-form" action="/admin/dataType/edit">
-                                <div class="card-body">
-                                    <div class="layui-form-item">
-                                        <@formElements.viewModel label="code" value="${dataType.code}"/>
-                                        <@formElements.viewModel label="描述"  value="${dataType.descpt}"/>
-                                        <@formElements.viewModel label="排序"  value="${dataType.sort}"/>
-
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="card">
-                                            <div class="card-header">
-                                                <h3 class="card-title">字典列表：</h3>
-                                            </div>
-                                            <div class="card-body">
-                                                <table id="example2" class="table table-bordered table-hover"
-                                                       th:if="${not #lists.isEmpty(dataType.dataDictionaries)}">
-                                                    <thead>
-                                                    <tr>
-                                                        <th style="width: 10px">#</th>
-                                                        <th>code</th>
-                                                        <th>描述</th>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    <tr th:each="item,index : ${dataType.dataDictionaries}">
-                                                        <td th:text="${index.index}"></td>
-                                                        <td th:text="${item.code}"></td>
-                                                        <td th:text="${item.descpt}">""</td>
-                                                    </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <div id="dataTypeList"
-                                         style="padding: 1rem; margin-bottom: 1rem; border: 1px solid #28a745;">
-                                        <label class="layui-form-label">字典列表：</label>
-                                        <div style="cursor: pointer" onclick="addDataType(this)"><i class="layui-icon"
-                                                                                                    style="font-size: 30px; color: #28a745;">&#xe61f;</i>
-                                        </div>
-                                        <#list dataType.dataDictionaries as dataDict>
-                                            <div class="layui-form-item">
-                                                <input type="hidden" name="dataDictionaries[0].id" value="${dataDict.id}">
-                                                <@formElements.inputElement name="dataDictionaries[0].code" label="code" placeholder="请输入code" verify="required" value="${dataDict.code}"/>
-                                                <@formElements.inputElement name="dataDictionaries[0].descpt" label="描述" placeholder="请输入描述" verify="required" value="${dataDict.descpt}"/>
-                                                <#if !dataDict?is_first>
-                                                <div style="cursor: pointer; display: inline;" onclick="deleteDataType(this)">
-                                                    <i class="layui-icon" style="font-size: 30px; color: #28a745;">&#xe640;</i>
-                                                </div>
-                                                </#if>
-                                            </div>
-                                        </#list>
-                                    </div>
-
-                                    <@formElements.submitAndBackBtn />
+                            <div class="card-body">
+                                <div class="layui-form-item">
+                                    <@formElementsTemplate.viewModel label="code" value="${dataType.code}"/>
+                                    <@formElementsTemplate.viewModel label="描述"  value="${dataType.descpt}"/>
+                                    <@formElementsTemplate.viewModel label="排序"  value="${dataType.sort}"/>
                                 </div>
-                            </form>
+                                <div class="col-md-6">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h3 class="card-title">字典列表：</h3>
+                                        </div>
+                                        <div class="card-body">
+                                                <#assign headItmeList=["#","code","描述"]>
+                                                <#assign bodyItmeList=["${r'${item.code}'}","${r'${item.descpt}'}"]>
+                                                <#assign list = dataType.dataDictionaries>
+                                                <@formElementsTemplate.tableModel headItmeList=headItmeList bodyItmeList=bodyItmeList list=list needIndex="Y"/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                    <@formElementsTemplate.submitAndBackBtn />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -125,7 +88,8 @@
                        maxlength="30">
             </div>
         </div>
-        <div style="cursor: pointer; display: inline;" onclick="deleteDataType(this)"><i class="layui-icon" style="font-size: 30px; color: #28a745;">&#xe640;</i>
+        <div style="cursor: pointer; display: inline;" onclick="deleteDataType(this)"><i class="layui-icon"
+                                                                                         style="font-size: 30px; color: #28a745;">&#xe640;</i>
         </div>
     </div>
 </div>
@@ -133,6 +97,7 @@
     $(document).ready(function () {
         initDataTypeListIndex();
     });
+
     function addDataType() {
 
         var $model = $("#dataTypeModel").children().clone(true);

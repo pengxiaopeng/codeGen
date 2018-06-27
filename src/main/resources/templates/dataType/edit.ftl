@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
     <#include "../include/cssResource.ftl">
-    <#import "../include/formElements.ftl" as formElements>
+    <#import "../include/formElements.ftl" as formElementsTemplate>
     <#import "../include/navbar.ftl" as navbarTemplate>
     <style type="text/css">
         form label {
@@ -42,11 +42,11 @@
                             <form class="layui-form" action="/admin/dataType/edit">
                                 <div class="card-body">
                                     <div class="layui-form-item">
-                                        <@formElements.inputElement name="code" label="code" placeholder="请输入code" verify="required" value="${dataType.code}"/>
-                                        <@formElements.inputElement name="descpt" label="描述" placeholder="请输入描述" verify="required" value="${dataType.descpt}"/>
+                                        <@formElementsTemplate.inputElement name="code" label="code" placeholder="请输入code" verify="required" value="${dataType.code}"/>
+                                        <@formElementsTemplate.inputElement name="descpt" label="描述" placeholder="请输入描述" verify="required" value="${dataType.descpt}"/>
                                     </div>
                                     <div class="layui-form-item">
-                                        <@formElements.inputElement name="sort" label="排序" placeholder="请输入排序" verify="required|number" value="${dataType.sort}"/>
+                                        <@formElementsTemplate.inputElement name="sort" label="排序" placeholder="请输入排序" verify="required|number" value="${dataType.sort}"/>
                                     </div>
                                     <div id="dataTypeList"
                                          style="padding: 1rem; margin-bottom: 1rem; border: 1px solid #28a745;">
@@ -57,8 +57,8 @@
                                         <#list dataType.dataDictionaries as dataDict>
                                             <div class="layui-form-item">
                                                 <input type="hidden" name="dataDictionaries[0].id" value="${dataDict.id}">
-                                                <@formElements.inputElement name="dataDictionaries[0].code" label="code" placeholder="请输入code" verify="required" value="${dataDict.code}"/>
-                                                <@formElements.inputElement name="dataDictionaries[0].descpt" label="描述" placeholder="请输入描述" verify="required" value="${dataDict.descpt}"/>
+                                                <@formElementsTemplate.inputElement name="dataDictionaries[0].code" label="code" placeholder="请输入code" verify="required" value="${dataDict.code}"/>
+                                                <@formElementsTemplate.inputElement name="dataDictionaries[0].descpt" label="描述" placeholder="请输入描述" verify="required" value="${dataDict.descpt}"/>
                                                 <#if !dataDict?is_first>
                                                 <div style="cursor: pointer; display: inline;" onclick="deleteDataType(this)">
                                                     <i class="layui-icon" style="font-size: 30px; color: #28a745;">&#xe640;</i>
@@ -68,7 +68,7 @@
                                         </#list>
                                     </div>
 
-                                    <@formElements.submitAndBackBtn />
+                                    <@formElementsTemplate.submitAndBackBtn />
                                 </div>
                             </form>
                         </div>

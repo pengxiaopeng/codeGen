@@ -85,3 +85,49 @@
     <div class="layui-form-mid">${value!""}</div>
 </div>
 </#macro>
+<#macro tableModel headItmeList=[] list=[] bodyItmeList=[] needIndex="N">
+    <table id="table" class="table table-bordered table-hover">
+        <thead>
+        <tr>
+            <#list headItmeList as head>
+                <th>${head}</th>
+            </#list>
+        </tr>
+        </thead>
+        </head
+        <tbody>
+            <#list list as item>
+            <tr>
+                <input type='hidden' id='id' value=${item.id}>
+                <#if needIndex == "Y">
+                     <td>${item?counter}</td>
+                </#if>
+
+                <#list bodyItmeList as body>
+                   <td>
+                       <#assign bodyStr='${body}' >
+                       <#assign templateSource = r''+bodyStr>
+                       <#assign inlineTemplate = templateSource?interpret>
+                       <@inlineTemplate />
+                   </td>
+                </#list>
+            </tr>
+            </#list>
+        </tbody>
+    </table>
+</#macro>
+
+<#macro listTableModel headItmeList=[] list=[] bodyItmeList=[] needIndex="N">
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                    <@tableModel headItmeList=headItmeList bodyItmeList=bodyItmeList list=list needIndex=needIndex/>
+                    </div>
+                <#include "page.ftl">
+                </div>
+            </div>
+        </div>
+    </section>
+</#macro>
