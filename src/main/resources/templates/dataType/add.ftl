@@ -55,24 +55,8 @@
                                                                                                     style="font-size: 30px; color: #28a745;">&#xe61f;</i>
                                         </div>
                                         <div class="layui-form-item">
-                                            <div class="layui-inline">
-                                                <label class="layui-form-label">code</label>
-                                                <div class="layui-input-inline">
-                                                    <input type="text" name="dataDictionaries[0].code"
-                                                           lay-verify="required"
-                                                           placeholder="请输入code" autocomplete="off" class="layui-input"
-                                                           maxlength="30">
-                                                </div>
-                                            </div>
-                                            <div class="layui-inline">
-                                                <label class="layui-form-label">描述</label>
-                                                <div class="layui-input-inline">
-                                                    <input type="text" name="dataDictionaries[0].descpt"
-                                                           lay-verify="required"
-                                                           placeholder="请输入描述" autocomplete="off" class="layui-input"
-                                                           maxlength="30">
-                                                </div>
-                                            </div>
+                                            <@formElements.inputElement name="dataDictionaries[0].code" label="code" placeholder="请输入code" verify="required"/>
+                                            <@formElements.inputElement name="dataDictionaries[0].descpt" label="描述" placeholder="请输入描述" verify="required" />
                                         </div>
                                     </div>
 
