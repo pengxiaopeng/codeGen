@@ -106,8 +106,7 @@
                        maxlength="30">
             </div>
         </div>
-        <div style="cursor: pointer; display: inline;" onclick="deleteDataType(this)"><i class="layui-icon"
-                                                                                         style="font-size: 30px; color: #28a745;">&#xe640;</i>
+        <div style="cursor: pointer; display: inline;" onclick="deleteDataType(this)"><i class="layui-icon" style="font-size: 30px; color: #28a745;">&#xe640;</i>
         </div>
     </div>
 </div>
