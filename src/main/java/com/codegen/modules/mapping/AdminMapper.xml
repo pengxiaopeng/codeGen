@@ -3,8 +3,8 @@
 <mapper namespace="com.codegen.modules.dao.AdminDao">
     <resultMap id="BaseResultMap" type="com.codegen.modules.model.Admin">
         <id column="ID" property="id" jdbcType="BIGINT"/>
-        <result column="USERNAME" property="username" jdbcType="VARCHAR" />
-        <result column="NICKNAME" property="nickname" jdbcType="VARCHAR" />
+        <result column="USERNAME" property="nickname" jdbcType="VARCHAR" />
+        <result column="NICKNAME" property="nickName" jdbcType="VARCHAR" />
         <result column="USER_TYPE" property="userType" jdbcType="VARCHAR" />
         <result column="USER_ORG_ID" property="userOrgId" jdbcType="BIGINT" />
         <result column="TOP_USER_ORG_ID" property="topUserOrgId" jdbcType="BIGINT" />
@@ -70,8 +70,8 @@
     </sql>
 
     <sql id="whereSql">
-        <if test="username != null">
-            and USERNAME = #{username}
+        <if test="nickname != null">
+            and USERNAME = #{nickname}
         </if>
         <if test="idsMap != null">
             <foreach collection="idsMap.keys" item="key" separator=",">
@@ -158,8 +158,8 @@
         )
         values (
 
-        #{username, jdbcType=VARCHAR},
         #{nickname, jdbcType=VARCHAR},
+        #{nickName, jdbcType=VARCHAR},
         #{userType, jdbcType=INTEGER},
         #{userOrgId, jdbcType=BIGINT},
         #{topUserOrgId, jdbcType=BIGINT},
@@ -196,10 +196,10 @@
             <if test="id != null">
             ID,
             </if>
-            <if test="username != null">
+            <if test="nickname != null">
             USERNAME,
             </if>
-            <if test="nickname != null">
+            <if test="nickName != null">
             NICKNAME,
             </if>
             <if test="userType != null">
@@ -292,11 +292,11 @@
             <if test="id != null">
             #{id, jdbcType=BIGINT},
             </if>
-            <if test="username != null">
-            #{username, jdbcType=VARCHAR},
-            </if>
             <if test="nickname != null">
             #{nickname, jdbcType=VARCHAR},
+            </if>
+            <if test="nickName != null">
+            #{nickName, jdbcType=VARCHAR},
             </if>
             <if test="userType != null">
             #{userType, jdbcType=INTEGER},
@@ -388,11 +388,11 @@
     <update id="updateByPrimaryKeySelective" parameterType="com.codegen.modules.model.Admin">
         update BID_ADMIN
         <set>
-            <if test="username != null">
-            USERNAME= #{username, jdbcType=VARCHAR},
-            </if>
             <if test="nickname != null">
-            NICKNAME= #{nickname, jdbcType=VARCHAR},
+            USERNAME= #{nickname, jdbcType=VARCHAR},
+            </if>
+            <if test="nickName != null">
+            NICKNAME= #{nickName, jdbcType=VARCHAR},
             </if>
             <if test="userType != null">
             USER_TYPE= #{userType, jdbcType=INTEGER},
@@ -486,8 +486,8 @@
     <update id="updateByPrimaryKey" parameterType="com.codegen.modules.model.Admin">
         update BID_ADMIN
         set
-        USERNAME= #{username, jdbcType=VARCHAR},
-        NICKNAME= #{nickname, jdbcType=VARCHAR},
+        USERNAME= #{nickname, jdbcType=VARCHAR},
+        NICKNAME= #{nickName, jdbcType=VARCHAR},
         USER_TYPE= #{userType, jdbcType=INTEGER},
         USER_ORG_ID= #{userOrgId, jdbcType=BIGINT},
         TOP_USER_ORG_ID= #{topUserOrgId, jdbcType=BIGINT},
