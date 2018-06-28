@@ -8,15 +8,15 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.*;
 
 /**
-* tableName：bid_admin
-*/
+ * tableName：bid_admin
+ */
 public class Admin extends BaseModel implements UserDetails {
 
     private static final long serialVersionUID = 1L;
     private Long id;
     private String username; // 用户名
     private String password; // 密码
-    private String nickname; // 姓名
+    private String nickName; // 姓名
     private byte[] avatar; // 头像
     private Long isEnabled; // 是否启用
     private Long isLocked; // 是否锁定
@@ -110,8 +110,8 @@ public class Admin extends BaseModel implements UserDetails {
         this.id = id;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsername(String userName) {
+        this.username = userName;
     }
 
     public String getPassword() {
@@ -122,12 +122,12 @@ public class Admin extends BaseModel implements UserDetails {
         this.password = password;
     }
 
-    public String getNickname() {
-        return nickname;
+    public String getNickName() {
+        return nickName;
     }
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
     }
 
     public byte[] getAvatar() {
@@ -374,10 +374,12 @@ public class Admin extends BaseModel implements UserDetails {
     public String getUsername() {
         return this.username;
     }
+
     @Override
     public boolean isAccountNonExpired() {
         return true;
     }
+
     @Override
     public boolean isAccountNonLocked() {
         return true;
@@ -390,7 +392,7 @@ public class Admin extends BaseModel implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return this.isEnabled == 1 && this.isLocked == 0;
+        return this.isEnabled != null && this.isEnabled == 1 && this.isLocked != null && this.isLocked == 0;
     }
 
     @Override
