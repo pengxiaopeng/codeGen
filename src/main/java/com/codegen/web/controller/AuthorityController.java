@@ -23,6 +23,7 @@ import java.util.Date;
 @RequestMapping("/admin/authority")
 public class AuthorityController extends CommonContrller {
     protected final Log logger = LogFactory.getLog(this.getClass());
+
     @RequestMapping("list")
     public String list(Authority authority, Model model, Integer page, Integer pageMax, HttpServletRequest request, HttpServletResponse response) {
         page = page == null ? 1 : page;
@@ -31,6 +32,7 @@ public class AuthorityController extends CommonContrller {
         model.addAttribute("authority", authority);
         return "authority/list";
     }
+
     @RequestMapping(value = "addView")
     public String addView(Model model, HttpServletRequest request, HttpServletResponse response) {
         return "authority/add";
@@ -80,11 +82,16 @@ public class AuthorityController extends CommonContrller {
 
     @RequestMapping(value = "delete")
     public String delete(Model model, Long id, HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
+        String message = "删除成功";
+        String icon = Constants.SUCCESS_ICON;
         if (id != null) {
             authorityService.deleteByPrimaryKey(id);
+        } else {
+            message = "删除失败，id不能为空";
+            icon = Constants.FAIL_ICON;
         }
-        redirectAttributes.addFlashAttribute(Constants.MESSAGE_NAME, "删除成功");
-        redirectAttributes.addFlashAttribute(Constants.ICON_NAME, Constants.SUCCESS_ICON);
+        redirectAttributes.addFlashAttribute(Constants.MESSAGE_NAME, message);
+        redirectAttributes.addFlashAttribute(Constants.ICON_NAME, icon);
         return "redirect:/admin/authority/list";
     }
 }

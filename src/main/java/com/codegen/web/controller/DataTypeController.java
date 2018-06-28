@@ -108,6 +108,8 @@ public class DataTypeController extends CommonContrller {
 
     @RequestMapping(value = "delete")
     public String delete(Model model, Long id, HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
+        String message = "删除成功";
+        String icon = Constants.SUCCESS_ICON;
         if (id != null) {
             DataType dataType = dataTypeService.selectByPrimaryKey(id);
             DataDictionary dataDictionary = new DataDictionary();
@@ -117,9 +119,12 @@ public class DataTypeController extends CommonContrller {
                 dataDictionaryService.deleteByPrimaryKey(dictionary.getId());
             }
             dataTypeService.deleteByPrimaryKey(id);
+        } else {
+            message = "删除失败，id不能为空";
+            icon = Constants.FAIL_ICON;
         }
-        redirectAttributes.addFlashAttribute("message", "删除成功");
-        redirectAttributes.addFlashAttribute("icon", Constants.SUCCESS_ICON);
+        redirectAttributes.addFlashAttribute("message", message);
+        redirectAttributes.addFlashAttribute("icon", icon);
         return "redirect:/admin/dataType/list";
     }
     @RequestMapping(value = "view")

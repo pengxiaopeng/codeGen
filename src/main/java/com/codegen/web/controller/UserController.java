@@ -20,7 +20,7 @@ import java.util.Date;
  * @create 2018-06-05 13:39
  **/
 @Controller
-@RequestMapping("/admin/authority")
+@RequestMapping("/admin/user")
 public class UserController extends CommonContrller {
     protected final Log logger = LogFactory.getLog(this.getClass());
     @RequestMapping("list")
@@ -80,11 +80,18 @@ public class UserController extends CommonContrller {
 
     @RequestMapping(value = "delete")
     public String delete(Model model, Long id, HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
+        String message = "删除成功";
+        String icon = Constants.SUCCESS_ICON;
         if (id != null) {
-            authorityService.deleteByPrimaryKey(id);
+            if(id == 1) {
+                message = "超级管理员不能删除";
+                icon = Constants.FAIL_ICON;
+            } else {
+                authorityService.deleteByPrimaryKey(id);
+            }
         }
-        redirectAttributes.addFlashAttribute(Constants.MESSAGE_NAME, "删除成功");
-        redirectAttributes.addFlashAttribute(Constants.ICON_NAME, Constants.SUCCESS_ICON);
-        return "redirect:/admin/authority/list";
+        redirectAttributes.addFlashAttribute(Constants.MESSAGE_NAME, message);
+        redirectAttributes.addFlashAttribute(Constants.ICON_NAME, icon);
+        return "redirect:/admin/user/list";
     }
 }
