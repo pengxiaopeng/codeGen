@@ -18,8 +18,8 @@ public class Admin extends BaseModel implements UserDetails {
     private String password; // 密码
     private String nickName; // 姓名
     private byte[] avatar; // 头像
-    private Long isEnabled; // 是否启用
-    private Long isLocked; // 是否锁定
+    private Integer enable; // 是否启用
+    private Integer locked; // 是否锁定
     private Integer loginFailureCount; // 连续登录失败次数
     private Date lockedDate; // 锁定日期
     private Date loginDate; // 最后登录日期
@@ -138,20 +138,20 @@ public class Admin extends BaseModel implements UserDetails {
         this.avatar = avatar;
     }
 
-    public Long getIsEnabled() {
-        return isEnabled;
+    public Integer getEnable() {
+        return enable;
     }
 
-    public void setIsEnabled(Long isEnabled) {
-        this.isEnabled = isEnabled;
+    public void setEnable(Integer enable) {
+        this.enable = enable;
     }
 
-    public Long getIsLocked() {
-        return isLocked;
+    public Integer getLocked() {
+        return locked;
     }
 
-    public void setIsLocked(Long isLocked) {
-        this.isLocked = isLocked;
+    public void setLocked(Integer locked) {
+        this.locked = locked;
     }
 
     public Integer getLoginFailureCount() {
@@ -392,7 +392,7 @@ public class Admin extends BaseModel implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return this.isEnabled != null && this.isEnabled == 1 && this.isLocked != null && this.isLocked == 0;
+        return this.enable != null && this.enable == 1 && this.locked != null && this.locked == 0;
     }
 
     @Override

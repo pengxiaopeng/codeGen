@@ -3,7 +3,7 @@
 <mapper namespace="com.codegen.modules.dao.AdminDao">
     <resultMap id="BaseResultMap" type="com.codegen.modules.model.Admin">
         <id column="ID" property="id" jdbcType="BIGINT"/>
-        <result column="USERNAME" property="nickname" jdbcType="VARCHAR" />
+        <result column="USERNAME" property="username" jdbcType="VARCHAR" />
         <result column="NICKNAME" property="nickName" jdbcType="VARCHAR" />
         <result column="USER_TYPE" property="userType" jdbcType="VARCHAR" />
         <result column="USER_ORG_ID" property="userOrgId" jdbcType="BIGINT" />
@@ -12,8 +12,8 @@
         <result column="MODIFY_DATE" property="modifyDate" jdbcType="TIMESTAMP" />
         <result column="EMAIL" property="email" jdbcType="VARCHAR" />
         <result column="AVATAR" property="avatar" jdbcType="BINARY" />
-        <result column="IS_ENABLED" property="isEnabled" jdbcType="BIT" />
-        <result column="IS_LOCKED" property="isLocked" jdbcType="BIT" />
+        <result column="IS_ENABLED" property="enable" jdbcType="BIT" />
+        <result column="IS_LOCKED" property="locked" jdbcType="BIT" />
         <result column="LOCKED_DATE" property="lockedDate" jdbcType="TIMESTAMP" />
         <result column="LOGIN_DATE" property="loginDate" jdbcType="TIMESTAMP" />
         <result column="LOGIN_FAILURE_COUNT" property="loginFailureCount" jdbcType="VARCHAR" />
@@ -70,8 +70,8 @@
     </sql>
 
     <sql id="whereSql">
-        <if test="nickname != null">
-            and USERNAME = #{nickname}
+        <if test="username != null">
+            and USERNAME = #{username}
         </if>
         <if test="idsMap != null">
             <foreach collection="idsMap.keys" item="key" separator=",">
@@ -158,7 +158,7 @@
         )
         values (
 
-        #{nickname, jdbcType=VARCHAR},
+        #{username, jdbcType=VARCHAR},
         #{nickName, jdbcType=VARCHAR},
         #{userType, jdbcType=INTEGER},
         #{userOrgId, jdbcType=BIGINT},
@@ -167,8 +167,8 @@
         #{modifyDate, jdbcType=TIMESTAMP},
         #{email, jdbcType=VARCHAR},
         #{avatar, jdbcType=BINARY},
-        #{isEnabled, jdbcType=BIT},
-        #{isLocked, jdbcType=BIT},
+        #{enable, jdbcType=BIT},
+        #{locked, jdbcType=BIT},
         #{lockedDate, jdbcType=TIMESTAMP},
         #{loginDate, jdbcType=TIMESTAMP},
         #{loginFailureCount, jdbcType=INTEGER},
@@ -196,7 +196,7 @@
             <if test="id != null">
             ID,
             </if>
-            <if test="nickname != null">
+            <if test="username != null">
             USERNAME,
             </if>
             <if test="nickName != null">
@@ -223,10 +223,10 @@
             <if test="avatar != null">
             AVATAR,
             </if>
-            <if test="isEnabled != null">
+            <if test="enable != null">
             IS_ENABLED,
             </if>
-            <if test="isLocked != null">
+            <if test="locked != null">
             IS_LOCKED,
             </if>
             <if test="lockedDate != null">
@@ -292,8 +292,8 @@
             <if test="id != null">
             #{id, jdbcType=BIGINT},
             </if>
-            <if test="nickname != null">
-            #{nickname, jdbcType=VARCHAR},
+            <if test="username != null">
+            #{username, jdbcType=VARCHAR},
             </if>
             <if test="nickName != null">
             #{nickName, jdbcType=VARCHAR},
@@ -319,11 +319,11 @@
             <if test="avatar != null">
             #{avatar, jdbcType=BINARY},
             </if>
-            <if test="isEnabled != null">
-            #{isEnabled, jdbcType=BIT},
+            <if test="enable != null">
+            #{enable, jdbcType=BIT},
             </if>
-            <if test="isLocked != null">
-            #{isLocked, jdbcType=BIT},
+            <if test="locked != null">
+            #{locked, jdbcType=BIT},
             </if>
             <if test="lockedDate != null">
             #{lockedDate, jdbcType=TIMESTAMP},
@@ -388,8 +388,8 @@
     <update id="updateByPrimaryKeySelective" parameterType="com.codegen.modules.model.Admin">
         update BID_ADMIN
         <set>
-            <if test="nickname != null">
-            USERNAME= #{nickname, jdbcType=VARCHAR},
+            <if test="username != null">
+            USERNAME= #{username, jdbcType=VARCHAR},
             </if>
             <if test="nickName != null">
             NICKNAME= #{nickName, jdbcType=VARCHAR},
@@ -415,11 +415,11 @@
             <if test="avatar != null">
             AVATAR= #{avatar, jdbcType=BINARY},
             </if>
-            <if test="isEnabled != null">
-            IS_ENABLED= #{isEnabled, jdbcType=BIT},
+            <if test="enable != null">
+            IS_ENABLED= #{enable, jdbcType=BIT},
             </if>
-            <if test="isLocked != null">
-            IS_LOCKED= #{isLocked, jdbcType=BIT},
+            <if test="locked != null">
+            IS_LOCKED= #{locked, jdbcType=BIT},
             </if>
             <if test="lockedDate != null">
             LOCKED_DATE= #{lockedDate, jdbcType=TIMESTAMP},
@@ -486,7 +486,7 @@
     <update id="updateByPrimaryKey" parameterType="com.codegen.modules.model.Admin">
         update BID_ADMIN
         set
-        USERNAME= #{nickname, jdbcType=VARCHAR},
+        USERNAME= #{username, jdbcType=VARCHAR},
         NICKNAME= #{nickName, jdbcType=VARCHAR},
         USER_TYPE= #{userType, jdbcType=INTEGER},
         USER_ORG_ID= #{userOrgId, jdbcType=BIGINT},
@@ -495,8 +495,8 @@
         MODIFY_DATE= #{modifyDate, jdbcType=TIMESTAMP},
         EMAIL= #{email, jdbcType=VARCHAR},
         AVATAR= #{avatar, jdbcType=BINARY},
-        IS_ENABLED= #{isEnabled, jdbcType=BIT},
-        IS_LOCKED= #{isLocked, jdbcType=BIT},
+        IS_ENABLED= #{enable, jdbcType=BIT},
+        IS_LOCKED= #{locked, jdbcType=BIT},
         LOCKED_DATE= #{lockedDate, jdbcType=TIMESTAMP},
         LOGIN_DATE= #{loginDate, jdbcType=TIMESTAMP},
         LOGIN_FAILURE_COUNT= #{loginFailureCount, jdbcType=INTEGER},

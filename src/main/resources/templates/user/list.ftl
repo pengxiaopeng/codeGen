@@ -20,18 +20,18 @@
     <div class="content-wrapper">
         <form id="list" class="layui-form" action="/admin/authority/list">
             <div class="layui-form-item">
-                <@formElementsTemplate.inputElement style="margin-top: 10px;" name="name" value="${authority.name!''}" label="名字" placeholder="请输入名字" />
+                <@formElementsTemplate.inputElement style="margin-top: 10px;" name="userName" value="${admin.userName!''}" label="用户名" placeholder="请输入用户名" />
 
-                <@formElementsTemplate.inputElement style="margin-top: 10px;" name="url" value="${authority.url!''}" label="url" placeholder="请输入url" />
+                <@formElementsTemplate.inputElement style="margin-top: 10px;" name="email" value="${admin.email!''}" label="email" placeholder="请输入email" />
 
                 <@formElementsTemplate.searchButton />
             </div>
 
-            <#assign headItmeList=["用户名","昵称","email","是否启用","是否锁定","创建时间","修改时间","操作"]>
+            <#assign headItmeList=["用户名","昵称","email","是否启用","是否锁定","锁定日期","最后登录日期","操作"]>
 
-            <#assign bodyItmeList=["${r'${item.userName}'}","${r'${item.nickName}'}","${r'${item.email}'}",
-            "${r'${(item.isEnabled==1)?then(\"启用 \",\"未启用\")}'}","${r'${(item.isLocked==1)?then(\"锁定 \",\"未锁定\")}'}",
-            "${r'${item.createDate?datetime}'}","${r'${item.modifyDate?datetime}'}",
+            <#assign bodyItmeList=["${r'${item.username}'}","${r'${item.nickName}'}","${r'${item.email}'}",
+            "${r'${(item.enable==1)?then(\"启用 \",\"未启用\")}'}","${r'${(item.locked==1)?then(\"锁定 \",\"未锁定\")}'}",
+            "${r'<#if item.lockedDate??>${item.lockedDate?datetime}<#else>未锁定</#if>'}","${r'<#if item.loginDate??>${item.loginDate?datetime}</#if>'}",
             "${r'<a class=\"btn btn-success btn-sm\" href=\"/admin/user/editView?id=${item.id}\">修改</a>
                                <a class=\"btn  btn-success btn-sm\" onclick=\"deleteById(this);\">删除</a>'}"]>
 
