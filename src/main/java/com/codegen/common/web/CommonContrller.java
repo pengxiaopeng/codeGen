@@ -23,5 +23,6 @@ public class CommonContrller {
     public RoleAuthorityService roleAuthorityService;
     @Autowired
     public OrgService orgService;
-
+    @Autowired
+    public AdminService adminService;
 }

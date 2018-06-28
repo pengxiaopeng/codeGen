@@ -2,7 +2,7 @@ package com.codegen.web.controller;
 
 import com.codegen.common.config.Constants;
 import com.codegen.common.web.CommonContrller;
-import com.codegen.modules.model.Authority;
+import com.codegen.modules.model.Admin;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
@@ -24,58 +24,58 @@ import java.util.Date;
 public class UserController extends CommonContrller {
     protected final Log logger = LogFactory.getLog(this.getClass());
     @RequestMapping("list")
-    public String list(Authority authority, Model model, Integer page, Integer pageMax, HttpServletRequest request, HttpServletResponse response) {
+    public String list(Admin admin, Model model, Integer page, Integer pageMax, HttpServletRequest request, HttpServletResponse response) {
         page = page == null ? 1 : page;
         pageMax = pageMax == null ? 10 : pageMax;
-        model.addAttribute("page", authorityService.findPage(page, pageMax, authority));
-        model.addAttribute("authority", authority);
-        return "authority/list";
+        model.addAttribute("page", adminService.findPage(page, pageMax, admin));
+        model.addAttribute("admin", admin);
+        return "user/list";
     }
     @RequestMapping(value = "addView")
     public String addView(Model model, HttpServletRequest request, HttpServletResponse response) {
-        return "authority/add";
+        return "user/add";
     }
 
 
     @RequestMapping(value = "add")
-    public String add(Model model, Authority authority, HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
-        if (authority != null) {
-            authority.setCreateDate(new Date());
-            authority.setModifyDate(new Date());
-            authorityService.save(authority);
+    public String add(Model model, Admin admin, HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
+        if (admin != null) {
+            admin.setCreateDate(new Date());
+            admin.setModifyDate(new Date());
+            adminService.save(admin);
         }
         redirectAttributes.addFlashAttribute(Constants.MESSAGE_NAME, "添加成功");
         redirectAttributes.addFlashAttribute(Constants.ICON_NAME, Constants.SUCCESS_ICON);
-        return "redirect:/admin/authority/list";
+        return "redirect:/admin/user/list";
     }
 
     @RequestMapping(value = "editView")
     public String editView(Model model, Long id, HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
         if (id != null) {
-            model.addAttribute("authority", authorityService.selectByPrimaryKey(id));
-            return "authority/edit";
+            model.addAttribute("admin", adminService.selectByPrimaryKey(id));
+            return "user/edit";
         }
 
         redirectAttributes.addFlashAttribute(Constants.MESSAGE_NAME, "id不能为空");
         redirectAttributes.addFlashAttribute(Constants.ICON_NAME, Constants.FAIL_ICON);
-        return "redirect:/admin/authority/list";
+        return "redirect:/admin/user/list";
 
     }
 
     @RequestMapping(value = "edit")
-    public String edit(Model model, Authority authority, HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
+    public String edit(Model model, Admin admin, HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
         String message = "修改失败";
         String icon = Constants.FAIL_ICON;
-        if (authority != null) {
-            authority.setModifyDate(new Date());
-            authorityService.updateByPrimaryKeySelective(authority);
+        if (admin != null) {
+            admin.setModifyDate(new Date());
+            adminService.updateByPrimaryKeySelective(admin);
             message = "修改成功";
             icon = Constants.SUCCESS_ICON;
         }
 
         redirectAttributes.addFlashAttribute(Constants.MESSAGE_NAME, message);
         redirectAttributes.addFlashAttribute(Constants.ICON_NAME, icon);
-        return "redirect:/admin/authority/list";
+        return "redirect:/admin/user/list";
     }
 
     @RequestMapping(value = "delete")
@@ -87,7 +87,7 @@ public class UserController extends CommonContrller {
                 message = "超级管理员不能删除";
                 icon = Constants.FAIL_ICON;
             } else {
-                authorityService.deleteByPrimaryKey(id);
+                adminService.deleteByPrimaryKey(id);
             }
         }
         redirectAttributes.addFlashAttribute(Constants.MESSAGE_NAME, message);
