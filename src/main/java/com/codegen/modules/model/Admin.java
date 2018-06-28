@@ -18,8 +18,8 @@ public class Admin extends BaseModel implements UserDetails {
     private String password; // 密码
     private String nickname; // 姓名
     private byte[] avatar; // 头像
-    private Boolean isEnabled; // 是否启用
-    private Boolean isLocked; // 是否锁定
+    private Long isEnabled; // 是否启用
+    private Long isLocked; // 是否锁定
     private Integer loginFailureCount; // 连续登录失败次数
     private Date lockedDate; // 锁定日期
     private Date loginDate; // 最后登录日期
@@ -39,7 +39,7 @@ public class Admin extends BaseModel implements UserDetails {
     private Integer siderbarPosition; // 连续登录失败次数
     private Integer themeColor; // 连续登录失败次数
     private Integer themeStyle; // 连续登录失败次数
-    private Boolean hadReadAttention; // 连续登录失败次数
+    private Long hadReadAttention; // 连续登录失败次数
     private Date createDate;
     private Date modifyDate;
     private Set<Role> roles = new HashSet<Role>(); // 角色
@@ -138,20 +138,20 @@ public class Admin extends BaseModel implements UserDetails {
         this.avatar = avatar;
     }
 
-    public Boolean getIsEnabled() {
+    public Long getIsEnabled() {
         return isEnabled;
     }
 
-    public void setEnabled(Boolean enabled) {
-        isEnabled = enabled;
+    public void setIsEnabled(Long isEnabled) {
+        this.isEnabled = isEnabled;
     }
 
-    public Boolean getLocked() {
+    public Long getIsLocked() {
         return isLocked;
     }
 
-    public void setLocked(Boolean locked) {
-        isLocked = locked;
+    public void setIsLocked(Long isLocked) {
+        this.isLocked = isLocked;
     }
 
     public Integer getLoginFailureCount() {
@@ -362,11 +362,11 @@ public class Admin extends BaseModel implements UserDetails {
         this.themeStyle = themeStyle;
     }
 
-    public Boolean getHadReadAttention() {
+    public Long getHadReadAttention() {
         return hadReadAttention;
     }
 
-    public void setHadReadAttention(Boolean hadReadAttention) {
+    public void setHadReadAttention(Long hadReadAttention) {
         this.hadReadAttention = hadReadAttention;
     }
 
@@ -390,7 +390,7 @@ public class Admin extends BaseModel implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return this.isEnabled == 1 && this.isLocked == 0;
     }
 
     @Override

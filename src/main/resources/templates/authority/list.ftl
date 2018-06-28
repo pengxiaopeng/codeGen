@@ -48,11 +48,6 @@
             window.location.href = "/admin/authority/delete?id=" + id;
         });
     }
-
-    function editById(_this) {
-        var id = $(_this).closest("tr").find("input[id='id']").val();
-        window.location.href = "/admin/authority/editView?id=" + id;
-    }
 </script>
 </body>
 </html>
