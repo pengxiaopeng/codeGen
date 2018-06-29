@@ -1,5 +1,5 @@
 <#--输入框模板-->
-<#macro inputElement style="" name="" value="" label="" type="text" placeholder="" verify="" maxlength="200">
+<#macro inputElement style="" name="" value="" label="" type="text" placeholder="" verify="" maxlength="200" isTip="N" tip="">
     <div class="layui-inline" style="${style!""}">
         <label class="layui-form-label">${label!""}</label>
         <div class="layui-input-inline">
@@ -7,6 +7,7 @@
                   <#if verify!="">lay-verify="${verify}"</#if>
                    maxlength="${maxlength!"200"}"
                    autocomplete="off" class="layui-input">
+            <#if isTip = "Y"><label style="color: #F80C11;display: none" >${tip!""}</label></#if>
         </div>
     </div>
 </#macro>

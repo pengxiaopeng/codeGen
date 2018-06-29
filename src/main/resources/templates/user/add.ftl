@@ -42,7 +42,7 @@
                             <form class="layui-form" action="/admin/user/add">
                                 <div class="card-body">
                                     <div class="layui-form-item">
-                                        <@formElements.inputElement name="username" label="用户名" placeholder="请输入用户名" verify="required" />
+                                        <@formElements.inputElement name="username" label="用户名" placeholder="请输入用户名" verify="required" isTip="Y" tip="该用户已存在!"/>
                                         <@formElements.inputElement name="nickName" label="昵称" placeholder="请输入昵称"  />
                                     </div>
                                     <div class="layui-form-item">
@@ -63,13 +63,38 @@
     <#include "../include/sidebarControl.ftl">
 </div>
 <script type="text/javascript">
+    $("input[name='username']").change(function () {
+       var that = $(this);
+        unique(that);
+    });
+    $("input[name='username']").keyup(function () {
+        var that = $(this);
+        unique(that);
+    });
+    function unique(that) {
+        $.ajax({
+            type : "POST",
+            data:{"username":that.val()},
+            url:"/admin/user/unique",
+            success:function(data){
+                var label = that.parent().find("label");
+                if(data == '0') {
+                    label.css("display","block");
+                } else {
+                    label.css("display","none");
+                }
+            }
+        });
+    }
     layui.use(['form', 'layedit', 'laydate', 'element', 'laypage', 'table', 'layer'], function () {
         var form = layui.form;
         form.on('submit(formDemo)', function(data){
-            console.log(data.elem) //被执行事件的元素DOM对象，一般为button对象
-            console.log(data.form) //被执行提交的form对象，一般在存在form标签时才会返回
-            console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
-            return true; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+            var display = $("input[name='username']").parent().find("label").css("display");
+            console.log(display);
+            if(display != 'none') {
+                return false;
+            }
+            return true; //阻止表单跳转。
         });
     })
 
