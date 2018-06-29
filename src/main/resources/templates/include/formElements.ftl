@@ -3,7 +3,7 @@
     <div class="layui-inline" style="${style!""}">
         <label class="layui-form-label">${label!""}</label>
         <div class="layui-input-inline">
-            <input type="${text!""}" name="${name!""}" value="${value!""}" placeholder="${placeholder!""}"
+            <input type="${type!""}" name="${name!""}" value="${value!""}" placeholder="${placeholder!""}"
                   <#if verify!="">lay-verify="${verify}"</#if>
                    maxlength="${maxlength!"200"}"
                    autocomplete="off" class="layui-input">

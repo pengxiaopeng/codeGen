@@ -74,7 +74,9 @@ public class AuthorityController extends CommonContrller {
             message = "修改成功";
             icon = Constants.SUCCESS_ICON;
         }
-
+        if (authority != null && authority.getId() == null) {
+            message = "id不能为空！";
+        }
         redirectAttributes.addFlashAttribute(Constants.MESSAGE_NAME, message);
         redirectAttributes.addFlashAttribute(Constants.ICON_NAME, icon);
         return "redirect:/admin/authority/list";

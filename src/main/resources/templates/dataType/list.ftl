@@ -18,7 +18,7 @@
     <#include "../include/sideBarMenu.ftl">
 
     <div class="content-wrapper">
-        <form id="list" class="layui-form" action="/admin/authority/list">
+        <form id="list" class="layui-form" action="/admin/dataType/list">
             <div class="layui-form-item">
                 <@formElementsTemplate.inputElement style="margin-top: 10px;" name="code" value="${dataType.code!''}" label="code" placeholder="请输入code" />
 

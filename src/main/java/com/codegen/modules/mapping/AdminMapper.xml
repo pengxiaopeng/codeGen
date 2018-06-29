@@ -19,7 +19,7 @@
         <result column="LOGIN_FAILURE_COUNT" property="loginFailureCount" jdbcType="VARCHAR" />
         <result column="LOGIN_IP" property="loginIp" jdbcType="VARCHAR" />
         <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
-        <result column="PARTMENT_ID" property="partmentId" jdbcType="BIGINT" />
+
         <result column="CREATE_USER_ID" property="createUserId" jdbcType="BIGINT" />
         <result column="MODIFY_USER_ID" property="modifyUserId" jdbcType="BIGINT" />
         <result column="DROPDOWNS" property="dropdowns" jdbcType="INTEGER" />
@@ -53,7 +53,6 @@
     T.LOGIN_FAILURE_COUNT,
     T.LOGIN_IP,
     T.PASSWORD,
-    T.PARTMENT_ID,
     T.CREATE_USER_ID,
     T.MODIFY_USER_ID,
     T.DROPDOWNS,
@@ -72,6 +71,12 @@
     <sql id="whereSql">
         <if test="username != null">
             and USERNAME = #{username}
+        </if>
+        <if test="nickName != null">
+            and NICKNAME = #{nickName}
+        </if>
+        <if test="email != null">
+            and EMAIL = #{email}
         </if>
         <if test="idsMap != null">
             <foreach collection="idsMap.keys" item="key" separator=",">
@@ -141,7 +146,6 @@
         LOGIN_FAILURE_COUNT,
         LOGIN_IP,
         PASSWORD,
-        PARTMENT_ID,
         CREATE_USER_ID,
         MODIFY_USER_ID,
         DROPDOWNS,
@@ -174,7 +178,7 @@
         #{loginFailureCount, jdbcType=INTEGER},
         #{loginIp, jdbcType=VARCHAR},
         #{password, jdbcType=VARCHAR},
-        #{partmentId, jdbcType=BIGINT},
+
         #{createUserId, jdbcType=BIGINT},
         #{modifyUserId, jdbcType=BIGINT},
         #{dropdowns, jdbcType=INTEGER},
@@ -244,9 +248,7 @@
             <if test="password != null">
             PASSWORD,
             </if>
-            <if test="partmentId != null">
-            PARTMENT_ID,
-            </if>
+
             <if test="createUserId != null">
             CREATE_USER_ID,
             </if>
@@ -340,9 +342,7 @@
             <if test="password != null">
             #{password, jdbcType=VARCHAR},
             </if>
-            <if test="partmentId != null">
-            #{partmentId, jdbcType=BIGINT},
-            </if>
+
             <if test="createUserId != null">
             #{createUserId, jdbcType=BIGINT},
             </if>
@@ -436,9 +436,7 @@
             <if test="password != null">
             PASSWORD= #{password, jdbcType=VARCHAR},
             </if>
-            <if test="partmentId != null">
-            PARTMENT_ID= #{partmentId, jdbcType=BIGINT},
-            </if>
+
             <if test="createUserId != null">
             CREATE_USER_ID= #{createUserId, jdbcType=BIGINT},
             </if>
@@ -502,7 +500,6 @@
         LOGIN_FAILURE_COUNT= #{loginFailureCount, jdbcType=INTEGER},
         LOGIN_IP= #{loginIp, jdbcType=VARCHAR},
         PASSWORD= #{password, jdbcType=VARCHAR},
-        PARTMENT_ID= #{partmentId, jdbcType=BIGINT},
         CREATE_USER_ID= #{createUserId, jdbcType=BIGINT},
         MODIFY_USER_ID= #{modifyUserId, jdbcType=BIGINT},
         DROPDOWNS= #{dropdowns, jdbcType=INTEGER},

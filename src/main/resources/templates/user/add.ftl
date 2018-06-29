@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>添加菜单</title>
+    <title>添加用户</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
     <#include "../include/cssResource.ftl">
@@ -39,20 +39,15 @@
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form class="layui-form" action="/admin/authority/add">
+                            <form class="layui-form" action="/admin/user/add">
                                 <div class="card-body">
                                     <div class="layui-form-item">
                                         <@formElements.inputElement name="username" label="用户名" placeholder="请输入用户名" verify="required" />
                                         <@formElements.inputElement name="nickName" label="昵称" placeholder="请输入昵称"  />
                                     </div>
                                     <div class="layui-form-item">
-                                        <@formElements.inputElement name="authorities" label="权限别名" placeholder="请输入权限别名" verify="required"/>
-                                        <@formElements.inputElement name="itemIcon" label="icon" placeholder="请输入icon的css 类名" verify="required"/>
-                                    </div>
-                                    <div class="layui-form-item">
-                                        <@formElements.selectModel label="父节点" name="parentId" list = getListFrom("parentAuthority") />
-                                        <@formElements.radioModel label="菜单类型" name="position" list=[{"value":"1","title":"功能节点","checked":"checked"},
-                                        {"value":"0","title":"菜单节点"}]/>
+                                        <@formElements.inputElement name="email" label="邮箱" placeholder="请输入邮箱"  />
+                                        <@formElements.inputElement name="password" type="password" label="密码" placeholder="请输入密码" verify="required"/>
                                     </div>
 
                                     <@formElements.submitAndBackBtn />

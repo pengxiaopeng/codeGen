@@ -3,6 +3,8 @@ package com.codegen.web.controller;
 import com.codegen.common.config.Constants;
 import com.codegen.common.web.CommonContrller;
 import com.codegen.modules.model.Admin;
+import com.codegen.utils.MD5;
+import com.codegen.utils.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
@@ -39,10 +41,14 @@ public class UserController extends CommonContrller {
 
     @RequestMapping(value = "add")
     public String add(Model model, Admin admin, HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
-        if (admin != null) {
+        if (admin != null && StringUtils.isNotBlank(admin.getPassword()) && StringUtils.isNotBlank(admin.getUsername())) {
             admin.setCreateDate(new Date());
             admin.setModifyDate(new Date());
-            adminService.save(admin);
+            admin.setLoginFailureCount(0);
+            admin.setLocked(0);
+            admin.setEnable(1);
+            admin.setPassword(MD5.getMD5Str(admin.getPassword()));
+            adminService.insertSelective(admin);
         }
         redirectAttributes.addFlashAttribute(Constants.MESSAGE_NAME, "添加成功");
         redirectAttributes.addFlashAttribute(Constants.ICON_NAME, Constants.SUCCESS_ICON);
@@ -66,11 +72,16 @@ public class UserController extends CommonContrller {
     public String edit(Model model, Admin admin, HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
         String message = "修改失败";
         String icon = Constants.FAIL_ICON;
-        if (admin != null) {
+        if (admin != null && admin.getId() != null) {
             admin.setModifyDate(new Date());
+            admin.setPassword(MD5.getMD5Str(admin.getPassword()));
             adminService.updateByPrimaryKeySelective(admin);
             message = "修改成功";
             icon = Constants.SUCCESS_ICON;
+        }
+
+        if (admin != null && admin.getId() == null) {
+            message = "id不能为空！";
         }
 
         redirectAttributes.addFlashAttribute(Constants.MESSAGE_NAME, message);

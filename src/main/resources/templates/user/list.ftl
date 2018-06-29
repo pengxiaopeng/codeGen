@@ -18,7 +18,7 @@
     <#include "../include/sideBarMenu.ftl">
 
     <div class="content-wrapper">
-        <form id="list" class="layui-form" action="/admin/authority/list">
+        <form id="list" class="layui-form" action="/admin/user/list">
             <div class="layui-form-item">
                 <@formElementsTemplate.inputElement style="margin-top: 10px;" name="userName" value="${admin.userName!''}" label="用户名" placeholder="请输入用户名" />
 
@@ -29,7 +29,7 @@
 
             <#assign headItmeList=["用户名","昵称","email","是否启用","是否锁定","锁定日期","最后登录日期","操作"]>
 
-            <#assign bodyItmeList=["${r'${item.username}'}","${r'${item.nickName}'}","${r'${item.email}'}",
+            <#assign bodyItmeList=["${r'${item.username}'}","${r'${item.nickName!\"\"}'}","${r'${item.email!\"\"}'}",
             "${r'${(item.enable==1)?then(\"启用 \",\"未启用\")}'}","${r'${(item.locked==1)?then(\"锁定 \",\"未锁定\")}'}",
             "${r'<#if item.lockedDate??>${item.lockedDate?datetime}<#else>未锁定</#if>'}","${r'<#if item.loginDate??>${item.loginDate?datetime}</#if>'}",
             "${r'<a class=\"btn btn-success btn-sm\" href=\"/admin/user/editView?id=${item.id}\">修改</a>

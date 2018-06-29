@@ -100,7 +100,9 @@ public class DataTypeController extends CommonContrller {
             message = "修改成功";
             icon = Constants.SUCCESS_ICON;
         }
-
+        if (dataType != null && dataType.getId() == null) {
+            message = "id不能为空！";
+        }
         redirectAttributes.addFlashAttribute("message", message);
         redirectAttributes.addFlashAttribute("icon", icon);
         return "redirect:/admin/dataType/list";
