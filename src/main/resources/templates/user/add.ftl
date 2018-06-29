@@ -18,9 +18,10 @@
     <!-- Navbar -->
 
     <@navbarTemplate.navbar json={"list":[
-    {"url":"/admin/authority/list","title":"菜单列表"},
-    {"url":"/admin/authority/addView","class":"active","title":"添加菜单"}
-    ]}/>
+    {"url":"/admin/user/list","title":"用户列表"},
+    {"url":"/admin/user/addView","class":"active","title":"添加用户"}
+    ]}
+    />
 
     <#include "../include/sideBarMenu.ftl">
 
@@ -34,15 +35,15 @@
                         <!-- general form elements -->
                         <div class="card card-success">
                             <div class="card-header">
-                                <h3 class="card-title">添加菜单</h3>
+                                <h3 class="card-title">添加用户</h3>
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
                             <form class="layui-form" action="/admin/authority/add">
                                 <div class="card-body">
                                     <div class="layui-form-item">
-                                        <@formElements.inputElement name="name" label="名字" placeholder="请输入名字" />
-                                        <@formElements.inputElement name="url" label="url" placeholder="请输入url" verify="required" />
+                                        <@formElements.inputElement name="username" label="用户名" placeholder="请输入用户名" verify="required" />
+                                        <@formElements.inputElement name="nickName" label="昵称" placeholder="请输入昵称"  />
                                     </div>
                                     <div class="layui-form-item">
                                         <@formElements.inputElement name="authorities" label="权限别名" placeholder="请输入权限别名" verify="required"/>
