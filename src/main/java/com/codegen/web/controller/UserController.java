@@ -10,6 +10,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -42,6 +43,7 @@ public class UserController extends CommonContrller {
     @RequestMapping(value = "add")
     public String add(Model model, Admin admin, HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
         if (admin != null && StringUtils.isNotBlank(admin.getPassword()) && StringUtils.isNotBlank(admin.getUsername())) {
+            // todo 判断username 唯一
             admin.setCreateDate(new Date());
             admin.setModifyDate(new Date());
             admin.setLoginFailureCount(0);
@@ -54,7 +56,17 @@ public class UserController extends CommonContrller {
         redirectAttributes.addFlashAttribute(Constants.ICON_NAME, Constants.SUCCESS_ICON);
         return "redirect:/admin/user/list";
     }
-
+    @RequestMapping(value = "unique")
+    @ResponseBody
+    public String unique(Model model, String username, HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
+        if(StringUtils.isNotBlank(username)) {
+            Admin admin = new Admin();
+            admin.setUsername(username);
+            admin = adminService.get(admin);
+            return admin == null ? "1" : "0";
+        }
+        return "1";
+    }
     @RequestMapping(value = "editView")
     public String editView(Model model, Long id, HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
         if (id != null) {
