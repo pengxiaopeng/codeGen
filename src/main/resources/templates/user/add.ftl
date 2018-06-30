@@ -44,10 +44,11 @@
                                     <div class="layui-form-item">
                                         <@formElements.inputElement name="username" label="用户名" placeholder="请输入用户名" verify="required" isTip="Y" tip="该用户已存在!"/>
                                         <@formElements.inputElement name="nickName" label="昵称" placeholder="请输入昵称"  />
+                                        <@formElements.inputElement name="email" label="邮箱" placeholder="请输入邮箱" verify="email" />
                                     </div>
                                     <div class="layui-form-item">
-                                        <@formElements.inputElement name="email" label="邮箱" placeholder="请输入邮箱"  />
                                         <@formElements.inputElement name="password" type="password" label="密码" placeholder="请输入密码" verify="required"/>
+                                        <@formElements.inputElement name="repeatPassword" type="password" label="再次密码" placeholder="请再次输入密码" verify="required" isTip="Y" tip="两次输入密码不一致!"/>
                                     </div>
 
                                     <@formElements.submitAndBackBtn />
@@ -70,6 +71,27 @@
     $("input[name='username']").keyup(function () {
         var that = $(this);
         unique(that);
+    });
+    $("input[name='repeatPassword']").blur(function () {
+        var rP = $(this).val();
+        var p = $("input[name='password']").val();
+        var label = $(this).parent().find("label");
+        if(rP === p) {
+            label.css("display","none");
+        } else {
+            label.css("display","block");
+        }
+    });
+
+    $("input[name='password']").blur(function () {
+        var rP = $(this).val();
+        var p = $("input[name='repeatPassword']").val();
+        var label = $(this).parent().find("label");
+        if(rP === p) {
+            label.css("display","none");
+        } else {
+            label.css("display","block");
+        }
     });
     function unique(that) {
         $.ajax({
