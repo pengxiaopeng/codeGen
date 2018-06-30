@@ -72,7 +72,7 @@ public class UserController extends CommonContrller {
                     return "0";
                 }
                 for (Admin admin1 : admins) {
-                    if (!StringUtils.equals(username, admin1.getUsername())) {
+                    if (StringUtils.equals(username, admin1.getUsername()) && id != admin1.getId()) {
                         return "0";
                     }
                 }
