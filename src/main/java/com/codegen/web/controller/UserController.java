@@ -16,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author Pengxiaopeng
@@ -26,6 +27,7 @@ import java.util.Date;
 @RequestMapping("/admin/user")
 public class UserController extends CommonContrller {
     protected final Log logger = LogFactory.getLog(this.getClass());
+
     @RequestMapping("list")
     public String list(Admin admin, Model model, Integer page, Integer pageMax, HttpServletRequest request, HttpServletResponse response) {
         page = page == null ? 1 : page;
@@ -34,6 +36,7 @@ public class UserController extends CommonContrller {
         model.addAttribute("admin", admin);
         return "user/list";
     }
+
     @RequestMapping(value = "addView")
     public String addView(Model model, HttpServletRequest request, HttpServletResponse response) {
         return "user/add";
@@ -56,17 +59,29 @@ public class UserController extends CommonContrller {
         redirectAttributes.addFlashAttribute(Constants.ICON_NAME, Constants.SUCCESS_ICON);
         return "redirect:/admin/user/list";
     }
+
     @RequestMapping(value = "unique")
     @ResponseBody
-    public String unique(Model model, String username, HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
-        if(StringUtils.isNotBlank(username)) {
+    public String unique(Model model, String username, Long id, HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
+        if (StringUtils.isNotBlank(username)) {
             Admin admin = new Admin();
             admin.setUsername(username);
-            admin = adminService.get(admin);
-            return admin == null ? "1" : "0";
+            List<Admin> admins = adminService.findList(admin);
+            if (admins != null && !admins.isEmpty()) {
+                if (id == null) {
+                    return "0";
+                }
+                for (Admin admin1 : admins) {
+                    if (!StringUtils.equals(username, admin1.getUsername())) {
+                        return "0";
+                    }
+                }
+            }
+            return "1";
         }
         return "1";
     }
+
     @RequestMapping(value = "editView")
     public String editView(Model model, Long id, HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
         if (id != null) {
@@ -106,7 +121,7 @@ public class UserController extends CommonContrller {
         String message = "删除成功";
         String icon = Constants.SUCCESS_ICON;
         if (id != null) {
-            if(id == 1) {
+            if (id == 1) {
                 message = "超级管理员不能删除";
                 icon = Constants.FAIL_ICON;
             } else {

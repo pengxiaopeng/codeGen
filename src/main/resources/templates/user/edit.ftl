@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>添加用户</title>
+    <title>编辑用户</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
     <#include "../include/cssResource.ftl">
@@ -19,7 +19,7 @@
 
     <@navbarTemplate.navbar json={"list":[
     {"url":"/admin/user/list","title":"用户列表"},
-    {"url":"/admin/user/addView","class":"active","title":"添加用户"}
+    {"url":"/admin/user/addView","class":"active","title":"编辑用户"}
     ]}
     />
 
@@ -35,7 +35,7 @@
                         <!-- general form elements -->
                         <div class="card card-success">
                             <div class="card-header">
-                                <h3 class="card-title">添加用户</h3>
+                                <h3 class="card-title">编辑用户</h3>
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
@@ -63,6 +63,43 @@
     </div>
     <#include "../include/sidebarControl.ftl">
 </div>
+<script type="text/javascript">
+    $("input[name='username']").change(function () {
+        var that = $(this);
+        unique(that);
+    });
+    $("input[name='username']").keyup(function () {
+        var that = $(this);
+        unique(that);
+    });
+    function unique(that) {
+        $.ajax({
+            type : "POST",
+            data:{"username":that.val(),"id":$("input[name='id']").val()},
+            url:"/admin/user/unique",
+            success:function(data){
+                var label = that.parent().find("label");
+                if(data == '0') {
+                    label.css("display","block");
+                } else {
+                    label.css("display","none");
+                }
+            }
+        });
+    }
+    layui.use(['form', 'layedit', 'laydate', 'element', 'laypage', 'table', 'layer'], function () {
+        var form = layui.form;
+        form.on('submit(formDemo)', function(data){
+            var display = $("input[name='username']").parent().find("label").css("display");
+            console.log(display);
+            if(display != 'none') {
+                return false;
+            }
+            return true; //阻止表单跳转。
+        });
+    })
+
+</script>
 <#include "../include/jsResource.ftl">
 </body>
 </html>
