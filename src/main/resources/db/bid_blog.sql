@@ -11,7 +11,7 @@
  Target Server Version : 50622
  File Encoding         : 65001
 
- Date: 02/07/2018 09:29:11
+ Date: 02/07/2018 16:46:26
 */
 
 SET NAMES utf8mb4;
@@ -30,6 +30,8 @@ CREATE TABLE `bid_blog`  (
   `create_date` datetime(0) NULL DEFAULT NULL,
   `modify_user_id` bigint(20) NULL DEFAULT NULL,
   `create_user_id` bigint(20) NULL DEFAULT NULL,
+  `title` varchar(255) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT NULL,
+  `author` varchar(255) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = gbk COLLATE = gbk_chinese_ci ROW_FORMAT = Compact;
 
