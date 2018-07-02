@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.codegen.modules.dao.BidBlogDao">
+    <resultMap id="BaseResultMap" type="com.codegen.modules.model.BidBlog">
+        <id column="ID" property="id" jdbcType="INTEGER"/>
+        <result column="CONTENT" property="content" jdbcType="OTHER"/>
+        <result column="LABEL" property="label" jdbcType="VARCHAR"/>
+        <result column="TYPE" property="type" jdbcType="VARCHAR"/>
+        <result column="MODIFYDATE" property="modifyDate" jdbcType="TIMESTAMP"/>
+        <result column="CREATEDATE" property="createDate" jdbcType="TIMESTAMP"/>
+        <result column="MODIFYUSERID" property="modifyUserId" jdbcType="BIGINT"/>
+        <result column="CREATEUSERID" property="createUserId" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        T.ID,
+        T.CONTENT,
+        T.LABEL,
+        T.TYPE,
+        T.MODIFYDATE,
+        T.CREATEDATE,
+        T.MODIFYUSERID,
+        T.CREATEUSERID
+    </sql>
+
+    <sql id="whereSql">
+        <if test="content != null">
+            and CONTENT = #{content}
+        </if>
+        <if test="label != null">
+            and LABEL like CONCAT("%",#{label},"%")
+        </if>
+        <if test="type != null">
+            and TYPE like CONCAT("%",#{type},"%")
+        </if>
+        <if test="modifyDate != null">
+            and MODIFYDATE = #{modifyDate}
+        </if>
+        <if test="createDate != null">
+            and CREATEDATE = #{createDate}
+        </if>
+        <if test="modifyUserId != null">
+            and MODIFYUSERID = #{modifyUserId}
+        </if>
+        <if test="createUserId != null">
+            and CREATEUSERID = #{createUserId}
+        </if>
+        <if test="idsMap != null">
+            <foreach collection="idsMap.keys" item="key" separator=",">
+                and ${key} in
+                <foreach item="item" collection="idsMap[key]" open="(" separator="," close=")">
+                "${item}"
+                </foreach>
+            </foreach>
+        </if>
+    </sql>
+
+    <sql id="orderSql">
+        <choose>
+            <when test="orderByMap != null">
+                order by
+                <foreach collection="orderByMap.keys" item="key" separator=",">
+                ${key} ${orderByMap[key]}
+                </foreach>
+            </when>
+        </choose>
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java." resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from BID_BLOG T
+        where T.ID = #{id,jdbcType=INTEGER}
+    </select>
+
+    <select id="findList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from BID_BLOG T
+        <where>
+            <include refid="whereSql"/>
+        </where>
+        <include refid="orderSql"/>
+    </select>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from BID_BLOG T
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.">
+        delete from BID_BLOG
+        where ID = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" parameterType="com.codegen.modules.model.BidBlog" useGeneratedKeys="true" keyProperty="id">
+            insert into BID_BLOG (
+            CONTENT,
+            LABEL,
+            TYPE,
+            MODIFYDATE,
+            CREATEDATE,
+            MODIFYUSERID,
+            CREATEUSERID
+            )
+            values (
+            #{content, jdbcType=OTHER},
+            #{label, jdbcType=VARCHAR},
+            #{type, jdbcType=VARCHAR},
+            #{modifyDate, jdbcType=TIMESTAMP},
+            #{createDate, jdbcType=TIMESTAMP},
+            #{modifyUserId, jdbcType=BIGINT},
+            #{createUserId, jdbcType=BIGINT}
+            )
+    </insert>
+    <insert id="insertSelective" parameterType="com.codegen.modules.model.BidBlog" useGeneratedKeys="true" keyProperty="id">
+        insert into BID_BLOG
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="content != null">
+                CONTENT,
+            </if>
+            <if test="label != null">
+                LABEL,
+            </if>
+            <if test="type != null">
+                TYPE,
+            </if>
+            <if test="modifyDate != null">
+                MODIFYDATE,
+            </if>
+            <if test="createDate != null">
+                CREATEDATE,
+            </if>
+            <if test="modifyUserId != null">
+                MODIFYUSERID,
+            </if>
+            <if test="createUserId != null">
+                CREATEUSERID,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="content != null">
+                #{content, jdbcType=OTHER},
+            </if>
+            <if test="label != null">
+                #{label, jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                #{type, jdbcType=VARCHAR},
+            </if>
+            <if test="modifyDate != null">
+                #{modifyDate, jdbcType=TIMESTAMP},
+            </if>
+            <if test="createDate != null">
+                #{createDate, jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifyUserId != null">
+                #{modifyUserId, jdbcType=BIGINT},
+            </if>
+            <if test="createUserId != null">
+                #{createUserId, jdbcType=BIGINT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.codegen.modules.model.BidBlog">
+        update BID_BLOG
+        <set>
+            <if test="content != null">
+                CONTENT= #{content, jdbcType=OTHER},
+            </if>
+            <if test="label != null">
+                LABEL= #{label, jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                TYPE= #{type, jdbcType=VARCHAR},
+            </if>
+            <if test="modifyDate != null">
+                MODIFYDATE= #{modifyDate, jdbcType=TIMESTAMP},
+            </if>
+            <if test="createDate != null">
+                CREATEDATE= #{createDate, jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifyUserId != null">
+                MODIFYUSERID= #{modifyUserId, jdbcType=BIGINT},
+            </if>
+            <if test="createUserId != null">
+                CREATEUSERID= #{createUserId, jdbcType=BIGINT},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.codegen.modules.model.BidBlog">
+        update BID_BLOG
+        set
+            CONTENT= #{content, jdbcType=OTHER},
+            LABEL= #{label, jdbcType=VARCHAR},
+            TYPE= #{type, jdbcType=VARCHAR},
+            MODIFYDATE= #{modifyDate, jdbcType=TIMESTAMP},
+            CREATEDATE= #{createDate, jdbcType=TIMESTAMP},
+            MODIFYUSERID= #{modifyUserId, jdbcType=BIGINT},
+            CREATEUSERID= #{createUserId, jdbcType=BIGINT}
+        where ID = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>
