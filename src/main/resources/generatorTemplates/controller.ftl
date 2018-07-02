@@ -15,7 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  * @version 2.0
  * @date 	${.now?string("yyyy-MM-dd")}
  */
-@Controller("${model}Controller")
+@Controller
 @RequestMapping("/admin/${lowerModel}")
 public class ${model}Controller  extends BaseController{
 	  @Autowired
