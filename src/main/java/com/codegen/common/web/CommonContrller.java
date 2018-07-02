@@ -26,5 +26,5 @@ public class CommonContrller {
     @Autowired
     public AdminService adminService;
     @Autowired
-    private BlogService blogService;
+    public BlogService blogService;
 }
