@@ -176,6 +176,7 @@ public class ColumnMeta {
 			propertyType = "java.lang.String";
 		} else {
 			System.out.println("==类型[" + type + "]解析尚不支持==");
+			propertyType = "java.lang.String";
 		}
 		return propertyType;
 	}
