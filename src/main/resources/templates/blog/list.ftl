@@ -20,20 +20,20 @@
     <div class="content-wrapper">
         <form id="list" class="layui-form" action="/admin/blog/list">
             <div class="layui-form-item">
-                <@formElementsTemplate.inputElement style="margin-top: 10px;" name="code" value="${dataType.code!''}" label="code" placeholder="请输入code" />
+                <@formElementsTemplate.inputElement style="margin-top: 10px;" name="title" value="${blog.title!''}" label="标题" placeholder="请输入标题" />
 
-                <@formElementsTemplate.inputElement style="margin-top: 10px;" name="descpt" value="${dataType.descpt!''}" label="url" placeholder="请输入描述" />
+                <@formElementsTemplate.inputElement style="margin-top: 10px;" name="author" value="${blog.author!''}" label="作者" placeholder="请输入描述" />
 
                 <@formElementsTemplate.searchButton />
             </div>
 
-            <#assign headItmeList=["code","描述","创建时间","修改时间","操作"]>
-            <#assign bodyItmeList=["${r'<a class=\"btn btn-link\" href=\"/admin/dataType/view?id=${item.id}\">${item.code}</a>'}","${r'${item.descpt}'}",
+            <#assign headItmeList=["标题","作者","类型","创建时间","修改时间","操作"]>
+            <#assign bodyItmeList=["${r'<a class=\"btn btn-link\" href=\"/admin/blog/view?id=${item.id}\">${item.title}</a>'}","${r'${item.author}'}",
+            "${r'<#if item.types?? && (item.types?size>0)><#list item.types as i><span class="label label-success">${i}</span></#list></#if>'}",
             "${r'${item.createDate?datetime}'}","${r'${item.modifyDate?datetime}'}",
-            "${r'<a class=\"btn btn-success btn-sm\" href=\"/admin/dataType/editView?id=${item.id}\">修改</a>
+            "${r'<a class=\"btn btn-success btn-sm\" href=\"/admin/blog/editView?id=${item.id}\">修改</a>
                                <a class=\"btn  btn-success btn-sm\" onclick=\"deleteById(this);\">删除</a>'}"]>
 
-            <#--<#include "../include/table.ftl">-->
             <@formElementsTemplate.listTableModel headItmeList=headItmeList bodyItmeList=bodyItmeList list=page.result/>
         </form>
     </div>
