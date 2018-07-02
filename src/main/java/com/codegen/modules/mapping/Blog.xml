@@ -6,6 +6,8 @@
         <result column="CONTENT" property="content" jdbcType="OTHER"/>
         <result column="LABEL" property="label" jdbcType="VARCHAR"/>
         <result column="TYPE" property="type" jdbcType="VARCHAR"/>
+        <result column="AUTHOR" property="author" jdbcType="VARCHAR"/>
+        <result column="TITLE" property="title" jdbcType="VARCHAR"/>
         <result column="MODIFYDATE" property="modifyDate" jdbcType="TIMESTAMP"/>
         <result column="CREATEDATE" property="createDate" jdbcType="TIMESTAMP"/>
         <result column="MODIFYUSERID" property="modifyUserId" jdbcType="BIGINT"/>
@@ -17,6 +19,8 @@
         T.CONTENT,
         T.LABEL,
         T.TYPE,
+        T.TITLE,
+        T.AUTHOR,
         T.MODIFYDATE,
         T.CREATEDATE,
         T.MODIFYUSERID,
@@ -32,6 +36,12 @@
         </if>
         <if test="type != null">
             and TYPE like CONCAT("%",#{type},"%")
+        </if>
+        <if test="author != null">
+            and AUTHOR like CONCAT("%",#{author},"%")
+        </if>
+        <if test="title != null">
+            and TITLE like CONCAT("%",#{title},"%")
         </if>
         <if test="modifyDate != null">
             and MODIFYDATE = #{modifyDate}
@@ -102,7 +112,9 @@
             MODIFYDATE,
             CREATEDATE,
             MODIFYUSERID,
-            CREATEUSERID
+            CREATEUSERID,
+            TITLE,
+            AUTHOR
             )
             values (
             #{content, jdbcType=OTHER},
@@ -111,7 +123,9 @@
             #{modifyDate, jdbcType=TIMESTAMP},
             #{createDate, jdbcType=TIMESTAMP},
             #{modifyUserId, jdbcType=BIGINT},
-            #{createUserId, jdbcType=BIGINT}
+            #{createUserId, jdbcType=BIGINT},
+            #{title, jdbcType=VARCHAR},
+            #{author, jdbcType=VARCHAR}
             )
     </insert>
     <insert id="insertSelective" parameterType="com.codegen.modules.model.BidBlog" useGeneratedKeys="true" keyProperty="id">
@@ -138,6 +152,12 @@
             <if test="createUserId != null">
                 CREATEUSERID,
             </if>
+            <if test="title != null">
+                TITLE,
+            </if>
+            <if test="author != null">
+                AUTHOR,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="content != null">
@@ -160,6 +180,12 @@
             </if>
             <if test="createUserId != null">
                 #{createUserId, jdbcType=BIGINT},
+            </if>
+            <if test="title != null">
+                #{TITLE, jdbcType=VARCHAR},
+            </if>
+            <if test="author != null">
+                #{AUTHOR, jdbcType=VARCHAR},
             </if>
         </trim>
     </insert>
@@ -187,6 +213,12 @@
             <if test="createUserId != null">
                 CREATEUSERID= #{createUserId, jdbcType=BIGINT},
             </if>
+            <if test="title != null">
+                TITLE= #{title, jdbcType=VARCHAR},
+            </if>
+            <if test="author != null">
+                AUTHOR= #{author, jdbcType=VARCHAR},
+            </if>
         </set>
         where ID = #{id,jdbcType=INTEGER}
     </update>
@@ -197,6 +229,8 @@
             CONTENT= #{content, jdbcType=OTHER},
             LABEL= #{label, jdbcType=VARCHAR},
             TYPE= #{type, jdbcType=VARCHAR},
+            TITLE= #{title, jdbcType=VARCHAR},
+            AUTHOR= #{author, jdbcType=VARCHAR},
             MODIFYDATE= #{modifyDate, jdbcType=TIMESTAMP},
             CREATEDATE= #{createDate, jdbcType=TIMESTAMP},
             MODIFYUSERID= #{modifyUserId, jdbcType=BIGINT},
