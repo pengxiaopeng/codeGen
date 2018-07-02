@@ -9,15 +9,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.zyfast.entity.BaseEntity;
-import com.zyfast.sys.support.Message;
-import com.zyfast.sys.support.Pageable;
-import ${importModel}.${model};
-import ${importService}.${model}Service;
-
 /**
  * Controller - ${model_name_cn}
- * @author	xuyb
+ * @author	pengxiaopeng
  * @version 2.0
  * @date 	${.now?string("yyyy-MM-dd")}
  */

@@ -1,10 +1,11 @@
 package ${package};
-import ${importBaseDAO};
+import com.codegen.common.dao.BaseDao;
+import com.codegen.common.dao.annotation.MyBatisDao;
 import ${importModel}.${model};
 
 /**
  * Dao - ${model_name_cn}
- * @author	xuyb
+ * @author	pengxiaopeng
  * @version 2.0
  * @date 	${.now?string("yyyy-MM-dd")}
  */

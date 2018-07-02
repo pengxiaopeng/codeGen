@@ -1,17 +1,12 @@
 package com.zyfast.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import com.zyfast.entity.BaseEntity;
+import com.codegen.common.model.BaseModel;
 /**
  * ${comment!""}
- * @author	xuyb
+ * @author	pengxiaopeng
  * @date 	${.now?string("yyyy-MM-dd")}
  */
-@Entity
-@Table(name = "${tableName}")
-public class ${className} extends BaseEntity {
+public class ${className} extends BaseModel {
 	<#list columns as column>
 	<#assign autograph = "private " + column.propertyType + " " + column.propertyName + " ;">
 	<#if column.propertyName != "id" && column.propertyName != "create_user_id" &&  column.propertyName != "create_date" &&  column.propertyName != "modify_date" &&  column.propertyName != "modify_user_id">
