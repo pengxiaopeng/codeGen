@@ -6,6 +6,19 @@
     <#include "../include/cssResource.ftl">
     <#import "../include/formElements.ftl" as formElementsTemplate>
     <#import "../include/navbar.ftl" as navbarTemplate>
+    <style>
+        .label{
+            display: inline;
+            padding: .2em .6em .3em;
+            font-size: 75%;
+            font-weight: bold;
+            line-height: 1;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: baseline;
+            border-radius: .25em;
+        }
+    </style>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -29,7 +42,7 @@
 
             <#assign headItmeList=["标题","作者","类型","创建时间","修改时间","操作"]>
             <#assign bodyItmeList=["${r'<a class=\"btn btn-link\" href=\"/admin/blog/view?id=${item.id}\">${item.title}</a>'}","${r'${item.author}'}",
-            "${r'<#if item.types?? && (item.types?size>0)><#list item.types as i><span class="label label-success">${i}</span></#list></#if>'}",
+            "${r'<#if item.types?? && (item.types?size>0)><#list item.types as i><span class=\"label label-success\">${i}</span>  </#list></#if>'}",
             "${r'${item.createDate?datetime}'}","${r'${item.modifyDate?datetime}'}",
             "${r'<a class=\"btn btn-success btn-sm\" href=\"/admin/blog/editView?id=${item.id}\">修改</a>
                                <a class=\"btn  btn-success btn-sm\" onclick=\"deleteById(this);\">删除</a>'}"]>
