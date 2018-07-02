@@ -11,7 +11,7 @@
  Target Server Version : 50622
  File Encoding         : 65001
 
- Date: 02/07/2018 16:46:26
+ Date: 02/07/2018 17:57:47
 */
 
 SET NAMES utf8mb4;
@@ -34,5 +34,10 @@ CREATE TABLE `bid_blog`  (
   `author` varchar(255) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = gbk COLLATE = gbk_chinese_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of bid_blog
+-- ----------------------------
+INSERT INTO `bid_blog` VALUES (1, 'sss', 'labless', 'aaa,bbb,ccds', '2018-07-25 17:17:20', '2018-07-04 17:17:15', NULL, NULL, 'titla', 'aaa');
 
 SET FOREIGN_KEY_CHECKS = 1;
