@@ -4,6 +4,7 @@ import com.codegen.common.model.BaseModel;
 import com.codegen.utils.StringUtils;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,10 +19,10 @@ public class Blog extends BaseModel {
     private String type;
     private String author;
     private String title;
-    private java.util.Date modifydate;
-    private java.util.Date createdate;
-    private Long modifyuserid;
-    private Long createuserid;
+    private java.util.Date modifyDate;
+    private java.util.Date createDate;
+    private Long modifyUserId;
+    private Long createUserId;
     private List<String> types;
 
     public List<String> getTypes() {
@@ -84,36 +85,35 @@ public class Blog extends BaseModel {
         return this.type;
     }
 
-    public void setModifydate(java.util.Date modifydate) {
-        this.modifydate = modifydate;
+    public Date getModifyDate() {
+        return modifyDate;
     }
 
-    public java.util.Date getModifydate() {
-        return this.modifydate;
+    public void setModifyDate(Date modifyDate) {
+        this.modifyDate = modifyDate;
     }
 
-    public void setCreatedate(java.util.Date createdate) {
-        this.createdate = createdate;
+    public Date getCreateDate() {
+        return createDate;
     }
 
-    public java.util.Date getCreatedate() {
-        return this.createdate;
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
     }
 
-    public void setModifyuserid(Long modifyuserid) {
-        this.modifyuserid = modifyuserid;
+    public Long getModifyUserId() {
+        return modifyUserId;
     }
 
-    public Long getModifyuserid() {
-        return this.modifyuserid;
+    public void setModifyUserId(Long modifyUserId) {
+        this.modifyUserId = modifyUserId;
     }
 
-    public void setCreateuserid(Long createuserid) {
-        this.createuserid = createuserid;
+    public Long getCreateUserId() {
+        return createUserId;
     }
 
-    public Long getCreateuserid() {
-        return this.createuserid;
+    public void setCreateUserId(Long createUserId) {
+        this.createUserId = createUserId;
     }
-
 }
