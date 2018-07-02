@@ -37,8 +37,8 @@ public class BlogController  extends CommonContrller {
     @RequestMapping(value = "add")
     public String add(Model model, Blog blog, HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
         if (blog != null) {
-            blog.setCreatedate(new Date());
-            blog.setModifydate(new Date());
+            blog.setCreateDate(new Date());
+            blog.setModifyDate(new Date());
             blogService.save(blog);
         }
         redirectAttributes.addFlashAttribute(Constants.MESSAGE_NAME, "添加成功");
@@ -64,7 +64,7 @@ public class BlogController  extends CommonContrller {
         String message = "修改失败";
         String icon = Constants.FAIL_ICON;
         if (blog != null) {
-            blog.setModifydate(new Date());
+            blog.setModifyDate(new Date());
             blogService.updateByPrimaryKeySelective(blog);
             message = "修改成功";
             icon = Constants.SUCCESS_ICON;
