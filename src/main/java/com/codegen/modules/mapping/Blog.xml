@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.codegen.modules.dao.BidBlogDao">
-    <resultMap id="BaseResultMap" type="com.codegen.modules.model.BidBlog">
+<mapper namespace="com.codegen.modules.dao.BlogDao">
+    <resultMap id="BaseResultMap" type="com.codegen.modules.model.Blog">
         <id column="ID" property="id" jdbcType="INTEGER"/>
         <result column="CONTENT" property="content" jdbcType="OTHER"/>
         <result column="LABEL" property="label" jdbcType="VARCHAR"/>
@@ -76,7 +76,7 @@
         </choose>
     </sql>
 
-    <select id="selectByPrimaryKey" parameterType="java." resultMap="BaseResultMap">
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from BID_BLOG T
@@ -99,12 +99,12 @@
         from BID_BLOG T
     </select>
 
-    <delete id="deleteByPrimaryKey" parameterType="java.">
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
         delete from BID_BLOG
         where ID = #{id,jdbcType=INTEGER}
     </delete>
 
-    <insert id="insert" parameterType="com.codegen.modules.model.BidBlog" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insert" parameterType="com.codegen.modules.model.Blog" useGeneratedKeys="true" keyProperty="id">
             insert into BID_BLOG (
             CONTENT,
             LABEL,
@@ -128,7 +128,7 @@
             #{author, jdbcType=VARCHAR}
             )
     </insert>
-    <insert id="insertSelective" parameterType="com.codegen.modules.model.BidBlog" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertSelective" parameterType="com.codegen.modules.model.Blog" useGeneratedKeys="true" keyProperty="id">
         insert into BID_BLOG
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="content != null">
@@ -189,7 +189,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.codegen.modules.model.BidBlog">
+    <update id="updateByPrimaryKeySelective" parameterType="com.codegen.modules.model.Blog">
         update BID_BLOG
         <set>
             <if test="content != null">
@@ -223,7 +223,7 @@
         where ID = #{id,jdbcType=INTEGER}
     </update>
 
-    <update id="updateByPrimaryKey" parameterType="com.codegen.modules.model.BidBlog">
+    <update id="updateByPrimaryKey" parameterType="com.codegen.modules.model.Blog">
         update BID_BLOG
         set
             CONTENT= #{content, jdbcType=OTHER},
