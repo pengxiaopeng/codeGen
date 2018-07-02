@@ -54,7 +54,7 @@
         </choose>
     </sql>
 
-    <select id="selectByPrimaryKey" parameterType="java.<#assign idColumn=columns[0]/><#if idColumn.type="Long">lang.Long<#elseif idColumn.type="String">lang.String</#if>" resultMap="BaseResultMap">
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from ${tableName?upper_case} T
@@ -77,7 +77,7 @@
         from ${tableName?upper_case} T
     </select>
 
-    <delete id="deleteByPrimaryKey" parameterType="java.<#assign idColumn=columns[0]/><#if idColumn.type="Long">lang.Long<#elseif idColumn.type="String">lang.String</#if>">
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
         delete from ${tableName?upper_case}
     <#assign idColumn=columns[0]/>
         where ${idColumn.columnName?upper_case} = #${"{"+idColumn.columnName+",jdbcType="+idColumn.jdbcType+"}"}
