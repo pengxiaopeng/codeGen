@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>添加数字字典</title>
+    <title>添加文章</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
     <#include "../include/cssResource.ftl">
@@ -18,8 +18,8 @@
     <!-- Navbar -->
 
     <@navbarTemplate.navbar json={"list":[
-    {"url":"/admin/dataType/list","title":"数字字典列表"},
-    {"url":"/admin/dataType/addView","class":"active","title":"添加数字字典"}
+    {"url":"/admin/blog/list","title":"文章列表"},
+    {"url":"/admin/blog/addView","class":"active","title":"添加文章"}
     ]}
     />
 
@@ -39,26 +39,16 @@
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form class="layui-form" action="/admin/dataType/add">
+                            <form class="layui-form" action="/admin/blog/add">
                                 <div class="card-body">
                                     <div class="layui-form-item">
-                                        <@formElements.inputElement name="code" label="code" placeholder="请输入code" verify="required"/>
-                                        <@formElements.inputElement name="descpt" label="描述" placeholder="请输入描述" verify="required" />
+                                        <@formElements.inputElement name="type" label="类型" placeholder="请输入类型，逗号隔开" verify="required"/>
+                                        <@formElements.inputElement name="title" label="标题" placeholder="请输入标题" verify="required" />
                                     </div>
                                     <div class="layui-form-item">
-                                        <@formElements.inputElement name="sort" label="排序" placeholder="请输入排序" verify="required|number"/>
+                                        <@formElements.inputElement name="author" label="作者" placeholder="请输入作者" verify="required"/>
                                     </div>
-                                    <div id="dataTypeList"
-                                         style="padding: 1rem; margin-bottom: 1rem; border: 1px solid #28a745;">
-                                        <label class="layui-form-label">字典列表：</label>
-                                        <div style="cursor: pointer" onclick="addDataType(this)"><i class="layui-icon"
-                                                                                                    style="font-size: 30px; color: #28a745;">&#xe61f;</i>
-                                        </div>
-                                        <div class="layui-form-item">
-                                            <@formElements.inputElement name="dataDictionaries[0].code" label="code" placeholder="请输入code" verify="required"/>
-                                            <@formElements.inputElement name="dataDictionaries[0].descpt" label="描述" placeholder="请输入描述" verify="required" />
-                                        </div>
-                                    </div>
+                                    <textarea id="editor" placeholder="Balabala" ></textarea>
 
                                     <@formElements.submitAndBackBtn />
                                 </div>
