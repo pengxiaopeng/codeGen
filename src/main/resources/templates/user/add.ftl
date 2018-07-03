@@ -114,9 +114,9 @@
             var display = $("input[name='username']").parent().find("label").css("display");
             console.log(display);
             if(display != 'none') {
-                return false;
+                return false;//阻止表单跳转。
             }
-            return true; //阻止表单跳转。
+            return true;
         });
     })
 
