@@ -69,56 +69,7 @@
     </div>
     <#include "../include/sidebarControl.ftl">
 </div>
-<div style="display: none;" id="dataTypeModel">
-    <div class="layui-form-item">
-        <div class="layui-inline">
-            <label class="layui-form-label">code</label>
-            <div class="layui-input-inline">
-                <input type="text" name="dataDictionaries[0].code" lay-verify="required"
-                       placeholder="请输入code" autocomplete="off" class="layui-input"
-                       maxlength="30">
-            </div>
-        </div>
-        <div class="layui-inline">
-            <label class="layui-form-label">描述</label>
-            <div class="layui-input-inline">
-                <input type="text" name="dataDictionaries[0].descpt" lay-verify="required"
-                       placeholder="请输入描述" autocomplete="off" class="layui-input"
-                       maxlength="30">
-            </div>
-        </div>
-        <div style="cursor: pointer; display: inline;" onclick="deleteDataType(this)"><i class="layui-icon"
-                                                                                         style="font-size: 30px; color: #28a745;">&#xe640;</i>
-        </div>
-    </div>
-</div>
-<script type="text/javascript">
-    $(document).ready(function () {
-        initDataTypeListIndex();
-    });
 
-    function addDataType() {
-
-        var $model = $("#dataTypeModel").children().clone(true);
-
-        $("#dataTypeList").append($model);
-
-        initDataTypeListIndex();
-    }
-
-    function deleteDataType(_this) {
-        $(_this).parent().remove();
-        initDataTypeListIndex();
-    }
-
-    function initDataTypeListIndex() {
-        $("#dataTypeList").find(".layui-form-item").each(function (index, value) {
-            $(this).find("input").each(function (index2, value2) {
-                $(this).attr("name", "dataDictionaries[" + index + "]." + $(this).attr("name").split(".")[1]);
-            });
-        });
-    }
-</script>
 <#include "../include/jsResource.ftl">
 </body>
 </html>
