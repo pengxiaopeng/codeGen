@@ -91,4 +91,16 @@ public class BlogController  extends CommonContrller {
         redirectAttributes.addFlashAttribute(Constants.ICON_NAME, icon);
         return "redirect:/admin/blog/list";
     }
+    @RequestMapping(value = "view")
+    public String view(Model model, Long id, HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
+        if (id != null) {
+            Blog blog = blogService.selectByPrimaryKey(id);
+
+            model.addAttribute("blog", blog);
+            return "blog/view";
+        }
+        redirectAttributes.addFlashAttribute("message", "id不能为空");
+        redirectAttributes.addFlashAttribute("icon", Constants.FAIL_ICON);
+        return "redirect:/admin/blog/list";
+    }
 }
