@@ -50,7 +50,7 @@
                                        <div>${blog.content}</div>
                                     </div>
                                 </div>
-                                <@formElementsTemplate.someBtnAndBackBtn href="/admin/blog/editView?id="+dataType.id />
+                                <@formElementsTemplate.someBtnAndBackBtn href="/admin/blog/editView?id="+blog.id />
                             </div>
                         </div>
                     </div>
