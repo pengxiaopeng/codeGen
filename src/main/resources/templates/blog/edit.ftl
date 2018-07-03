@@ -5,6 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
     <#include "../include/cssResource.ftl">
+    <#include "../include/simditorResource.ftl">
     <#import "../include/formElements.ftl" as formElementsTemplate>
     <#import "../include/navbar.ftl" as navbarTemplate>
     <style type="text/css">
@@ -18,8 +19,8 @@
     <!-- Navbar -->
 
     <@navbarTemplate.navbar json={"list":[
-    {"url":"/admin/dataType/list","title":"数字字典列表"},
-    {"url":"/admin/dataType/addView","class":"active","title":"编辑数字字典"}
+    {"url":"/admin/blog/list","title":"文章列表"},
+    {"url":"/admin/blog/addView","class":"active","title":"编辑文章"}
     ]}
     />
 

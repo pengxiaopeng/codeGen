@@ -23,8 +23,8 @@
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
     <@navbarTemplate.navbar json={"list":[
-        {"url":"/admin/dataType/list","class":"active","title":"文章列表"},
-        {"url":"/admin/dataType/addView","title":"添加文章"}
+        {"url":"/admin/blog/list","class":"active","title":"文章列表"},
+        {"url":"/admin/blog/addView","title":"添加文章"}
     ]}
     />
 

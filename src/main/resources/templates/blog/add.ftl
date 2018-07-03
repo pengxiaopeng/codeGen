@@ -5,6 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
     <#include "../include/cssResource.ftl">
+    <#include "../include/simditorResource.ftl">
     <#import "../include/formElements.ftl" as formElements>
     <#import "../include/navbar.ftl" as navbarTemplate>
     <style type="text/css">
@@ -35,7 +36,7 @@
                         <!-- general form elements -->
                         <div class="card card-success">
                             <div class="card-header">
-                                <h3 class="card-title">添加字典类型</h3>
+                                <h3 class="card-title">添加文章</h3>
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
@@ -48,8 +49,8 @@
                                     <div class="layui-form-item">
                                         <@formElements.inputElement name="author" label="作者" placeholder="请输入作者" verify="required"/>
                                     </div>
-                                    <textarea id="editor" placeholder="Balabala" ></textarea>
-
+                                    <textarea id="editor" placeholder="请输入文章" ></textarea>
+                                    <input type="hidden" name="content" id = "content"/>
                                     <@formElements.submitAndBackBtn />
                                 </div>
                             </form>
@@ -62,50 +63,25 @@
     </div>
     <#include "../include/sidebarControl.ftl">
 </div>
-<div style="display: none;" id="dataTypeModel">
-    <div class="layui-form-item">
-        <div class="layui-inline">
-            <label class="layui-form-label">code</label>
-            <div class="layui-input-inline">
-                <input type="text" name="dataDictionaries[0].code" lay-verify="required"
-                       placeholder="请输入code" autocomplete="off" class="layui-input"
-                       maxlength="30">
-            </div>
-        </div>
-        <div class="layui-inline">
-            <label class="layui-form-label">描述</label>
-            <div class="layui-input-inline">
-                <input type="text" name="dataDictionaries[0].descpt" lay-verify="required"
-                       placeholder="请输入描述" autocomplete="off" class="layui-input"
-                       maxlength="30">
-            </div>
-        </div>
-        <div style="cursor: pointer; display: inline;" onclick="deleteDataType(this)"><i class="layui-icon" style="font-size: 30px; color: #28a745;">&#xe640;</i>
-        </div>
-    </div>
-</div>
+
 <script type="text/javascript">
-    function addDataType() {
-
-        var $model = $("#dataTypeModel").children().clone(true);
-
-        $("#dataTypeList").append($model);
-
-        initDataTypeListIndex();
-    }
-
-    function deleteDataType(_this) {
-        $(_this).parent().remove();
-        initDataTypeListIndex();
-    }
-
-    function initDataTypeListIndex() {
-        $("#dataTypeList").find(".layui-form-item").each(function (index, value) {
-            $(this).find("input").each(function (index2, value2) {
-                $(this).attr("name", "dataDictionaries[" + index + "]." + $(this).attr("name").split(".")[1]);
-            });
+    $(document).ready(function () {
+        var editor = new Simditor({
+            textarea: $('#editor')
         });
-    }
+
+        layui.use(['form', 'layedit', 'laydate', 'element', 'laypage', 'table', 'layer'], function () {
+            var form = layui.form;
+            form.on('submit(formDemo)', function(data){
+                var content = editor.getValue();
+                if(content == '' || content == 'undefined') {
+                    return false; //阻止表单跳转。
+                }
+                $("#content").val(content);
+                return true;
+            });
+        })
+    });
 </script>
 <#include "../include/jsResource.ftl">
 </body>
